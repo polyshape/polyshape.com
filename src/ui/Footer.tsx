@@ -3,10 +3,13 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="brand brand--small">
-          <span className="brand__mark">S</span> <span>PolyShape</span>
+          <picture>
+            <source srcSet="/logo_short.webp" type="image/webp" />
+            <img src="/logo_short.png" alt="PolyShape" className="footer__logo" />
+          </picture>
         </div>
         <div className="copy">
-          Copyright © 2023–2024<br />
+          Copyright © 2023-2024<br />
           PolyShape LTD. All rights reserved
         </div>
       </div>

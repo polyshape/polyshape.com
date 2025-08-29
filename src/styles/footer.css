@@ -1,0 +1,30 @@
+.footer {
+  background: #1b2430;
+  color: #e0e0e0;
+  position: relative;
+  z-index: 99;
+}
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  gap: 1rem;
+}
+.footer__logo {
+  height: 22px;
+  display: block;
+}
+.brand--small {
+  display: flex;
+  align-items: center;
+}
+.copy {
+  font-size: 0.9rem;
+}
+@media (max-width: 900px) {
+  .footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

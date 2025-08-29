@@ -22,6 +22,7 @@
 .menu {
   display: flex;
   gap: 3.5rem;
+  align-items: center;
 }
 .menu__item {
   color: #fff;
@@ -35,6 +36,69 @@
 }
 .menu__item:hover {
   opacity: 0.8;
+}
+.menu__group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.menu__group::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+.menu__chevron {
+  color: #fff;
+  display: inline-flex;
+  line-height: 1;
+}
+.submenu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 30%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #111;
+  min-width: 240px;
+  padding: 0.6rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.16);
+  z-index: 1000;
+}
+.submenu::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  transform-origin: center;
+  rotate: 45deg;
+}
+.menu__group:hover .submenu,
+.submenu:hover {
+  display: block;
+}
+.submenu__item {
+  display: block;
+  padding: 0.7rem 0.9rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  border-radius: 8px;
+}
+.submenu__item:hover {
+  background: #f5f7fb;
 }
 @media (max-width: 900px) {
   .menu {

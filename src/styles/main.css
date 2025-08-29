@@ -21,6 +21,7 @@
 .main {
   flex: 1;
   display: grid;
+  min-height: 0;
 }
 .hero {
   position: relative;
@@ -49,4 +50,28 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .page__video { display: none; }
+}
+
+.content {
+  position: relative;
+  padding: 3rem 1.25rem 4rem;
+  display: flex;
+  justify-content: center;
+  max-height: 85dvh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.prose {
+  max-width: 900px;
+  text-align: left;
+}
+.prose .hero__title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.prose p {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 2.1vw, 1.125rem);
+  line-height: 1.75;
 }

@@ -1,18 +1,38 @@
-:root {
+:root, .theme-dark {
   --bg: #0b0c0f;
   --fg: #fff;
   --muted: #cfd6e4;
   --border: rgba(255, 255, 255, 0.08);
-  --overlay: rgba(0, 0, 0, 0.55);
-  --nav-bg-home: rgba(0, 0, 0, 0.2);
+  --overlay: rgba(0, 0, 0, 0.65);
+  --nav-bg-home: rgba(0, 0, 0, 0.6);
   --main-purple: #6165AD;
   --main-orange: #D79E10;
   --content-bg: rgba(255, 255, 255, 0.02);
   --nav-bg: rgba(255, 255, 255, 0.08);
+  --footer-bg: #1b2430;
+  --line-color: rgba(255,255,255,0.18);
+  --arrow-bg: rgba(255,255,255,0.04);
+  --modal-bg: #0f1217;
+  --theme-btn-bg: #0e0e0e;
   overflow: hidden;
 }
 
-/* Home page overrides for nav */
+.theme-light {
+  --bg: #f7f8fb;
+  --fg: #0b0c0f;
+  --muted: #3a4658;
+  --border: rgba(0, 0, 0, 0.12);
+  --overlay: rgba(0, 0, 0, 0.25);
+  --nav-bg-home: rgba(255, 255, 255, 0.7);
+  --content-bg: rgba(0, 0, 0, 0.02);
+  --nav-bg: rgba(255, 255, 255, 0.75);
+  --footer-bg: #ddd;
+  --line-color: rgba(0,0,0,0.18);
+  --arrow-bg: rgba(255,255,255,0.5);
+  --modal-bg: #f3f3f3;
+  --theme-btn-bg: #ebebeb;
+}
+
 .page--home {
   --nav-bg: var(--nav-bg-home);
 }

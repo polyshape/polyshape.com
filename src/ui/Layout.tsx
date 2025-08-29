@@ -7,7 +7,7 @@ export default function Layout() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   return (
-    <div className={`page${isHome ? "" : " page--no-video"}`}>
+    <div className={`page ${isHome ? "page--home" : "page--no-video"}`}>
       {isHome && (
         <div className="page__bg">
           <video

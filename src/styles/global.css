@@ -4,12 +4,17 @@
   --muted: #cfd6e4;
   --border: rgba(255, 255, 255, 0.08);
   --overlay: rgba(0, 0, 0, 0.55);
-  --nav-bg: rgba(0, 0, 0, 0.2);
+  --nav-bg-home: rgba(0, 0, 0, 0.2);
   --main-purple: #6165AD;
   --main-orange: #D79E10;
   --content-bg: rgba(255, 255, 255, 0.02);
   --nav-bg: rgba(255, 255, 255, 0.08);
   overflow: hidden;
+}
+
+/* Home page overrides for nav */
+.page--home {
+  --nav-bg: var(--nav-bg-home);
 }
 
 * {
@@ -33,7 +38,7 @@ body {
 a {
   color: var(--main-orange);
   text-decoration: none;
-  transition: opacity 180ms ease;
+  transition: opacity 250ms ease;
 }
 
 a:visited {

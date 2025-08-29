@@ -9,13 +9,13 @@
   bottom: 0;
   left: 50%;
   width: 2px;
-  background: rgba(255,255,255,0.18);
+  background: var(--line-color);
   transform: translateX(-50%);
 }
 .timeline__list { list-style: none; padding: 0; margin: 0; }
 .timeline__item { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: 4rem; align-items: center; }
 .timeline__dot { position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--main-orange); transform: translate(-50%, -50%); box-shadow: 0 0 0 4px rgba(215,158,16,0.2); }
-.timeline__card { position: relative; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem; max-width: 95%; }
+.timeline__card { position: relative; background: var(--arrow-bg); border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem; max-width: 95%; }
 .timeline__card { transition: transform 180ms ease, background-color 180ms ease; will-change: transform; cursor: pointer; }
 .timeline__card:hover { transform: scale(1.03); background: rgba(255,255,255,0.06); }
 .timeline__side--left .timeline__card { margin-right: 1.35rem; }
@@ -31,7 +31,7 @@
 /* Fill triangle (slightly smaller to reveal border) */
 .timeline__side--left .timeline__card::after { right: -11px; border-top: 11px solid transparent; border-bottom: 11px solid transparent; border-left: 11px solid rgba(255,255,255,0.04); }
 .timeline__side--right .timeline__card::after { left: -11px; border-top: 11px solid transparent; border-bottom: 11px solid transparent; border-right: 11px solid rgba(255,255,255,0.04); }
-.timeline__title { margin: 0; font-weight: 800; color: #fff; cursor: pointer; }
+.timeline__title { margin: 0; font-weight: 800; color: var(--fg); cursor: pointer; }
 /* Card scaling already enlarges text; keep title static to avoid overflow */
 .timeline__title { display: inline-block; }
 .timeline__side { padding: 0.6rem 0; }
@@ -40,13 +40,13 @@
 
 .modal { position: fixed; inset: 0; z-index: 999; }
 .modal__backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(3px); }
-.modal__card { position: relative; z-index: 1; background: #0f1217; color: #fff; border: 1px solid var(--border); border-radius: 14px; width: min(860px, 92vw); margin: 8vh auto; padding: 0; max-height: 75vh; display: flex; flex-direction: column; }
+.modal__card { position: relative; z-index: 1; background:var(--modal-bg); color: var(--fg); border: 1px solid var(--border); border-radius: 14px; width: min(860px, 92vw); margin: 8vh auto; padding: 0; max-height: 75vh; display: flex; flex-direction: column; }
 .modal__scroll { flex: 1 1 auto; min-height: 0; }
 .modal__head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.75rem 1rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .modal__title { margin: 0; font-size: 1.4rem; }
-.modal__close { background: transparent; border: 0; color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.modal__close { background: transparent; border: 0; color: var(--fg); font-size: 1.6rem; line-height: 1; cursor: pointer; }
 .modal__close svg { display: block; width: 20px; height: 20px; }
-.modal__body { padding: 1rem; color: var(--muted); line-height: 1.7; }
+.modal__body { padding: 1rem; color: var(--fg); line-height: 1.7; }
 
 @media (max-width: 800px) {
   .timeline__item { grid-template-columns: 1fr; }

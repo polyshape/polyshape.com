@@ -1,5 +1,6 @@
 .page {
   min-height: 100dvh;
+  max-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -21,6 +22,15 @@
 .main {
   flex: 1;
   display: grid;
+  min-height: 0;
+  background: var(--content-bg, transparent);
+}
+.hero__title {
+  margin: 0 0 0.8rem;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1.05;
+  font-weight: 800;
+  color: #fff;
 }
 .hero {
   position: relative;
@@ -34,19 +44,56 @@
   position: relative;
   z-index: 1;
 }
-.hero__title {
-  margin: 0 0 0.8rem;
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  line-height: 1.05;
-  font-weight: 800;
-  color: #fff;
-}
 .hero__subtitle {
   margin: 0;
   color: var(--muted);
   font-size: clamp(1rem, 2.2vw, 1.4rem);
   font-weight: 500;
 }
+.content {
+  position: relative;
+  padding: 3rem 1.25rem 4rem;
+  display: flex;
+  justify-content: center;
+  max-height: 86dvh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.os-theme-dark {
+  --os-size: 8px;
+  --os-handle-bg: rgba(190, 200, 210, 0.55);
+  --os-handle-bg-hover: rgba(220, 230, 240, 0.7);
+  --os-handle-bg-active: rgba(255, 255, 255, 0.85);
+  --os-track-bg: transparent;
+}
+.prose {
+  max-width: 900px;
+  text-align: left;
+  justify-self: center;
+}
+.prose .hero__title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.prose p {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 2.1vw, 1.125rem);
+  line-height: 1.75;
+}
+.brand__container {
+  display: flex;
+  gap: 3rem;
+}
+.logo__brand {
+  width: 25rem;
+  height: 25rem;
+}
+.brand__logo__container{
+  display: flex;
+  align-items: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .page__video { display: none; }
 }

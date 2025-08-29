@@ -1,6 +1,6 @@
 # Polyshape
 
-A simple React + TypeScript frontend app built with [Vite](https://vitejs.dev/).
+Building the Intelligence that Safeguards Us!
 
 ---
 

@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "install": "npm install"
+    "preview": "vite preview"
   },
   "dependencies": {
     "overlayscrollbars": "^2.12.0",

@@ -7,7 +7,7 @@ export default function Nav() {
         <Link className="brand" to="/">
           <picture>
             <source srcSet="/logo.webp" type="image/webp" />
-            <img src="/logo_short.png" alt="PolyShape" className="brand__logo" />
+            <img src="/logo.png" alt="PolyShape" className="brand__logo" />
           </picture>
         </Link>
 

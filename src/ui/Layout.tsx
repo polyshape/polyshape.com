@@ -1,4 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
+import Content from "./Content";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
@@ -6,7 +7,7 @@ export default function Layout() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   return (
-    <div className="page">
+    <div className={`page${isHome ? "" : " page--no-video"}`}>
       {isHome && (
         <div className="page__bg">
           <video
@@ -25,7 +26,11 @@ export default function Layout() {
 
       <Nav />
       <main className="main">
-        <Outlet />
+        {isHome ? <Outlet /> : (
+          <Content>
+            <Outlet />
+          </Content>
+        )}
       </main>
       <Footer />
     </div>

@@ -1,11 +1,11 @@
 export default function BrandPitchDeck() {
   return (
-    <section className="hero">
-      <div className="hero__content">
-        <h1 className="hero__title">Pitch deck</h1>
-        <p className="hero__subtitle">Placeholder link and notes for the pitch deck.</p>
-      </div>
-    </section>
+    <div className="prose">
+      <h1 className="hero__title">Pitch deck</h1>
+      <p>
+        Follow this link for a pitch deck for PolyShape: <a href="https://www.scribd.com/document/874487086/Pitch-deck-for-PolyShape" target="_blank">PolyShape Pitch Deck</a>
+      </p>
+    </div>
   );
 }
 

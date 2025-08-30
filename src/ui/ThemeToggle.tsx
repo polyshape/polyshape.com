@@ -4,6 +4,7 @@ type Theme = 'dark' | 'light';
 
 function getInitialTheme(): Theme {
   const saved = localStorage.getItem('theme');
+
   if (saved === 'light' || saved === 'dark') {
     return saved;
   }

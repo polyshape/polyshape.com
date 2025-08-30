@@ -27,10 +27,15 @@ export default function Contact() {
       type ContactResponse = { ok?: boolean; error?: string; dryRun?: boolean };
       const json = (await res.json().catch(() => ({}))) as unknown;
       const data: ContactResponse = (json && typeof json === 'object') ? (json as ContactResponse) : {};
-      if (!res.ok || data.ok === false) throw new Error(data.error || 'Failed to send');
+      if (!res.ok || data.ok === false) {
+        console.log("res: ", res);
+        console.log("data: ", data);
+        throw new Error(data.error || 'Failed to send');
+      }
       setStatus('success');
       form.reset();
     } catch (err: unknown) {
+      console.log("err: ", err);
       const msg = err instanceof Error ? err.message : 'Failed to send';
       setStatus('error');
       setError(msg);

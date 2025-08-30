@@ -41,6 +41,7 @@ export default async function handler(req: HttpReq, res: HttpRes) {
 
   const proc = (globalThis as unknown as { process?: { env?: Record<string, string | undefined> } }).process;
   const env = proc?.env;
+  console.log("env.dry_run: ", env?.DRY_RUN);
   const dryRun = (env?.DRY_RUN ?? 'true') !== 'false';
   if (dryRun) {
     try {

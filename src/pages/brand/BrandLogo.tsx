@@ -3,9 +3,9 @@ export default function BrandLogo() {
     <div className="prose">
       <h1 className="hero__title">The logo</h1>
       <div className="brand__container">
-        <picture className="brand__logo__container">
+        <picture className="brand__logo-container">
           <source srcSet="/logo_short.webp" type="image/webp" />
-          <img src="/logo_short.png" alt="PolyShape" className="logo__brand" />
+          <img src="/logo_short.png" alt="PolyShape" className="brand__logo-image" />
         </picture>
         <div>
           <p>

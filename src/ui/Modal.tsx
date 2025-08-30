@@ -8,7 +8,6 @@ export default function Modal({ open, onClose, title, children }: {
   title?: string;
   children?: React.ReactNode;
 }) {
-  // Create a detached container appended to body so overlay covers the whole page
   const container = useMemo(() => {
     const el = document.createElement('div');
     el.className = 'modal-root';
@@ -16,14 +15,26 @@ export default function Modal({ open, onClose, title, children }: {
   }, []);
 
   useEffect(() => {
-    function onKey(e: KeyboardEvent) { if (e.key === 'Escape') onClose(); }
-    if (open) document.addEventListener('keydown', onKey);
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    }
+    if (open) {
+      document.addEventListener('keydown', onKey);
+    }
     return () => document.removeEventListener('keydown', onKey);
   }, [open, onClose]);
 
   useEffect(() => {
     document.body.appendChild(container);
-    return () => { try { document.body.removeChild(container); } catch { /* noop */ } };
+    return () => {
+      try {
+        document.body.removeChild(container);
+      } catch {
+        // ignore
+      }
+    };
   }, [container]);
 
   if (!open) {

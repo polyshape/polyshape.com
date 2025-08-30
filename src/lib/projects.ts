@@ -5,7 +5,7 @@ export type ProjectDoc = {
 };
 
 export type Project = ProjectDoc & {
-  id: string; // derived from filename
+  id: string;
 };
 
 export function loadProjects(): Project[] {
@@ -20,7 +20,6 @@ export function loadProjects(): Project[] {
     return { id, ...data };
   });
 
-  // Sort by id (filename) descending (latest first)
   items.sort((a, b) => b.id.localeCompare(a.id));
   return items;
 }

@@ -4,7 +4,10 @@ type Theme = 'dark' | 'light';
 
 function getInitialTheme(): Theme {
   const saved = localStorage.getItem('theme');
-  if (saved === 'light' || saved === 'dark') return saved;
+
+  if (saved === 'light' || saved === 'dark') {
+    return saved;
+  }
   const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
   return prefersLight ? 'light' : 'dark';
 }

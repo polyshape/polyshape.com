@@ -8,7 +8,7 @@ export default function PortfolioProjects() {
   const open = projects.find(p => p.id === openId) || null;
 
   return (
-    <div className="prose prose__big">
+    <div className="prose prose--big">
       <h1 className="hero__title">Projects</h1>
       <div className="timeline">
         <div className="timeline__line" />

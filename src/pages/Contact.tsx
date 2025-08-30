@@ -38,28 +38,28 @@ export default function Contact() {
   }
 
   return (
-    <div className="prose prose__big">
+    <div className="prose prose--big">
       <h1 className="hero__title">Contact</h1>
       <p>Get in touch with PolyShape.</p>
 
       <form onSubmit={onSubmit} className="contact-form" noValidate>
-        <div className="field">
+        <div className="contact-form__field">
           <label htmlFor="name">Name</label>
-          <input className="contact-form-field" id="name" name="name" type="text" autoComplete="name" />
+          <input className="contact-form__control" id="name" name="name" type="text" autoComplete="name" />
         </div>
-        <div className="field">
+        <div className="contact-form__field">
           <label htmlFor="email">Email</label>
-          <input className="contact-form-field" id="email" name="email" type="email" autoComplete="email" required />
+          <input className="contact-form__control" id="email" name="email" type="email" autoComplete="email" required />
         </div>
-        <div className="field" style={{ display: 'none' }}>
+        <div className="contact-form__field" style={{ display: 'none' }}>
           <label htmlFor="company">Company</label>
-          <input className="contact-form-field" id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+          <input className="contact-form__control" id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
         </div>
-        <div className="field">
+        <div className="contact-form__field">
           <label htmlFor="message">Message</label>
-          <textarea className="contact-form-field" id="message" name="message" rows={6} required />
+          <textarea className="contact-form__control" id="message" name="message" rows={6} required />
         </div>
-        <div className="actions">
+        <div className="contact-form__actions">
           <button type="submit" disabled={status === 'sending'}>
             {status === 'sending' ? 'Sending…' : 'Send message'}
           </button>

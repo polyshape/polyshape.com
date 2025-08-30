@@ -6,7 +6,7 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "moduleDetection": "force",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "allowImportingTsExtensions": true,
 
     "types": ["node"],

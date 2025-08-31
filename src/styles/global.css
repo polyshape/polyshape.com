@@ -6,7 +6,9 @@
   --overlay: rgba(0, 0, 0, 0.65);
   --nav-bg-home: rgba(0, 0, 0, 0.6);
   --main-purple: #6165AD;
-  --main-orange: #D79E10;
+  --secondary-purple: #949BDD;
+  --main-orange: #D69D0D;
+  --secondary-orange: #FFC545;
   --content-bg: rgba(255, 255, 255, 0.02);
   --nav-bg: rgba(255, 255, 255, 0.08);
   --footer-bg: #1b2430;

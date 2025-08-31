@@ -42,7 +42,9 @@ export default async function handler(req: HttpReq, res: HttpRes) {
   const proc = (globalThis as unknown as { process?: { env?: Record<string, string | undefined> } }).process;
   const env = proc?.env;
   const dryRun = (env?.DRY_RUN ?? 'true') !== 'false';
-  if (dryRun) {
+  const sendEmails = env?.SEND_EMAILS === 'true';
+
+  if (dryRun || !sendEmails) {
     try {
       console.log('[contact:dry-run]', {
         name,
@@ -50,12 +52,47 @@ export default async function handler(req: HttpReq, res: HttpRes) {
         messagePreview: String(message).slice(0, 200) + (String(message).length > 200 ? '…' : ''),
       });
     } catch (err) {
-      try { console.error('[contact:dry-run-log-error]', err); } catch {
+      try {
+        console.error('[contact:dry-run-log-error]', err);
+      } catch {
         // ignore
       }
     }
     return res.status(200).json({ ok: true, dryRun: true });
   }
 
-  return res.status(200).json({ ok: true, dryRun: false, info: 'Email sending not enabled yet' });
+  // --- LIVE SEND VIA POSTMARK ---
+  console.log("dry_run", env?.DRY_RUN)
+  console.log("send_emails", env?.SEND_EMAILS)
+  console.log("token", env?.POSTMARK_TOKEN)
+  console.log("from", env?.CONTACT_FROM)
+  console.log("to", env?.CONTACT_TO)
+  if (!env?.POSTMARK_TOKEN || !env?.CONTACT_FROM || !env?.CONTACT_TO) {
+    return res
+      .status(500)
+      .json({ ok: false, error: 'Server email config missing' });
+  }
+
+  try {
+    const { ServerClient } = await import('postmark');
+    const client = new ServerClient(env.POSTMARK_TOKEN);
+
+    await client.sendEmail({
+      From: env.CONTACT_FROM,
+      To: env.CONTACT_TO,
+      ReplyTo: email,
+      Subject: `Contact: ${name}`,
+      TextBody: `From: ${name} <${email}>\n\n${String(message)}`,
+      MessageStream: 'outbound',
+    });
+
+    return res.status(200).json({ ok: true, dryRun: false });
+  } catch (err) {
+    try {
+      console.error('[contact:send-error]', err);
+    } catch {
+      // ignore
+    }
+    return res.status(500).json({ ok: false, error: 'Email send failed' });
+  }
 }

@@ -1,7 +1,9 @@
-export default function MissionStatement() {
+import { AppRoutes } from "../../lib/common/AppRoutes";
+
+export default function Statement() {
   return (
     <div className="prose">
-      <h1 className="hero__title">Mission statement</h1>
+      <h1 className="hero__title">{AppRoutes.STATEMENT.title}</h1>
       <p>
         The future of human health demands the best tools we have—and there is no tool more powerful, more transformative, than Artificial General Intelligence (AGI). To truly support human health, we must be bold enough to tap into AGI’s full potential, unlocking a new era of scientific discovery, accelerated innovation, and holistic well-being.
       </p>

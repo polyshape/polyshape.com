@@ -9,7 +9,7 @@ export default function Footer() {
           </picture>
         </div>
         <div className="copy">
-          Copyright © 2023-2024<br />
+          Copyright © 2023-2025<br />
           PolyShape LTD. All rights reserved
         </div>
       </div>

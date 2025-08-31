@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 9990,
-    open: true
+    open: true,
+    proxy: {
+      '/api': 'http://localhost:3000' // Vercel dev server (functions)
+    }
   }
 })

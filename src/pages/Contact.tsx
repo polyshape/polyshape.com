@@ -65,7 +65,7 @@ export default function Contact() {
           <button type="submit" disabled={status === 'sending'}>
             {status === 'sending' ? 'Sending…' : 'Send message'}
           </button>
-          {status === 'success' && <span className="hint success">Thanks! We’ll get back to you.</span>}
+          {status === 'success' && <span className="hint success">Thanks! We'll get back to you.</span>}
           {status === 'error' && <span className="hint error">{error || 'Something went wrong.'}</span>}
         </div>
       </form>

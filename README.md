@@ -23,5 +23,5 @@ Before starting, install:
 # 1) Install dependencies
 npm install
 
-# 2) Start dev server
-npm run dev
+# 2) Start dev server and vercel functions for ap/contact
+npm run start

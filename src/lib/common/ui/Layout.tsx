@@ -2,10 +2,11 @@ import { Outlet, useLocation } from "react-router-dom";
 import Content from "./Content";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import { AppRoutes } from "../AppRoutes";
 
 export default function Layout() {
   const location = useLocation();
-  const isHome = location.pathname === "/";
+  const isHome = location.pathname === AppRoutes.HOME.path;
   return (
     <div className={`page ${isHome ? "page--home" : "page--no-video"}`}>
       {isHome && (

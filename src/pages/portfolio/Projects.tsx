@@ -1,15 +1,16 @@
 import { useMemo, useState } from 'react';
 import { loadProjects, type Project } from '../../lib/projects';
-import Modal from '../../ui/Modal';
+import Modal from '../../lib/common/ui/Modal';
+import { AppRoutes } from '../../lib/common/AppRoutes';
 
-export default function PortfolioProjects() {
+export default function Projects() {
   const projects = useMemo(() => loadProjects(), []);
   const [openId, setOpenId] = useState<string | null>(null);
   const open = projects.find(p => p.id === openId) || null;
 
   return (
     <div className="prose prose--big">
-      <h1 className="hero__title">Projects</h1>
+      <h1 className="hero__title">{AppRoutes.PROJECTS.title}</h1>
       <div className="timeline">
         <div className="timeline__line" />
         <ol className="timeline__list">

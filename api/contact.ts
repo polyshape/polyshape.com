@@ -29,7 +29,7 @@ export default async function handler(req: HttpReq, res: HttpRes) {
   if (company) {
     return res.status(200).json({ ok: true, dryRun: true });
   }
-  if (!email || !message) {
+  if (!name || !email || !message) {
     return res.status(400).json({ ok: false, error: 'Missing required fields' });
   }
   if (!RE_EMAIL.test(email)) {

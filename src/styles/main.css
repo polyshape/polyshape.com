@@ -103,6 +103,18 @@
 .contact-form--message--wrapper {
   margin: 1.5rem 6rem 0 0;
 }
+
+@media (max-width: 900px) {
+  .contact-form--message--wrapper {
+    margin-right: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-form--message--wrapper {
+    margin-right: 0.7rem;
+  }
+}
 .contact-form__field { margin-bottom: 1rem; }
 .contact-form__field label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: var(--fg); }
 .contact-form input,
@@ -134,6 +146,27 @@
   cursor: pointer;
   height: 3rem;
   width: 10rem;
+}
+
+@media (max-width: 900px) {
+  .contact-form button {
+    height: 2.2rem;
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-form button {
+    height: 2.2rem;
+    width: 100%;
+    font-size: 0.7rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 90%;
+  }
 }
 .contact-form__wrapper {
   display: flex;
@@ -182,3 +215,36 @@
 @media (prefers-reduced-motion: reduce) {
   .page__video { display: none; }
 }
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 3rem 0.7rem 2rem;
+    min-height: 56vh;
+  }
+  .content {
+    padding: 2rem 0.7rem 2rem;
+  }
+  .prose {
+    max-width: 98vw;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero__title {
+    font-size: 2rem;
+  }
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+  .prose--big {
+    width: 98vw;
+    height: auto;
+    padding: 0;
+  }
+  .brand__logo-image {
+    width: 12rem;
+    height: 12rem;
+  }
+}
+

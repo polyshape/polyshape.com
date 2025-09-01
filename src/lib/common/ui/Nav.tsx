@@ -1,10 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./theme/ThemeToggle";
 import { AppRoutes } from "../AppRoutes";
+import { useState } from "react";
 
 const navItems = Object.values(AppRoutes).filter(route => route.isParent);
 
 export default function Nav() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="nav">
       <div className="nav__inner">
@@ -14,8 +17,24 @@ export default function Nav() {
             <img src="/logo.png" alt={AppRoutes.HOME.title} className="brand__logo" />
           </picture>
         </Link>
+        <ThemeToggle/>
 
-        <nav className="menu">
+        <button
+          className="burger--menu"
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(open => !open)}
+        >
+          <span className="burger--icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect y="7" width="32" height="3" rx="1.5" fill="currentColor" />
+              <rect y="14" width="32" height="3" rx="1.5" fill="currentColor" />
+              <rect y="21" width="32" height="3" rx="1.5" fill="currentColor" />
+            </svg>
+          </span>
+        </button>
+
+        <nav className={`menu${menuOpen ? " menu--open" : ""}`}>
           {navItems.map(route =>
             route.children.length ? (
               <div className="menu__group" key={route.id}>
@@ -73,7 +92,6 @@ export default function Nav() {
               </NavLink>
             )
           )}
-          <ThemeToggle/>
         </nav>
       </div>
     </header>

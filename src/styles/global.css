@@ -50,6 +50,24 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (max-width: 900px) {
+  body {
+    font-size: 1rem;
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.95rem;
+    padding: 0;
+  }
+  a {
+    font-size: 1rem;
+  }
+}
+
+
 body {
   margin: 0;
   font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial;

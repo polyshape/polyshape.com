@@ -1,3 +1,22 @@
+/* Burger menu styles */
+.burger--menu {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 1001;
+  padding: 0.3rem;
+  color: var(--fg);
+}
+.burger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .nav {
   position: sticky;
   top: 0;
@@ -13,7 +32,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+}
+.nav__inner > *:not(:last-child) {
+  margin-right: 1rem;
 }
 .brand__logo {
   height: 44px;
@@ -21,7 +42,9 @@
 }
 .menu {
   display: flex;
-  gap: 3.5rem;
+}
+.menu > *:not(:last-child) {
+  margin-right: 3.5rem;
   align-items: center;
 }
 .menu__item {
@@ -62,7 +85,9 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+}
+.menu__group > *:not(:last-child) {
+  margin-right: 0.3rem;
 }
 .menu__group::after {
   content: "";
@@ -130,12 +155,60 @@
   color: #000;
   background: #f5f7fb;
 }
-@media (max-width: 900px) {
+@media (max-width: 990px) {
   .menu {
-    gap: 1.4rem;
     font-size: 1rem;
   }
+  .menu > *:not(:last-child) {
+    margin-right: 1.4rem;
+  }
 }
+
+@media (max-width: 830px) {
+  .burger--menu {
+    display: block;
+  }
+  .menu {
+    display: none;
+  }
+  .menu.menu--open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 4.5rem;
+    right: 1.2rem;
+    background: var(--nav-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+    z-index: 1002;
+    min-width: 180px;
+    width: auto;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+  .nav__inner {
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding: 0.7rem 0.7rem;
+  }
+  .brand__logo {
+    height: 36px;
+  }
+  .menu__item {
+    font-size: 1rem;
+    padding-bottom: 0.2rem;
+  }
+  .theme-toggle {
+    width: 3rem;
+    height: 2rem;
+    margin-left: 0;
+    margin-top: 0.5rem;
+    margin-right: 6rem !important;
+  }
+}
+
 
 /* Theme toggle */
 .theme-toggle {

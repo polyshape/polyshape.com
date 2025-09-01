@@ -22,9 +22,17 @@
 .copy {
   font-size: 0.9rem;
 }
-@media (max-width: 900px) {
+
+@media (max-width: 600px) {
   .footer__inner {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 1rem 0.7rem;
+    gap: 0.5rem;
+  }
+  .footer__logo {
+    height: 16px;
+  }
+  .copy {
+    font-size: 0.8rem;
   }
 }
+

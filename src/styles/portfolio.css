@@ -55,3 +55,24 @@
   .timeline__dot { left: 12px; transform: translate(-50%, -50%); }
   .timeline__card { margin-left: 1.6rem; }
 }
+
+@media (max-width: 600px) {
+  .timeline__card {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.95rem;
+    max-width: 99vw;
+  }
+  .timeline__title {
+    font-size: 1rem;
+  }
+  .modal__card {
+    width: 98vw;
+    margin: 4vh auto;
+    padding: 0.5rem;
+    max-height: 90vh;
+  }
+  .modal__title {
+    font-size: 1.1rem;
+  }
+}
+

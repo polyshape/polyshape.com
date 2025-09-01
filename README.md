@@ -23,5 +23,20 @@ Before starting, install:
 # 1) Install dependencies
 npm install
 
-# 2) Start dev server and vercel functions for ap/contact
+# 2) Start vite dev server standalone
+npm run dev
+```
+
+OR start dev server and vercel functions for api/contact (for mocking the contact form).\
+In order for this to work, vercel needs to login and link the local project to a vercel project.\
+Run:
+```bash
+npm exec vercel login
+npm exec vercel link
+npm exec vercel env pull .env.local
+```
+
+Then start the dev server with vercel functions (api/contact).
+```bash
 npm run start
+```

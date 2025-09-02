@@ -46,7 +46,7 @@ jobs:
           NODE_ENV: test
 
       - name: Install Playwright Browsers
-        uses: microsoft/playwright-github-action@v1
+        run: npx playwright install --with-deps
 
       - name: Cache Playwright browsers
         uses: actions/cache@v4

@@ -10,7 +10,7 @@ export default function App() {
   const routes = (Object.keys(AppRoutes) as Key[]).filter(key => AppRoutes[key].isParent);
   return (
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Routes>
           <Route element={<Layout/>}> 
             {routes.map(key => {

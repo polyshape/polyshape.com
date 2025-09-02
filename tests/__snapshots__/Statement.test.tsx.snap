@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Statement page matches the snapshot 1`] = `
+<div>
+  <div
+    class="prose"
+  >
+    <h1
+      class="hero__title"
+    >
+      Mission Statement
+    </h1>
+    <p>
+      The future of human health demands the best tools we have—and there is no tool more powerful, more transformative, than Artificial General Intelligence (AGI). To truly support human health, we must be bold enough to tap into AGI’s full potential, unlocking a new era of scientific discovery, accelerated innovation, and holistic well-being.
+    </p>
+    <p>
+      AGI stands as the ultimate catalyst for health-driven breakthroughs. From early detection and precise diagnostics to safeguarding individuals and accelerating drug discovery, its capabilities span the entire spectrum of healthcare. But beyond that, AGI has the power to elevate human potential, enhancing mental well-being, personalizing care, and ensuring that no one is left behind in the pursuit of health and longevity.
+    </p>
+    <p>
+      Our vision is Generalized Health Intelligence, a revolution in AI-driven healthcare. Imagine an interconnected Matrix of AGI agents, swarming ahead of us, for us—autonomous, intelligent, and proactive in identifying risks, optimizing treatments, and supporting well-being at every stage of life. These agents do not replace human expertise; they empower it. They amplify human creativity, safeguard health, and accelerate the development of life-saving innovations at an unprecedented scale.
+    </p>
+    <p>
+      While ethics and regulation are essential, we embrace them with a spirit of positive transformation. When harnessed responsibly, AGI is not a threat, it is an infinite opportunity. It is the key to a future where health is not just treated but predicted, prevented, and optimized through intelligence far beyond what any single human mind can achieve.
+    </p>
+    <p>
+      We are not here to claim the future, we are here to build it. Science moves forward through careful reasoning, responsible innovation, and an unwavering commitment to human well-being. AGI is no different. It expands human insight, accelerating what once seemed impossible. If done right, it will not just transform healthcare but redefine how we understand health itself.
+    </p>
+  </div>
+</div>
+`;

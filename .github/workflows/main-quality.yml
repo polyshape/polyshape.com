@@ -3,7 +3,7 @@ name: Main Branch Quality Checks
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   build-and-test:

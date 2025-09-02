@@ -46,7 +46,13 @@ jobs:
           NODE_ENV: test
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        uses: microsoft/playwright-github-action@v1
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ runner.os }}
 
       - name: Wait for Vite dev server
         run: npx wait-on http://localhost:9990

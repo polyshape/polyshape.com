@@ -7,6 +7,7 @@ test('navigation bar is visible and contains brand logo', async ({ page }) => {
   await expect(nav.locator('.brand__logo')).toBeVisible();
 });
 
+test.use({ colorScheme: 'light' });
 test('theme toggle switches theme', async ({ page }) => {
   await page.goto('/');
   const html = page.locator('html');

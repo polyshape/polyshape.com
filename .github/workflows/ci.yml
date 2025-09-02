@@ -2,12 +2,14 @@ name: CI
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    env:
+      HEADLESS: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,7 +29,7 @@ jobs:
         run: npm run lint
 
       - name: Run unit tests and generate HTML report
-        run: npm run unit:test
+        run: npm run test:unit
 
       - name: Upload HTML test report
         uses: actions/upload-artifact@v4

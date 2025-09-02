@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import {render} from '@testing-library/react';
-import Home from '../src/pages/Home';
+import Home from '../../src/pages/Home';
 
 describe('Home page', () => {
   it('renders the main title and subtitle', () => {

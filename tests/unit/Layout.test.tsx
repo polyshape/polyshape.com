@@ -1,11 +1,11 @@
-import App from '../src/App';
+import App from '../../src/App';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import Layout from '../src/lib/common/ui/Layout';
+import Layout from '../../src/lib/common/ui/Layout';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from '../src/lib/common/ui/theme/ThemeProvider';
-import {AppRoutes} from '../src/lib/common/AppRoutes';
+import { ThemeProvider } from '../../src/lib/common/ui/theme/ThemeProvider';
+import {AppRoutes} from '../../src/lib/common/AppRoutes';
 
 describe('Layout components', () => {
   it('renders navigation', () => {

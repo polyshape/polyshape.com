@@ -7,7 +7,7 @@ module.exports = {
   },
   testMatch: ['**/?(*.)+(test).[jt]s?(x)'],
   moduleNameMapper: {
-    '^../../lib/projects$': '<rootDir>/tests/__mocks__/projects.ts',
+    '^../../lib/projects$': '<rootDir>/tests/unit/__mocks__/projects.ts',
   },
   reporters: [
     'default',

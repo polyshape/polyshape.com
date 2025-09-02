@@ -1,22 +1,22 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import Vision from '../src/pages/mission/Vision';
-import { AppRoutes } from '../src/lib/common/AppRoutes';
+import Dissemination from '../../src/pages/r_n_d/Dissemination';
+import { AppRoutes } from '../../src/lib/common/AppRoutes';
 
-describe('Vision page', () => {
+describe('Dissemination page', () => {
   it('renders the main title', () => {
-    const { getByText } = render(<Vision />);
-    expect(getByText(AppRoutes.VISION.title)).toBeInTheDocument();
+    const { getByText } = render(<Dissemination />);
+    expect(getByText(AppRoutes.DISSEMINATION.title)).toBeInTheDocument();
   });
 
   it('applies correct CSS classes', () => {
-    const { container } = render(<Vision />);
+    const { container } = render(<Dissemination />);
     expect(container.querySelector('.prose')).toBeInTheDocument();
     expect(container.querySelector('.hero__title')).toBeInTheDocument();
   });
 
   it('matches the snapshot', () => {
-    const { container } = render(<Vision />);
+    const { container } = render(<Dissemination />);
     expect(container).toMatchSnapshot();
   });
 });

@@ -1,22 +1,22 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import Patents from '../src/pages/r_n_d/Patents';
-import { AppRoutes } from '../src/lib/common/AppRoutes';
+import Journey from '../../src/pages/mission/Journey';
+import { AppRoutes } from '../../src/lib/common/AppRoutes';
 
-describe('Patents page', () => {
+describe('Journey page', () => {
   it('renders the main title', () => {
-    const { getByText } = render(<Patents />);
-    expect(getByText(AppRoutes.PATENTS.title)).toBeInTheDocument();
+    const { getByText } = render(<Journey />);
+    expect(getByText(AppRoutes.JOURNEY.title)).toBeInTheDocument();
   });
 
   it('applies correct CSS classes', () => {
-    const { container } = render(<Patents />);
+    const { container } = render(<Journey />);
     expect(container.querySelector('.prose')).toBeInTheDocument();
     expect(container.querySelector('.hero__title')).toBeInTheDocument();
   });
 
   it('matches the snapshot', () => {
-    const { container } = render(<Patents />);
+    const { container } = render(<Journey />);
     expect(container).toMatchSnapshot();
   });
 });

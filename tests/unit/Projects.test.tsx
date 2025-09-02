@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import Projects from '../src/pages/portfolio/Projects';
-import { AppRoutes } from '../src/lib/common/AppRoutes';
+import Projects from '../../src/pages/portfolio/Projects';
+import { AppRoutes } from '../../src/lib/common/AppRoutes';
 
 describe('Projects page', () => {
   it('renders the main title', () => {

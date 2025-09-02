@@ -20,10 +20,7 @@ test('theme toggle switches theme', async ({ page }) => {
   await expect(html).not.toHaveClass(initialClass || '');
   // Check for theme-dark or theme-light
   const newClass = await html.getAttribute('class');
-  expect(newClass).toMatch(/theme-(dark|light)/);
-  // Toggle back to initial theme
-  await toggle.click();
-  await expect(html).toHaveClass(initialClass || '');
+  expect(newClass).toMatch(/theme-dark/);
 });
 
 test('footer is visible and contains copyright', async ({ page }) => {

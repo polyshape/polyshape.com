@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Home page matches the snapshot 1`] = `
+<div>
+  <div
+    class="hero"
+  >
+    <div
+      class="hero__content"
+    >
+      <h1
+        class="hero__title"
+      >
+        Generalized Health Intelligence
+      </h1>
+      <p
+        class="hero__subtitle"
+      >
+        Building the Intelligence that Safeguards Us!
+      </p>
+    </div>
+  </div>
+</div>
+`;

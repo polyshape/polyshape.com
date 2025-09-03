@@ -121,43 +121,54 @@ export default function Contact() {
 
         <form onSubmit={onSubmit} className="contact-form" noValidate>
           <div className="contact-form__field">
-            <label htmlFor="name">Name <span className="required">*</span></label>
-            <input
-              className={`contact-form__control ${invalid.name ? 'contact-form__control--error' : ''}`}
-              id="name"
-              name="name"
-              type="text"
-              autoComplete="name"
-              required
-              onChange={handleChange}
-            />
+            <div className="floating-label-group">
+              <input
+                className={`contact-form__control ${invalid.name ? 'contact-form__control--error' : ''}`}
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                onChange={handleChange}
+                onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
+              />
+              <label htmlFor="name">Name <span className="required">(required)</span></label>
+            </div>
           </div>
           <div className="contact-form__field">
-            <label htmlFor="email">Email <span className="required">*</span></label>
-            <input
-              className={`contact-form__control ${invalid.email ? 'contact-form__control--error' : ''}`}
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              onChange={handleChange}
-            />
+            <div className="floating-label-group">
+              <input
+                className={`contact-form__control ${invalid.email ? 'contact-form__control--error' : ''}`}
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                onChange={handleChange}
+                onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
+              />
+              <label htmlFor="email">Email <span className="required">(required)</span></label>
+            </div>
           </div>
           <div className="contact-form__field" style={{ display: 'none' }}>
-            <label htmlFor="company">Company</label>
-            <input className="contact-form__control" id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+            <div className="floating-label-group">
+              <input className="contact-form__control" id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+              <label htmlFor="company">Company</label>
+            </div>
           </div>
           <div className="contact-form__field">
-            <label htmlFor="message">Message <span className="required">*</span></label>
-            <textarea
-              className={`contact-form__control ${invalid.message ? 'contact-form__control--error' : ''}`}
-              id="message"
-              name="message"
-              rows={6}
-              required
-              onChange={handleChange}
-            />
+            <div className="floating-label-group">
+              <textarea
+                className={`contact-form__control ${invalid.message ? 'contact-form__control--error' : ''}`}
+                id="message"
+                name="message"
+                rows={6}
+                required
+                onChange={handleChange}
+                onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
+              />
+              <label htmlFor="message">Message <span className="required">(required)</span></label>
+            </div>
           </div>
           <div className="contact-form__actions">
             <button type="submit" disabled={status === 'sending'}>

@@ -1,3 +1,29 @@
+
+/* Minimal floating label effect for contact form */
+.floating-label-group {
+  position: relative;
+}
+.floating-label-group label {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.8rem;
+  font-size: 1rem;
+  color: var(--extra-muted);
+  pointer-events: none;
+  background: transparent;
+  transition: all 0.18s cubic-bezier(.4,0,.2,1);
+  padding: 0 0.2rem;
+}
+.floating-label-group input:focus + label,
+.floating-label-group textarea:focus + label,
+.floating-label-group input.has-value + label,
+.floating-label-group textarea.has-value + label {
+  top: 0.3rem;
+  left: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 0.55;
+}
 .page {
   min-height: 100dvh;
   max-height: 100dvh;
@@ -116,17 +142,20 @@
   }
 }
 .contact-form__field { margin-bottom: 1rem; }
-.contact-form__field label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: var(--fg); }
 .contact-form input,
 .contact-form textarea {
   width: 100%;
   border: 1px solid var(--border);
   color: var(--fg);
   border-radius: 8px;
-  padding: 0.6rem 0.7rem;
+  padding: 1.6rem 0.7rem 0.6rem 0.7rem;
   font: inherit;
+  height: 3.4rem;
 }
-.contact-form textarea { resize: vertical; }
+.contact-form textarea {
+  resize: vertical;
+  height: auto;
+}
 .contact-form__actions {
   display: flex;
   align-items: center;

@@ -2,6 +2,7 @@
   --bg: #0b0c0f;
   --fg: #fff;
   --muted: #cfd6e4;
+  --extra-muted: #c0c6d2;
   --border: rgba(255, 255, 255, 0.08);
   --overlay: rgba(0, 0, 0, 0.65);
   --nav-bg-home: rgba(0, 0, 0, 0.6);
@@ -23,6 +24,7 @@
   --bg: #f7f8fb;
   --fg: #0b0c0f;
   --muted: #3a4658;
+  --extra-muted: #4f5f77;
   --border: rgba(0, 0, 0, 0.12);
   --overlay: rgba(0, 0, 0, 0.25);
   --nav-bg-home: rgba(255, 255, 255, 0.7);

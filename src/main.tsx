@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import 'overlayscrollbars/styles/overlayscrollbars.css';
 import "./styles/index.css";
 import App from "./App";
+import { LoadingProvider } from "./lib/common/ui/spinner/LoadingProvider";
+import { LoadingOverlay } from "./lib/common/ui/LoadingOverlay";
 
 async function enableMocking() {
   // Only run when in dev AND flag enabled
@@ -19,7 +21,10 @@ async function enableMocking() {
 enableMocking().then(() => {
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
-      <App/>
+      <LoadingProvider>
+        <App/>
+        <LoadingOverlay/>
+      </LoadingProvider>
     </StrictMode>
   );
 });

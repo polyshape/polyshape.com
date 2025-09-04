@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Home from "../../pages/Home";
-import Statement from "../../pages/mission/Statement";
-import WhyPolyshape from "../../pages/mission/WhyPolyshape";
+import Vision from "../../pages/orientation/Vision";
+import Journey from "../../pages/orientation/Journey";
 import Software from "../../pages/r_n_d/Software";
 import Patents from "../../pages/r_n_d/Patents";
 import Publications from "../../pages/r_n_d/Publications";
@@ -11,8 +11,6 @@ import Partners from "../../pages/portfolio/Partners";
 import News from "../../pages/News";
 import Contact from "../../pages/Contact";
 import type { JSX } from "react";
-import Vision from "../../pages/mission/Vision";
-import Journey from "../../pages/mission/Journey";
 
 export const AppRoutes = {
   HOME: {
@@ -23,33 +21,17 @@ export const AppRoutes = {
     isParent: true,
     children: [] as const
   },
-  MISSION: {
-    id: "mission",
-    path: "/mission",
-    title: "Mission",
+  ORIENTATION: {
+    id: "orientation",
+    path: "/orientation",
+    title: "Orientation",
     element: <Outlet/>,
     isParent: true,
-    children: ["STATEMENT", "WHY_POLYSHAPE", "VISION", "JOURNEY"] as const
-  },
-  STATEMENT: {
-    id: "statement",
-    path: "/mission/statement",
-    title: "Mission Statement",
-    element: <Statement/>,
-    isParent: false,
-    children: [] as const
-  },
-  WHY_POLYSHAPE: {
-    id: "why-polyshape",
-    path: "/mission/why-polyshape",
-    title: "Why PolyShape",
-    element: <WhyPolyshape/>,
-    isParent: false,
-    children: [] as const
+    children: ["VISION", "JOURNEY"] as const
   },
   VISION: {
     id: "vision",
-    path: "/mission/vision",
+    path: "/orientation/vision",
     title: "Vision",
     element: <Vision/>,
     isParent: false,
@@ -57,7 +39,7 @@ export const AppRoutes = {
   },
   JOURNEY: {
     id: "journey",
-    path: "/mission/journey",
+    path: "/orientation/journey",
     title: "Journey",
     element: <Journey/>,
     isParent: false,

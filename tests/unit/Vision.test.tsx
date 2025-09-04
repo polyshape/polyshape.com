@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import Vision from '../../src/pages/mission/Vision';
+import Vision from '../../src/pages/orientation/Vision';
 import { AppRoutes } from '../../src/lib/common/AppRoutes';
 
 describe('Vision page', () => {

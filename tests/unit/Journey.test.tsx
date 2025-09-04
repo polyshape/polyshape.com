@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import Journey from '../../src/pages/mission/Journey';
+import Journey from '../../src/pages/orientation/Journey';
 import { AppRoutes } from '../../src/lib/common/AppRoutes';
 
 describe('Journey page', () => {

@@ -48,16 +48,16 @@ describe('Navigation', () => {
     expect(contactTitle).toBeInTheDocument();
   });
   
-  it('navigates to Mission Statement page via menu', async () => {
+  it('navigates to Vision page via menu', async () => {
     render(<App />);
-    // Get all Mission links and click the first one
-    const missionLinks = screen.getAllByRole('link', { name: /mission/i });
-    await userEvent.click(missionLinks[0]);
-    // Click the Mission Statement submenu link
-    const statementLink = screen.getByRole('link', { name: /mission statement/i });
+    // Get all Orientation links and click the first one
+    const orientationLinks = screen.getAllByRole('link', { name: /orientation/i });
+    await userEvent.click(orientationLinks[0]);
+    // Click the Vision submenu link
+    const statementLink = screen.getByRole('link', { name: /vision/i });
     await userEvent.click(statementLink);
-    // Assert Mission Statement page content is rendered
-    const statementTitle = screen.getByRole('heading', { level: 1, name: AppRoutes.STATEMENT.title });
+    // Assert Vision page content is rendered
+    const statementTitle = screen.getByRole('heading', { level: 1, name: AppRoutes.VISION.title });
     expect(statementTitle).toBeInTheDocument();
   });
 });

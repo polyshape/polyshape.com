@@ -1,14 +1,65 @@
-// Contact.tsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AppRoutes } from '../lib/common/AppRoutes';
+import { isDev, getEnvVar } from "../lib/env";
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function isMacOS(): boolean {
+  const nav = navigator as Navigator & {
+    userAgentData?: { platform?: string };
+  };
+
+  return nav.userAgentData?.platform
+    ? nav.userAgentData.platform.toLowerCase() === "macos"
+    : /mac/i.test(navigator.userAgent);
+}
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | null>(null);
   const [invalid, setInvalid] = useState<{ [key: string]: boolean }>({});
+
+  useEffect(() => {
+    if (!(isDev() && getEnvVar("VITE_USE_MSW") === "true")) {
+      return; // only in dev with flag
+    }
+
+    function handleShortcut(e: KeyboardEvent) {
+      const isMac = isMacOS();
+      // Ctrl+Alt+F (or Cmd+Opt+F on Mac)
+      const fail = isMac
+        ? e.metaKey && e.altKey && e.key === "f"
+        : e.ctrlKey && e.altKey && e.key === "f";
+
+      // Ctrl+Alt+E (or Cmd+Opt+E on Mac)
+      const happy = isMac
+        ? e.metaKey && e.altKey && e.key === "s"
+        : e.ctrlKey && e.altKey && e.key === "s";
+
+      if (happy || fail) {
+        const nameInput = document.querySelector<HTMLInputElement>("#name");
+        const emailInput = document.querySelector<HTMLInputElement>("#email");
+        const messageInput = document.querySelector<HTMLTextAreaElement>("#message");
+
+        if (nameInput && emailInput && messageInput) {
+          nameInput.value = "Test User";
+          emailInput.value = "test@example.com";
+          messageInput.value = fail
+          ? "Hello from shortcut! Fail"
+          : "Hello from shortcut!";
+
+          // fire input events so React picks up the change
+          nameInput.dispatchEvent(new Event("input", { bubbles: true }));
+          emailInput.dispatchEvent(new Event("input", { bubbles: true }));
+          messageInput.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+      }
+    }
+
+    window.addEventListener("keydown", handleShortcut);
+    return () => window.removeEventListener("keydown", handleShortcut);
+  }, []);
 
   function validate(payload: { name: string; email: string; message: string }) {
     if (!payload.name.trim() || !payload.email.trim() || !payload.message.trim()) {

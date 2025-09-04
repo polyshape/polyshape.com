@@ -259,8 +259,8 @@
   top: 110%;
   left: 30%;
   transform: translateX(-50%);
-  background: #fff;
-  color: #111;
+  background: var(--bg);
+  color: var(--fg) !important;
   min-width: 240px;
   padding: 0.6rem 0.4rem;
   border: 1px solid var(--border);
@@ -276,7 +276,7 @@
   transform: translate(-50%, -50%);
   width: 12px;
   height: 12px;
-  background: #fff;
+  background: var(--bg);
   border-left: 1px solid var(--border);
   border-top: 1px solid var(--border);
   transform-origin: center;
@@ -293,14 +293,15 @@
   color: inherit;
   font-weight: 700;
   border-radius: 8px;
-  color: #000;
+  color: var(--fg);
 }
 .submenu__item:visited {
-  color: #000;
+  color: var(--fg);
 }
 .submenu__item:hover {
-  color: #000;
-  background: #f5f7fb;
+  color: var(--fg);
+  opacity: 1;
+  background: var(--modal-bg);
 }
 @media (max-width: 990px) {
   .menu {

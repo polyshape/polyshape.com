@@ -11,6 +11,7 @@ export default defineConfig({
     ignoreHTTPSErrors: true,
     video: 'retain-on-failure',
   },
+  reporter: [['html', { open: 'never' }]],
   projects: [
     {
       name: 'Chromium',

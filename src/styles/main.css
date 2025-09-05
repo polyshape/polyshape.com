@@ -103,6 +103,7 @@
   max-width: 900px;
   text-align: left;
   justify-self: center;
+  text-align: justify;
 }
 .prose .hero__title {
   text-align: center;
@@ -121,7 +122,11 @@
   margin-top: 1.25rem;
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto
+  flex: 1 1 auto;
+  gap: 1.5rem;
+}
+.contact-form--message--header {
+  margin-bottom: 1.5rem !important;
 }
 .contact-form--message {
   margin-bottom: 0 !important;
@@ -160,7 +165,7 @@
 }
 .contact-form textarea {
   resize: vertical;
-  height: auto;
+  height: 20rem !important;
 }
 .contact-form__actions {
   display: flex;
@@ -243,7 +248,18 @@
 .contact-form__control.contact-form__control--error {
   border: 1px solid #e5484d !important;
 }
-
+.loading__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .page__video { display: none; }
@@ -260,6 +276,9 @@
   .prose {
     max-width: 98vw;
     font-size: 1rem;
+  }
+  .contact-form {
+    gap: 0.5rem;
   }
 }
 

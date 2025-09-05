@@ -1,14 +1,67 @@
-// Contact.tsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AppRoutes } from '../lib/common/AppRoutes';
+import { isDev, getEnvVar } from "../lib/env";
+import { useLoading } from '../lib/common/ui/spinner/useLoading';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function isMacOS(): boolean {
+  const nav = navigator as Navigator & {
+    userAgentData?: { platform?: string };
+  };
+
+  return nav.userAgentData?.platform
+    ? nav.userAgentData.platform.toLowerCase() === "macos"
+    : /mac/i.test(navigator.userAgent);
+}
+
 export default function Contact() {
+  const {setLoadingState} = useLoading();
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | null>(null);
   const [invalid, setInvalid] = useState<{ [key: string]: boolean }>({});
+
+  useEffect(() => {
+    if (!(isDev() && getEnvVar("VITE_USE_MSW") === "true")) {
+      return; // only in dev with flag
+    }
+
+    function handleShortcut(e: KeyboardEvent) {
+      const isMac = isMacOS();
+      // Ctrl+Alt+F (or Cmd+Opt+F on Mac)
+      const fail = isMac
+        ? e.metaKey && e.altKey && e.key === "f"
+        : e.ctrlKey && e.altKey && e.key === "f";
+
+      // Ctrl+Alt+E (or Cmd+Opt+E on Mac)
+      const happy = isMac
+        ? e.metaKey && e.altKey && e.key === "s"
+        : e.ctrlKey && e.altKey && e.key === "s";
+
+      if (happy || fail) {
+        const nameInput = document.querySelector<HTMLInputElement>("#name");
+        const emailInput = document.querySelector<HTMLInputElement>("#email");
+        const messageInput = document.querySelector<HTMLTextAreaElement>("#message");
+
+        if (nameInput && emailInput && messageInput) {
+          nameInput.value = "Test User";
+          emailInput.value = "test@example.com";
+          messageInput.value = fail
+          ? "Hello from shortcut! Fail"
+          : "Hello from shortcut!";
+
+          // fire input events so React picks up the change
+          nameInput.dispatchEvent(new Event("input", { bubbles: true }));
+          emailInput.dispatchEvent(new Event("input", { bubbles: true }));
+          messageInput.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+      }
+    }
+
+    window.addEventListener("keydown", handleShortcut);
+    return () => window.removeEventListener("keydown", handleShortcut);
+  }, []);
 
   function validate(payload: { name: string; email: string; message: string }) {
     if (!payload.name.trim() || !payload.email.trim() || !payload.message.trim()) {
@@ -52,18 +105,18 @@ export default function Contact() {
     const form = e.currentTarget;
     const fd = new FormData(form);
     const payload = {
-      name: String(fd.get('name') ?? ''),
-      email: String(fd.get('email') ?? ''),
-      message: String(fd.get('message') ?? ''),
-      company: String(fd.get('company') ?? ''),
+      name: String(fd.get("name") ?? ""),
+      email: String(fd.get("email") ?? ""),
+      message: String(fd.get("message") ?? ""),
+      company: String(fd.get("company") ?? ""),
     };
 
     const newInvalid: typeof invalid = {};
-    ['name', 'email', 'message'].forEach(f => {
+    ["name", "email", "message"].forEach((f) => {
       const value = payload[f as keyof typeof payload].trim();
       if (!value) {
         newInvalid[f] = true;
-      } else if (f === 'email' && !RE_EMAIL.test(value)) {
+      } else if (f === "email" && !RE_EMAIL.test(value)) {
         newInvalid[f] = true;
       }
     });
@@ -71,36 +124,45 @@ export default function Contact() {
 
     const clientErr = validate(payload);
     if (clientErr) {
-      setStatus('error');
+      setStatus("error");
       setError(clientErr);
       return;
     }
 
     if (payload.company) {
-      setStatus('success');
+      setStatus("success");
       form.reset();
       setInvalid({});
       return;
     }
 
     try {
-      setStatus('sending');
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      // 👇 both states: local & global
+      setStatus("sending"); // button text
+      setLoadingState("loading");  // overlay
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
       type ContactResponse = { ok?: boolean; error?: string; dryRun?: boolean };
       const data = (await res.json().catch(() => ({}))) as ContactResponse;
+
       if (!res.ok || data.ok === false) {
-        throw new Error(data.error || 'Failed to send');
+        throw new Error(data.error || "Failed to send");
       }
-      setStatus('success');
+
+      setStatus("success");
       form.reset();
       setInvalid({});
     } catch (err: unknown) {
-      setStatus('error');
-      setError(err instanceof Error ? err.message : 'Failed to send');
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Failed to send");
+    } finally {
+      // 👇 always hide overlay
+      setLoadingState(null);
     }
   }
 
@@ -110,7 +172,7 @@ export default function Contact() {
       <div className="contact-form__wrapper">
         <div className="contact-form--message--wrapper">
           <h1>Get in touch</h1>
-          <p className="contact-form--message">PolyShape LTD</p>
+          <p className="contact-form--message--header">PolyShape LTD</p>
           <p className="contact-form--message">The Accountancy Partnership</p>
           <p className="contact-form--message">Twelve Quays House</p>
           <p className="contact-form--message">Egerton Wharf</p>

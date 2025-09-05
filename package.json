@@ -19,13 +19,15 @@
     "postmark": "^4.0.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^6.30.1"
+    "react-router-dom": "^6.30.1",
+    "react-spinners": "^0.17.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
     "@eslint/js": "^9.33.0",
+    "@mswjs/interceptors": "^0.39.6",
     "@playwright/test": "^1.55.0",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
@@ -36,6 +38,7 @@
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",
     "babel-jest": "^30.1.2",
+    "broadcast-channel": "^7.1.0",
     "concurrently": "^9.2.1",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -44,10 +47,18 @@
     "jest": "^30.1.2",
     "jest-environment-jsdom": "^30.1.2",
     "jest-html-reporter": "^4.3.0",
+    "msw": "^2.11.1",
     "playwright": "^1.55.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vercel": "^46.1.1",
-    "vite": "^7.1.2"
+    "vite": "^7.1.2",
+    "web-streams-polyfill": "^4.2.0",
+    "whatwg-fetch": "^3.6.20"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

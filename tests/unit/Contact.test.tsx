@@ -1,7 +1,10 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import Contact from '../../src/pages/Contact';
 import { AppRoutes } from '../../src/lib/common/AppRoutes';
+import { server } from '../../src/mocks/server-test';
+import { http, HttpResponse } from 'msw';
+import { renderWithProviders } from './utils/renderWithProviders';
 
 describe('Contact page', () => {
   afterEach(() => {
@@ -9,7 +12,7 @@ describe('Contact page', () => {
   });
 
   it('renders the main title and correct CSS classes', () => {
-    const { container } = render(<Contact />);
+    const { container } = renderWithProviders(<Contact />);
     expect(screen.getByText(AppRoutes.CONTACT.title)).toBeInTheDocument();
     expect(screen.getByText('Get in touch')).toBeInTheDocument();
     const form = container.querySelector('form');
@@ -18,13 +21,7 @@ describe('Contact page', () => {
   });
 
   it('submits the contact form and shows success message', async () => {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve({ ok: true })
-      })
-    ) as jest.Mock;
-    const { container } = render(<Contact />);
+    const { container } = renderWithProviders(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
@@ -37,7 +34,7 @@ describe('Contact page', () => {
   });
 
   it('shows error message on empty name', async () => {
-    const { container } = render(<Contact />);
+    const { container } = renderWithProviders(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: '' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
@@ -50,7 +47,7 @@ describe('Contact page', () => {
   });
 
   it('shows error message on empty email', async () => {
-    const { container } = render(<Contact />);
+    const { container } = renderWithProviders(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: '' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
@@ -63,7 +60,7 @@ describe('Contact page', () => {
   });
 
   it('shows error message on empty message', async () => {
-    const { container } = render(<Contact />);
+    const { container } = renderWithProviders(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: '' } });
@@ -76,7 +73,7 @@ describe('Contact page', () => {
   });
 
   it('shows error message on invalid email', async () => {
-    const { container } = render(<Contact />);
+    const { container } = renderWithProviders(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
@@ -89,13 +86,12 @@ describe('Contact page', () => {
   });
 
   it('shows error message on failure', async () => {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve({ ok: false })
+    server.use(
+      http.post("/api/contact", () => {
+        return HttpResponse.json({ ok: false, message: "Forced failure" });
       })
-    ) as jest.Mock;
-    const { container } = render(<Contact />);
+    );
+    const { container } = renderWithProviders(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
@@ -109,13 +105,12 @@ describe('Contact page', () => {
 
   it('tests honeypot', async () => {
     // Even though the api returns false, we see still see a success message since the honeypot field is filled
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve({ ok: false })
+    server.use(
+      http.post("/api/contact", () => {
+        return HttpResponse.json({ ok: false, message: "Forced failure" });
       })
-    ) as jest.Mock;
-    const { container } = render(<Contact />);
+    );
+    const { container } = renderWithProviders(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });

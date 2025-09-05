@@ -11,12 +11,12 @@ exports[`Home page matches the snapshot 1`] = `
       <h1
         class="hero__title"
       >
-        Generalized Health Intelligence
+        Compositional multi-agent learning systems that advance health intelligence
       </h1>
       <p
         class="hero__subtitle"
       >
-        Building the Intelligence that Safeguards Us!
+        PolyShape builds modular systems on mathematical foundations, integrating uncertainty and diverse biomedical data to support monitoring, decision-making, and intervention in healthcare.
       </p>
     </div>
   </div>

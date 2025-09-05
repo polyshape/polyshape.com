@@ -5,8 +5,8 @@ import Home from '../../src/pages/Home';
 describe('Home page', () => {
   it('renders the main title and subtitle', () => {
     const { getByText } = render(<Home />);
-    expect(getByText('Generalized Health Intelligence')).toBeInTheDocument();
-    expect(getByText('Building the Intelligence that Safeguards Us!')).toBeInTheDocument();
+    expect(getByText('Compositional multi-agent learning systems that advance health intelligence')).toBeInTheDocument();
+    expect(getByText(/PolyShape builds modular systems on mathematical foundations/i)).toBeInTheDocument();
   });
 
   it('applies correct CSS classes', () => {

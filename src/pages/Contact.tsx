@@ -233,7 +233,7 @@ export default function Contact() {
             </div>
           </div>
           <div className="contact-form__actions">
-            <button type="submit" disabled={status === 'sending'}>
+            <button className="button__primary" type="submit" disabled={status === 'sending'}>
               {status === 'sending' ? 'Sending…' : 'Send'}
             </button>
             {status === 'success' && <span className="hint success">Thanks! We'll get back to you.</span>}

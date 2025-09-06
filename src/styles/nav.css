@@ -3,10 +3,8 @@
   display: none;
 }
 @media (max-width: 830px) {
+  /* Keep overlay present to allow transitions; hide via opacity/visibility */
   .nav__overlay {
-    display: none !important;
-  }
-  .nav__overlay.nav__overlay--open {
     position: fixed;
     inset: 0;
     background: var(--bg);
@@ -17,9 +15,24 @@
     justify-content: flex-start;
     padding-top: 4rem;
     width: 100vw;
-    height: 95vh;
-    overflow: hidden !important;
+    height: 100vh;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     border: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 200ms ease, transform 220ms ease, visibility 0s linear 220ms;
+  }
+  .nav__overlay.nav__overlay--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 200ms ease, transform 220ms ease, visibility 0s;
   }
   .nav__overlay--close {
     position: absolute;
@@ -45,14 +58,14 @@
     color: var(--fg);
     position: relative;
     border: none;
-    padding-left: 0.5rem;
-    margin-left: 2rem !important;
+    padding-left: 1.5rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 220ms ease 60ms, transform 220ms ease 60ms;
   }
   .menu__item--overlay, .submenu__item--overlay {
-    color: #000 !important;
-    background: #0ff !important;
+    color: var(--global-black) !important;
     font-size: 2rem !important;
-    border: 1px solid green;
     position: relative;
     z-index: 2002;
   }
@@ -123,13 +136,15 @@
   }
   .nav__overlay--open .menu.menu--overlay {
     display: flex !important;
+    opacity: 1;
+    transform: translateY(0);
   }
   .menu__group {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
     align-items: flex-start !important;
-    width: 90%;
+    width: 95%;
   }
 }
 /* Burger menu styles */
@@ -154,7 +169,7 @@
 .nav {
   position: sticky;
   top: 0;
-  z-index: 99;
+  z-index: 2000;
   background: var(--nav-bg);
   backdrop-filter: blur(6px) saturate(1.05);
   border-bottom: 1px solid var(--border);

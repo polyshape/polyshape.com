@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import {useTheme} from './theme/useTheme';
+import { useTheme } from './theme/useTheme';
 
 export default function Modal({ open, onClose, title, children, hideTitle = false }: {
   open: boolean;
@@ -41,7 +41,7 @@ export default function Modal({ open, onClose, title, children, hideTitle = fals
   }, [container]);
 
   if (!open) {
-    return null;
+    return <></>;
   }
 
   const modal = (
@@ -59,7 +59,6 @@ export default function Modal({ open, onClose, title, children, hideTitle = fals
           </button>
         </div>
         <OverlayScrollbarsComponent
-          className="content"
           options={{
             scrollbars: {
               autoHide: "never",

@@ -5,19 +5,55 @@ exports[`Home page matches the snapshot 1`] = `
   <div
     class="hero"
   >
+    <picture
+      class="hero__bg"
+    >
+      <source
+        srcset="/home_hero_transparent.webp"
+        type="image/webp"
+      />
+      <img
+        alt="Background"
+        src="/home_hero_transparent.png"
+      />
+    </picture>
+    <div
+      class="hero__overlay"
+    />
     <div
       class="hero__content"
     >
       <h1
         class="hero__title"
       >
-        Compositional multi-agent learning systems that advance health intelligence
+        Compositional multi-agent learning systems that advance 
+        <span
+          class="highlight"
+        >
+          health intelligence
+        </span>
       </h1>
       <p
         class="hero__subtitle"
       >
         PolyShape builds modular systems on mathematical foundations, integrating uncertainty and diverse biomedical data to support monitoring, decision-making, and intervention in healthcare.
       </p>
+      <div
+        class="hero__buttons"
+      >
+        <button
+          aria-label="Learn more about our vision"
+          class="button__primary"
+        >
+          Learn more
+        </button>
+        <button
+          aria-label="Contact us"
+          class="button__primary"
+        >
+          Get in touch
+        </button>
+      </div>
     </div>
   </div>
 </div>

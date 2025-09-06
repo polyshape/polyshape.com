@@ -3,23 +3,23 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
 import {AppRoutes} from '../../src/lib/common/AppRoutes';
-import { renderWithProviders } from './utils/renderWithProviders';
+import { renderWithLoadingProvider } from './utils/renderWithProviders';
 
 describe('Layout components', () => {
   it('renders navigation', () => {
-    renderWithProviders(<App />);
+    renderWithLoadingProvider(<App />);
     expect(screen.getByRole('navigation')).toBeInTheDocument();
   });
 
   it('renders footer', () => {
-    renderWithProviders(<App />);
+    renderWithLoadingProvider(<App />);
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();
   });
 });
 
 describe('Navigation', () => {
   it('navigates to Contact page when Contact link is clicked', async () => {
-    renderWithProviders(<App />);
+    renderWithLoadingProvider(<App />);
     const contactLink = screen.getByRole('link', { name: /contact/i });
     await userEvent.click(contactLink);
     const contactTitle = screen.getByRole('heading', { level: 1, name: AppRoutes.CONTACT.title });
@@ -27,7 +27,7 @@ describe('Navigation', () => {
   });
   
   it('navigates to Vision page via menu', async () => {
-    renderWithProviders(<App />);
+    renderWithLoadingProvider(<App />);
     // Get all Orientation links and click the first one
     const orientationLinks = screen.getAllByRole('link', { name: /orientation/i });
     await userEvent.click(orientationLinks[0]);
@@ -42,7 +42,7 @@ describe('Navigation', () => {
 
 describe('Theme toggle button', () => {
   it('toggles between dark and light theme', async () => {
-    renderWithProviders(<App />);
+    renderWithLoadingProvider(<App />);
     // Initially, theme should be dark
     expect(document.documentElement).toHaveClass('theme-dark');
     // Click theme toggle button

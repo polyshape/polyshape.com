@@ -1,18 +1,22 @@
 :root, .theme-dark {
-  --bg: #0b0c0f;
+  --global-white: #fff;
+  --global-black: #000;
+  --global-success: #4ade80;
+  --global-error: #e21313;
+  --bg: #070D1A;
   --fg: #fff;
+  --fg-button: #fff;
   --muted: #cfd6e4;
   --extra-muted: #c0c6d2;
   --border: rgba(255, 255, 255, 0.08);
   --overlay: rgba(0, 0, 0, 0.65);
-  --nav-bg-home: rgba(0, 0, 0, 0.6);
   --main-purple: #6165AD;
   --secondary-purple: #949BDD;
   --main-orange: #D69D0D;
   --secondary-orange: #FFC545;
-  --content-bg: rgba(255, 255, 255, 0.02);
-  --nav-bg: rgba(255, 255, 255, 0.08);
-  --footer-bg: #1b2430;
+  --content-bg: rgba(20, 42, 79, 0.05);
+  --nav-bg: #030810;
+  --footer-bg: #030810;
   --line-color: rgba(255,255,255,0.18);
   --arrow-bg: rgba(255,255,255,0.04);
   --modal-bg: #0f1217;
@@ -27,7 +31,6 @@
   --extra-muted: #4f5f77;
   --border: rgba(0, 0, 0, 0.12);
   --overlay: rgba(0, 0, 0, 0.25);
-  --nav-bg-home: rgba(255, 255, 255, 0.7);
   --content-bg: rgba(0, 0, 0, 0.02);
   --nav-bg: rgba(255, 255, 255, 0.75);
   --footer-bg: #ddd;
@@ -35,10 +38,6 @@
   --arrow-bg: rgba(255,255,255,0.5);
   --modal-bg: #f3f3f3;
   --theme-btn-bg: #ebebeb;
-}
-
-.page--home {
-  --nav-bg: var(--nav-bg-home);
 }
 
 * {
@@ -94,3 +93,26 @@ a:hover {
   opacity: 0.8;
   text-decoration: none;
 }
+
+.button__primary {
+  background: color-mix(in srgb, var(--main-orange) 85%, var(--global-black));
+  color: var(--fg-button);
+  border: 0;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  height: 3rem;
+  width: 10rem;
+}
+
+.button__primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--main-orange) 95%, var(--global-black));
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.button__primary:active:not(:disabled) {
+  background: var(--main-orange);
+}
+
+.button__primary[disabled] { opacity: 0.6; cursor: not-allowed; }

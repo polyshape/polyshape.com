@@ -169,78 +169,65 @@ export default function Contact() {
   return (
     <div className="prose prose--big">
       <h1 className="hero__title">{AppRoutes.CONTACT.title}</h1>
-      <div className="contact-form__wrapper">
-        <div className="contact-form--message--wrapper">
-          <h1>Get in touch</h1>
-          <p className="contact-form--message--header">PolyShape LTD</p>
-          <p className="contact-form--message">The Accountancy Partnership</p>
-          <p className="contact-form--message">Twelve Quays House</p>
-          <p className="contact-form--message">Egerton Wharf</p>
-          <p className="contact-form--message">Wirral</p>
-          <p className="contact-form--message">United Kingdom</p>
-          <p className="contact-form--message">CH41 1LD</p>
+      <form onSubmit={onSubmit} className="contact-form" noValidate>
+        <div className="contact-form__field">
+          <div className="floating-label-group">
+            <input
+              className={`contact-form__control ${invalid.name ? 'contact-form__control--error' : ''}`}
+              id="name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              required
+              onChange={handleChange}
+              onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
+            />
+            <label htmlFor="name">Name <span className="required">(required)</span></label>
+          </div>
         </div>
-
-        <form onSubmit={onSubmit} className="contact-form" noValidate>
-          <div className="contact-form__field">
-            <div className="floating-label-group">
-              <input
-                className={`contact-form__control ${invalid.name ? 'contact-form__control--error' : ''}`}
-                id="name"
-                name="name"
-                type="text"
-                autoComplete="name"
-                required
-                onChange={handleChange}
-                onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
-              />
-              <label htmlFor="name">Name <span className="required">(required)</span></label>
-            </div>
+        <div className="contact-form__field">
+          <div className="floating-label-group">
+            <input
+              className={`contact-form__control ${invalid.email ? 'contact-form__control--error' : ''}`}
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              onChange={handleChange}
+              onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
+            />
+            <label htmlFor="email">Email <span className="required">(required)</span></label>
           </div>
-          <div className="contact-form__field">
-            <div className="floating-label-group">
-              <input
-                className={`contact-form__control ${invalid.email ? 'contact-form__control--error' : ''}`}
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                onChange={handleChange}
-                onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
-              />
-              <label htmlFor="email">Email <span className="required">(required)</span></label>
-            </div>
+        </div>
+        <div className="contact-form__field" style={{ display: 'none' }}>
+          <div className="floating-label-group">
+            <input className="contact-form__control" id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+            <label htmlFor="company">Company</label>
           </div>
-          <div className="contact-form__field" style={{ display: 'none' }}>
-            <div className="floating-label-group">
-              <input className="contact-form__control" id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
-              <label htmlFor="company">Company</label>
-            </div>
+        </div>
+        <div className="contact-form__field">
+          <div className="floating-label-group">
+            <textarea
+              className={`contact-form__control ${invalid.message ? 'contact-form__control--error' : ''}`}
+              id="message"
+              name="message"
+              rows={6}
+              required
+              onChange={handleChange}
+              onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
+            />
+            <label htmlFor="message">Message <span className="required">(required)</span></label>
           </div>
-          <div className="contact-form__field">
-            <div className="floating-label-group">
-              <textarea
-                className={`contact-form__control ${invalid.message ? 'contact-form__control--error' : ''}`}
-                id="message"
-                name="message"
-                rows={6}
-                required
-                onChange={handleChange}
-                onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
-              />
-              <label htmlFor="message">Message <span className="required">(required)</span></label>
-            </div>
-          </div>
-          <div className="contact-form__actions">
-            <button className="button__primary" type="submit" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Sending…' : 'Send'}
-            </button>
-            {status === 'success' && <span className="hint success">Thanks! We'll get back to you.</span>}
-            {status === 'error' && error && <span className="hint error">{error}</span>}
-          </div>
-        </form>
-      </div>
+        </div>
+        <div className="contact-form__actions">
+          <button className="button__primary" type="submit" disabled={status === 'sending'}>
+            {status === 'sending' ? 'Sending…' : 'Send'}
+          </button>
+          {status === 'success' && <span className="hint success">Thanks! We'll get back to you.</span>}
+          {status === 'error' && error && <span className="hint error">{error}</span>}
+        </div>
+      </form>
     </div>
   );
 }

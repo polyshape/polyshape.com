@@ -14,7 +14,6 @@ describe('Contact page', () => {
   it('renders the main title and correct CSS classes', () => {
     const { container } = renderWithLoadingProvider(<Contact />);
     expect(screen.getByText(AppRoutes.CONTACT.title)).toBeInTheDocument();
-    expect(screen.getByText('Get in touch')).toBeInTheDocument();
     const form = container.querySelector('form');
     expect(form).toHaveClass('contact-form');
     expect(screen.getByText("Send")).toBeInTheDocument();

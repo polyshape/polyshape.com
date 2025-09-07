@@ -53,7 +53,7 @@ export default function Nav() {
               >
                 <nav className="menu menu--overlay">
                   {navItems.map(route =>
-                    route.children.length ? (
+                    route.children.length && route.children.filter(child => AppRoutes[child].shouldBeDisplayed).length ? (
                       <div className="menu__group" key={route.id}>
                         <NavLink
                           to={route.path}
@@ -79,10 +79,13 @@ export default function Nav() {
                             )}
                           </span>
                         </NavLink>
-                        {openSubmenu === route.id && route.children.length > 0 && (
+                        {openSubmenu === route.id && route.children.length > 0 && route.children.filter(child => AppRoutes[child].shouldBeDisplayed).length > 0 && (
                           <>
                             {route.children.map(childKey => {
                               const childRoute = AppRoutes[childKey];
+                              if (childRoute.shouldBeDisplayed === false) {
+                                return null;
+                              }
                               return (
                                 <NavLink
                                   key={childRoute.id}
@@ -122,7 +125,7 @@ export default function Nav() {
 
         <nav className="menu">
           {navItems.map(route =>
-            route.children.length ? (
+            route.children.length && route.children.filter(child => AppRoutes[child].shouldBeDisplayed).length ? (
               <div className="menu__group" key={route.id}>
                 <NavLink
                   to={route.path}
@@ -153,6 +156,9 @@ export default function Nav() {
                 <div className="submenu">
                   {route.children.map(childKey => {
                     const childRoute = AppRoutes[childKey];
+                    if (childRoute.shouldBeDisplayed === false) {
+                      return null;
+                    }
                     return (
                       <NavLink
                         key={childRoute.id}

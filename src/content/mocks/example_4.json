@@ -7,6 +7,11 @@
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum maximus augue eget urna porta, quis blandit justo faucibus. Maecenas at est sollicitudin, aliquam ante sed, convallis ex. Cras a risus lorem. Nunc convallis, risus ut viverra vestibulum, magna diam finibus nisi, nec euismod lorem velit at felis. Morbi cursus turpis vel nisl imperdiet, sit amet iaculis mi vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed ac consequat lorem, ut facilisis dolor. Sed consectetur enim et ex lobortis malesuada. Curabitur a ipsum ac diam dapibus pharetra ac eu nisl. Vivamus viverra feugiat arcu, nec porta sapien euismod ut. In faucibus interdum nisl, porttitor porta dui gravida nec. Aenean nibh turpis, ultrices in elit sed, venenatis tristique ex. Praesent eu fringilla enim, a porttitor felis.",
     "Duis eleifend sem eget ante ornare vehicula. Maecenas non tortor semper, vehicula libero vitae, consequat dolor. Sed volutpat ante vel magna volutpat, vitae ultrices sem sodales. Cras cursus pellentesque diam vel placerat. Duis tincidunt condimentum est semper consectetur. Integer viverra vehicula eros ut faucibus. Vestibulum elementum varius finibus. Fusce pretium mollis euismod. Nam aliquet felis ut dui mollis lobortis.",
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum maximus augue eget urna porta, quis blandit justo faucibus. Maecenas at est sollicitudin, aliquam ante sed, convallis ex. Cras a risus lorem. Nunc convallis, risus ut viverra vestibulum, magna diam finibus nisi, nec euismod lorem velit at felis. Morbi cursus turpis vel nisl imperdiet, sit amet iaculis mi vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed ac consequat lorem, ut facilisis dolor. Sed consectetur enim et ex lobortis malesuada. Curabitur a ipsum ac diam dapibus pharetra ac eu nisl. Vivamus viverra feugiat arcu, nec porta sapien euismod ut. In faucibus interdum nisl, porttitor porta dui gravida nec. Aenean nibh turpis, ultrices in elit sed, venenatis tristique ex. Praesent eu fringilla enim, a porttitor felis."
-  ]
+  ],
+  "date": "2025-01-10",
+  "partner": {
+    "name": "Example Partner 4",
+    "url": "https://example4.com"
+  }
 }
 

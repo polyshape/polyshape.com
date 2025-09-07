@@ -7,6 +7,7 @@ import Patents from "../../pages/r_n_d/Patents";
 import Publications from "../../pages/r_n_d/Publications";
 import Dissemination from "../../pages/r_n_d/Dissemination";
 import Projects from "../../pages/portfolio/Projects";
+import ProjectDetails from "../../pages/portfolio/ProjectDetails";
 import Partners from "../../pages/portfolio/Partners";
 import News from "../../pages/News";
 import Contact from "../../pages/Contact";
@@ -19,6 +20,7 @@ export const AppRoutes = {
     title: "Home",
     element: <Home/>,
     isParent: true,
+    shouldBeDisplayed: true,
     children: [] as const
   },
   ORIENTATION: {
@@ -27,6 +29,7 @@ export const AppRoutes = {
     title: "Orientation",
     element: <Outlet/>,
     isParent: true,
+    shouldBeDisplayed: true,
     children: ["VISION", "JOURNEY"] as const
   },
   VISION: {
@@ -35,6 +38,7 @@ export const AppRoutes = {
     title: "Vision",
     element: <Vision/>,
     isParent: false,
+    shouldBeDisplayed: true,
     children: [] as const
   },
   JOURNEY: {
@@ -43,6 +47,7 @@ export const AppRoutes = {
     title: "Journey",
     element: <Journey/>,
     isParent: false,
+    shouldBeDisplayed: true,
     children: [] as const
   },
   RND: {
@@ -51,6 +56,7 @@ export const AppRoutes = {
     title: "R&D",
     element: <Outlet/>,
     isParent: true,
+    shouldBeDisplayed: true,
     children: ["SOFTWARE", "PATENTS", "PUBLICATIONS", "DISSEMINATION"] as const
   },
   SOFTWARE: {
@@ -59,6 +65,7 @@ export const AppRoutes = {
     title: "Software",
     element: <Software/>,
     isParent: false,
+    shouldBeDisplayed: true,
     children: [] as const
   },
   PATENTS: {
@@ -67,6 +74,7 @@ export const AppRoutes = {
     title: "Patents",
     element: <Patents/>,
     isParent: false,
+    shouldBeDisplayed: true,
     children: [] as const
   },
   PUBLICATIONS: {
@@ -75,6 +83,7 @@ export const AppRoutes = {
     title: "Publications",
     element: <Publications/>,
     isParent: false,
+    shouldBeDisplayed: true,
     children: [] as const
   },
   DISSEMINATION: {
@@ -83,6 +92,7 @@ export const AppRoutes = {
     title: "Dissemination",
     element: <Dissemination/>,
     isParent: false,
+    shouldBeDisplayed: true,
     children: [] as const
   },
   PORTFOLIO: {
@@ -91,7 +101,8 @@ export const AppRoutes = {
     title: "Portfolio",
     element: <Outlet/>,
     isParent: true,
-    children: ["PROJECTS","PARTNERS"] as const
+    shouldBeDisplayed: true,
+    children: ["PROJECTS", "PROJECT_DETAILS", "PARTNERS"] as const
   },
   PROJECTS: {
     id: "projects",
@@ -99,6 +110,16 @@ export const AppRoutes = {
     title: "Projects",
     element: <Projects/>,
     isParent: false,
+    shouldBeDisplayed: true,
+    children: [] as const
+  },
+  PROJECT_DETAILS: {
+    id: "project_details",
+    path: "/portfolio/projects/:pid",
+    title: "Project",
+    element: <ProjectDetails/>,
+    isParent: false,
+    shouldBeDisplayed: false,
     children: [] as const
   },
   PARTNERS: {
@@ -107,6 +128,7 @@ export const AppRoutes = {
     title: "Partners",
     element: <Partners/>,
     isParent: false,
+    shouldBeDisplayed: true,
     children: [] as const
   },
   NEWS: {
@@ -115,6 +137,7 @@ export const AppRoutes = {
     title: "News",
     element: <News/>,
     isParent: true,
+    shouldBeDisplayed: true,
     children: [] as const
   },
   CONTACT: {
@@ -123,6 +146,7 @@ export const AppRoutes = {
     title: "Contact",
     element: <Contact/>,
     isParent: true,
+    shouldBeDisplayed: true,
     children: [] as const
   }
 } as const;
@@ -133,5 +157,6 @@ export type AppRoute = {
   title: string;
   element: JSX.Element;
   isParent: boolean;
+  shouldBeDisplayed: boolean;
   children: readonly (keyof typeof AppRoutes)[];
 };

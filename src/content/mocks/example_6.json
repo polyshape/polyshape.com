@@ -1,0 +1,13 @@
+{
+  "title": "New Collaboration Project",
+  "content": [
+    "This project explores advanced geometric processing for real‑time 3D editing and simulation across web and native platforms.",
+    "It focuses on robust mesh operations, streaming, and GPU acceleration to support interactive workflows."
+  ],
+  "date": "2025-10-01",
+  "partner": {
+    "name": "Polyshape Labs",
+    "url": "https://polyshape.com"
+  }
+}
+

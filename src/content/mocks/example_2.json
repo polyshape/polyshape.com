@@ -3,6 +3,11 @@
   "content": [
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a vestibulum nisi. Proin luctus vel ipsum lobortis viverra. Ut tincidunt pellentesque volutpat. Ut tincidunt vel lacus et porta. Etiam fermentum eros lacinia, condimentum ex eu, sagittis neque. In sit amet diam in leo imperdiet porta sed a lectus. Aenean sem nibh, egestas in cursus a, sodales et turpis. Proin lorem ante, dictum in ante vitae, facilisis sodales nisl. Mauris ut mi in lacus gravida consequat vel et justo.",
     "Sed id maximus augue. Vivamus non ultricies tellus. Donec sit amet tristique nisl. Etiam et imperdiet ante. Nunc interdum tincidunt urna, vitae ultrices est. Ut eleifend eget mauris id ullamcorper. Nam mollis ullamcorper purus, at rutrum nunc porttitor a. Fusce et varius nisl. Proin sed sagittis metus, quis mattis massa. Phasellus at ligula eget purus rutrum imperdiet. Integer vestibulum vitae eros nec luctus. Proin vitae lectus diam."
-  ]
+  ],
+  "date": "2023-06-20",
+  "partner": {
+    "name": "Example Partner 2",
+    "url": "https://example2.com"
+  }
 }
 

@@ -11,7 +11,7 @@ export default function Content({ children }: { children: ReactNode }) {
 
   return (
     <OverlayScrollbarsComponent
-      className={isHome ? "content-main" : "content"}
+      className={isHome ? "content content-main" : "content"}
       options={{
         scrollbars: {
           autoHide: "never",

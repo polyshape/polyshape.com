@@ -84,7 +84,7 @@
 }
 .hero {
   position: relative;
-  min-height: 90vh;
+  min-height: 100%;
   display: grid;
   place-items: center;
   text-align: center;
@@ -97,7 +97,7 @@
 }
 .content-main {
   position: relative;
-  min-height: 100vh;
+  padding: 0 !important;
   background:
     radial-gradient(circle at center, rgba(44, 104, 255, 0.11) 0%, rgba(20, 42, 79, 0.0) 55%),
     radial-gradient(circle at center, #05142e 0%, #02050e 100%);
@@ -252,6 +252,10 @@
     width: 12rem;
     height: 12rem;
   }
+}
+
+@media (max-height: 750px) {
+  .hero__buttons { margin-bottom: 3rem; }
 }
 
 @media (max-height: 950px) {

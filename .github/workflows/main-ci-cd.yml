@@ -39,7 +39,32 @@ jobs:
 
       - name: Build
         run: npm run build
+      - name: Start Vite dev server
+        run: npm run dev &
+        env:
+          NODE_ENV: test
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ runner.os }}
+
+      - name: Wait for Vite dev server
+        run: npx wait-on http://localhost:9990
+
+      - name: Run Playwright e2e tests
+        run: npm run test:e2e
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest

@@ -66,4 +66,11 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-  
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+    steps:
+      - name: Trigger Vercel Deployment
+        run: curl -X POST "$VERCEL_DEPLOY_HOOK"

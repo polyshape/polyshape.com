@@ -21,23 +21,25 @@
   --arrow-bg: rgba(255,255,255,0.04);
   --modal-bg: #0f1217;
   --theme-btn-bg: #0e0e0e;
+  --field-bg: #212734;
   overflow: hidden;
 }
 
 .theme-light {
-  --bg: #f7f8fb;
+  --bg: #f0f0f0;
   --fg: #0b0c0f;
   --muted: #3a4658;
   --extra-muted: #4f5f77;
   --border: rgba(0, 0, 0, 0.12);
   --overlay: rgba(0, 0, 0, 0.25);
   --content-bg: rgba(0, 0, 0, 0.02);
-  --nav-bg: rgba(255, 255, 255, 0.75);
-  --footer-bg: #ddd;
+  --nav-bg: rgba(211, 211, 211, 0.75);
+  --footer-bg: rgba(211, 211, 211, 0.75);
   --line-color: rgba(0,0,0,0.18);
   --arrow-bg: rgba(255,255,255,0.5);
   --modal-bg: #f3f3f3;
   --theme-btn-bg: #ebebeb;
+  --field-bg: #f0f2f5;
 }
 
 * {

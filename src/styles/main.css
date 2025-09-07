@@ -181,7 +181,7 @@
   height: 5rem;
   flex-direction: column;
 }
-.contact-form__control { background: rgba(255,255,255,0.04); }
+.contact-form__control { background: var(--field-bg) }
 .hint { font-size: 0.95rem; }
 .hint.success { color: var(--global-success); }
 .hint.error { color: var(--global-error); }

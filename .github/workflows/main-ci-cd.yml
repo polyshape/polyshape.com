@@ -1,4 +1,4 @@
-name: Main Branch Quality Checks
+name: Main Branch CICD
 
 on:
   push:
@@ -66,3 +66,4 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+  

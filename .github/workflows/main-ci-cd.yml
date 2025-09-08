@@ -13,6 +13,7 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.55.0-noble
     env:
       HEADLESS: true
+      HOME: /root
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

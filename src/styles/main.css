@@ -1,7 +1,7 @@
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(10, 18, 32, 0.4);
+  background: var(--hero-overlay);
   z-index: 1;
   pointer-events: none;
 }
@@ -74,7 +74,7 @@
   font-size: clamp(2.2rem, 6vw, 2.6rem);
   line-height: 1.05;
   font-weight: 800;
-  color: var(--global-white);
+  color: var(--fg);
 }
 .highlight {
   background: linear-gradient(90deg, var(--main-orange) 0%, var(--main-orange) 40%, var(--secondary-orange) 60%, var(--secondary-purple) 100%);
@@ -98,13 +98,11 @@
 .content-main {
   position: relative;
   padding: 0 !important;
-  background:
-    radial-gradient(circle at center, rgba(44, 104, 255, 0.11) 0%, rgba(20, 42, 79, 0.0) 55%),
-    radial-gradient(circle at center, #05142e 0%, #02050e 100%);
+  background: var(--content-main-bg);
 }
 .hero__subtitle {
   margin: 0;
-  color: var(--global-white);
+  color: var(--fg);
   font-size: clamp(1rem, 2.2vw, 1.5rem);
   font-weight: 500;
 }

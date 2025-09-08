@@ -10,7 +10,7 @@ export function LoadingOverlay() {
 
   return (
     <div className="loading__overlay">
-      <PropagateLoader color="var(--main-orange)"/>
+      <PropagateLoader color="var(--primary-link)"/>
     </div>
   );
 }

@@ -10,36 +10,46 @@
   --extra-muted: #c0c6d2;
   --border: rgba(255, 255, 255, 0.08);
   --overlay: rgba(0, 0, 0, 0.65);
+  --hero-overlay: rgba(10, 18, 32, 0.4);
   --main-purple: #6165AD;
   --secondary-purple: #949BDD;
   --main-orange: #D69D0D;
   --secondary-orange: #FFC545;
   --content-bg: rgba(20, 42, 79, 0.05);
   --nav-bg: #030810;
-  --footer-bg: #030810;
+  --footer-bg: var(--nav-bg);
   --line-color: rgba(255,255,255,0.18);
   --arrow-bg: rgba(255,255,255,0.04);
   --modal-bg: #0f1217;
   --theme-btn-bg: #0e0e0e;
   --field-bg: #212734;
+  --primary-link: var(--main-orange);
+  --secondary-link: var(--secondary-orange);
+  --content-main-bg: radial-gradient(circle at center, rgba(44, 104, 255, 0.11) 0%, rgba(20, 42, 79, 0.0) 55%),
+                     radial-gradient(circle at center, #05142e 0%, #02050e 100%);
   overflow: hidden;
 }
 
 .theme-light {
-  --bg: #f0f0f0;
+  --bg: #dfdfdf;
   --fg: #0b0c0f;
   --muted: #3a4658;
   --extra-muted: #4f5f77;
   --border: rgba(0, 0, 0, 0.12);
   --overlay: rgba(0, 0, 0, 0.25);
-  --content-bg: rgba(0, 0, 0, 0.02);
+  --hero-overlay: rgba(255, 255, 255, 0.15);
+  --content-bg: #00000005;
   --nav-bg: rgba(211, 211, 211, 0.75);
-  --footer-bg: rgba(211, 211, 211, 0.75);
+  --footer-bg: var(--nav-bg);
   --line-color: rgba(0,0,0,0.18);
   --arrow-bg: rgba(255,255,255,0.5);
   --modal-bg: #f3f3f3;
   --theme-btn-bg: #ebebeb;
   --field-bg: #f0f2f5;
+  --primary-link: var(--main-purple);
+  --secondary-link: var(--secondary-purple);
+  --content-main-bg: radial-gradient(circle at center, rgba(0, 0, 0, 0.11) 0%, rgba(20, 42, 79, 0.0) 55%),
+                     radial-gradient(circle at center, #c7c7c7 0%, #00000005 100%);
 }
 
 * {
@@ -79,25 +89,25 @@ body {
 }
 
 a {
-  color: var(--main-orange);
+  color: var(--primary-link);
   text-decoration: none;
   transition: opacity 250ms ease;
 }
 
 a:visited {
-  color: var(--main-orange);
+  color: var(--primary-link);
   opacity: 0.8;
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--main-orange);
+  color: var(--primary-link);
   opacity: 0.8;
   text-decoration: none;
 }
 
 .button__primary {
-  background: color-mix(in srgb, var(--main-orange) 85%, var(--global-black));
+  background: color-mix(in srgb, var(--primary-link) 85%, var(--global-black));
   color: var(--fg-button);
   border: 0;
   border-radius: 999px;
@@ -119,12 +129,12 @@ a.button__primary:active {
 }
 
 .button__primary:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--main-orange) 95%, var(--global-black));
+  background: color-mix(in srgb, var(--primary-link) 95%, var(--global-black));
   transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .button__primary:active:not(:disabled) {
-  background: var(--main-orange);
+  background: var(--primary-link);
 }
 
 .button__primary[disabled] { opacity: 0.6; cursor: not-allowed; }

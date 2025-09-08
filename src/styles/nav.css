@@ -213,7 +213,7 @@
   bottom: 0;
   height: 2px;
   width: 100%;
-  background: var(--main-orange);
+  background: var(--primary-link);
   transform-origin: left center;
   transform: scaleX(1);
   transition: transform 180ms ease-in-out;
@@ -228,7 +228,7 @@
   bottom: 0;
   height: 2px;
   width: 100%;
-  background: var(--main-orange);
+  background: var(--primary-link);
   transform-origin: left center;
   transform: scaleX(0);
   transition: transform 180ms ease-in-out;

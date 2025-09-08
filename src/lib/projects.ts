@@ -1,3 +1,5 @@
+import { isDev } from './env';
+
 export type ProjectDoc = {
   title: string;
   content: string | string[];
@@ -23,7 +25,8 @@ export function loadProjects(): Project[] {
     '/src/content/mocks/projects/*.json',
     { eager: true }
   );
-  const modules = Object.keys(primary).length ? primary : fallback;
+  const hasPrimary = Object.keys(primary).length > 0;
+  const modules = hasPrimary ? primary : (isDev() ? fallback : {});
 
   const items: Project[] = Object.entries(modules).map(([path, mod]) => {
     const data = mod.default;

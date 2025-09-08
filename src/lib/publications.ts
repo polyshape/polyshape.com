@@ -1,3 +1,5 @@
+import { isDev } from './env';
+
 export type PublicationDoc = {
   title: string;
   content: string | string[];
@@ -25,7 +27,8 @@ export function loadPublications(): Publication[] {
     { eager: true }
   );
 
-  const modules = Object.keys(primary).length ? primary : fallback;
+  const hasPrimary = Object.keys(primary).length > 0;
+  const modules = hasPrimary ? primary : (isDev() ? fallback : {});
 
   const items: Publication[] = Object.entries(modules).map(([path, mod]) => {
     const data = mod.default;

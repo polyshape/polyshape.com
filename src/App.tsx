@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppRoutes } from "./lib/common/AppRoutes";
 import Layout from "./lib/common/ui/Layout";
 import { ThemeProvider } from "./lib/common/ui/theme/ThemeProvider";
+import ToastHost from "./lib/common/ui/ToastHost";
 
 type RoutesMap = typeof AppRoutes;
 type Key = keyof RoutesMap;
@@ -28,6 +29,7 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ToastHost/>
     </ThemeProvider>
   );
 }

@@ -170,7 +170,7 @@
 }
 .contact-form textarea {
   resize: vertical;
-  height: 20rem !important;
+  min-height: 12rem;
 }
 .contact-form__actions {
   display: flex;
@@ -182,9 +182,6 @@
   flex-direction: column;
 }
 .contact-form__control { background: var(--field-bg) }
-.hint { font-size: 0.95rem; }
-.hint.success { color: var(--global-success); }
-.hint.error { color: var(--global-error); }
 .brand__container {
   display: flex;
   gap: 3rem;

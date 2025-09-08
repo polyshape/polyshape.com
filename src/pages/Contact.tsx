@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { AppRoutes } from '../lib/common/AppRoutes';
 import { isDev, getEnvVar } from "../lib/env";
 import { useLoading } from '../lib/common/ui/spinner/useLoading';
 
-type Status = 'idle' | 'sending' | 'success' | 'error';
 const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function isMacOS(): boolean {
@@ -17,9 +17,7 @@ function isMacOS(): boolean {
 }
 
 export default function Contact() {
-  const {setLoadingState} = useLoading();
-  const [status, setStatus] = useState<Status>('idle');
-  const [error, setError] = useState<string | null>(null);
+  const { state: loadingState, setLoadingState } = useLoading();
   const [invalid, setInvalid] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
@@ -79,9 +77,6 @@ export default function Contact() {
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
   const { name, value } = e.target;
 
-  setError(null);
-  setStatus("idle");
-
   setInvalid(prev => {
     const updated = { ...prev };
     if (!value.trim()) {
@@ -100,7 +95,6 @@ export default function Contact() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setError(null);
 
     const form = e.currentTarget;
     const fd = new FormData(form);
@@ -124,22 +118,20 @@ export default function Contact() {
 
     const clientErr = validate(payload);
     if (clientErr) {
-      setStatus("error");
-      setError(clientErr);
+      toast.error(clientErr);
       return;
     }
 
     if (payload.company) {
-      setStatus("success");
       form.reset();
       setInvalid({});
+      toast.success("Thanks! We'll get back to you.");
       return;
     }
 
     try {
-      // 👇 both states: local & global
-      setStatus("sending"); // button text
-      setLoadingState("loading");  // overlay
+      // 👇 show global overlay while sending
+      setLoadingState("loading");
 
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -154,12 +146,11 @@ export default function Contact() {
         throw new Error(data.error || "Failed to send");
       }
 
-      setStatus("success");
       form.reset();
       setInvalid({});
+      toast.success("Thanks! We'll get back to you.");
     } catch (err: unknown) {
-      setStatus("error");
-      setError(err instanceof Error ? err.message : "Failed to send");
+      toast.error(err instanceof Error ? err.message : "Failed to send");
     } finally {
       // 👇 always hide overlay
       setLoadingState(null);
@@ -178,7 +169,7 @@ export default function Contact() {
               name="name"
               type="text"
               autoComplete="name"
-              required
+              aria-required="true"
               onChange={handleChange}
               onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
             />
@@ -193,7 +184,7 @@ export default function Contact() {
               name="email"
               type="email"
               autoComplete="email"
-              required
+              aria-required="true"
               onChange={handleChange}
               onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
             />
@@ -213,7 +204,8 @@ export default function Contact() {
               id="message"
               name="message"
               rows={6}
-              required
+              aria-required="true"
+              title=""
               onChange={handleChange}
               onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
             />
@@ -221,11 +213,9 @@ export default function Contact() {
           </div>
         </div>
         <div className="contact-form__actions">
-          <button className="button__primary" type="submit" disabled={status === 'sending'}>
-            {status === 'sending' ? 'Sending…' : 'Send'}
+          <button className="button__primary" type="submit" disabled={loadingState === 'loading'}>
+            Send
           </button>
-          {status === 'success' && <span className="hint success">Thanks! We'll get back to you.</span>}
-          {status === 'error' && error && <span className="hint error">{error}</span>}
         </div>
       </form>
     </div>

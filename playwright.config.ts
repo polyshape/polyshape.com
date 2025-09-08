@@ -5,7 +5,7 @@ export default defineConfig({
   timeout: 30000,
   retries: 0,
   use: {
-    baseURL: 'http://localhost:9990',
+    baseURL: 'http://localhost:7777',
     headless: process.env.HEADLESS === 'true',
     viewport: { width: 1366, height: 768 },
     ignoreHTTPSErrors: true,
@@ -28,7 +28,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev',
-    url: 'http://localhost:9990',
+    url: 'http://localhost:7777',
     timeout: 120 * 1000, // 2 minutes
     reuseExistingServer: false,
   },

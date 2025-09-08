@@ -1,4 +1,3 @@
-// ThemeToggle.tsx
 import { useTheme } from "./useTheme";
 
 export default function ThemeToggle() {

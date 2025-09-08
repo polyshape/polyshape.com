@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
       'process.env': env
     },
     server: {
-      port: 9990,
+      port: 7777,
       open: false,
       proxy: {
         '/api': 'http://localhost:3000' // Vercel dev server (functions)

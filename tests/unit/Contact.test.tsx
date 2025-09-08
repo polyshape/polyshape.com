@@ -4,7 +4,7 @@ import Contact from '../../src/pages/Contact';
 import { AppRoutes } from '../../src/lib/common/AppRoutes';
 import { server } from '../../src/mocks/server-test';
 import { http, HttpResponse } from 'msw';
-import { renderWithLoadingProvider } from './utils/renderWithProviders';
+import { renderWithToastProvider } from './utils/renderWithProviders';
 
 describe('Contact page', () => {
   afterEach(() => {
@@ -12,113 +12,99 @@ describe('Contact page', () => {
   });
 
   it('renders the main title and correct CSS classes', () => {
-    const { container } = renderWithLoadingProvider(<Contact />);
+    const { container } = renderWithToastProvider(<Contact />);
     expect(screen.getByText(AppRoutes.CONTACT.title)).toBeInTheDocument();
     const form = container.querySelector('form');
     expect(form).toHaveClass('contact-form');
     expect(screen.getByText("Send")).toBeInTheDocument();
   });
 
-  it('submits the contact form and shows success message', async () => {
-    const { container } = renderWithLoadingProvider(<Contact />);
+  it('submits the contact form and shows success toast', async () => {
+    renderWithToastProvider(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
     fireEvent.click(screen.getByText('Send'));
     await waitFor(() => {
-      const successElement = container.querySelector('.hint.success');
-      expect(successElement).toBeInTheDocument();
-      expect(successElement).toHaveTextContent("Thanks! We'll get back to you.");
+      expect(screen.getByText("Thanks! We'll get back to you.")).toBeInTheDocument();
     });
   });
 
-  it('shows error message on empty name', async () => {
-    const { container } = renderWithLoadingProvider(<Contact />);
+  it('shows error toast on empty name', async () => {
+    renderWithToastProvider(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: '' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
     fireEvent.click(screen.getByText('Send'));
     await waitFor(() => {
-      const errorElement = container.querySelector('.hint.error');
-      expect(errorElement).toBeInTheDocument();
-      expect(errorElement).toHaveTextContent("Required fields missing.");
+      expect(screen.getByText("Required fields missing.")).toBeInTheDocument();
     });
   });
 
-  it('shows error message on empty email', async () => {
-    const { container } = renderWithLoadingProvider(<Contact />);
+  it('shows error toast on empty email', async () => {
+    renderWithToastProvider(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: '' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
     fireEvent.click(screen.getByText('Send'));
     await waitFor(() => {
-      const errorElement = container.querySelector('.hint.error');
-      expect(errorElement).toBeInTheDocument();
-      expect(errorElement).toHaveTextContent("Required fields missing.");
+      expect(screen.getByText("Required fields missing.")).toBeInTheDocument();
     });
   });
 
-  it('shows error message on empty message', async () => {
-    const { container } = renderWithLoadingProvider(<Contact />);
+  it('shows error toast on empty message', async () => {
+    renderWithToastProvider(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: '' } });
     fireEvent.click(screen.getByText('Send'));
     await waitFor(() => {
-      const errorElement = container.querySelector('.hint.error');
-      expect(errorElement).toBeInTheDocument();
-      expect(errorElement).toHaveTextContent("Required fields missing.");
+      expect(screen.getByText("Required fields missing.")).toBeInTheDocument();
     });
   });
 
-  it('shows error message on invalid email', async () => {
-    const { container } = renderWithLoadingProvider(<Contact />);
+  it('shows error toast on invalid email', async () => {
+    renderWithToastProvider(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
     fireEvent.click(screen.getByText('Send'));
     await waitFor(() => {
-      const errorElement = container.querySelector('.hint.error');
-      expect(errorElement).toBeInTheDocument();
-      expect(errorElement).toHaveTextContent("Please enter a valid email.");
+      expect(screen.getByText("Please enter a valid email.")).toBeInTheDocument();
     });
   });
 
-  it('shows error message on failure', async () => {
+  it('shows error toast on failure', async () => {
     server.use(
       http.post("/api/contact", () => {
         return HttpResponse.json({ ok: false, message: "Forced failure" });
       })
     );
-    const { container } = renderWithLoadingProvider(<Contact />);
+    renderWithToastProvider(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
     fireEvent.click(screen.getByText('Send'));
     await waitFor(() => {
-      const errorElement = container.querySelector('.hint.error');
-      expect(errorElement).toBeInTheDocument();
-      expect(errorElement).toHaveTextContent("Failed to send");
+      expect(screen.getByText("Failed to send")).toBeInTheDocument();
     });
   });
 
-  it('tests honeypot', async () => {
+  it('tests honeypot with success toast', async () => {
     // Even though the api returns false, we see still see a success message since the honeypot field is filled
     server.use(
       http.post("/api/contact", () => {
         return HttpResponse.json({ ok: false, message: "Forced failure" });
       })
     );
-    const { container } = renderWithLoadingProvider(<Contact />);
+    renderWithToastProvider(<Contact />);
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Message/i), { target: { value: 'Hello there!' } });
     fireEvent.change(screen.getByLabelText(/Company/i), { target: { value: 'Any Value' } });
     fireEvent.click(screen.getByText('Send'));
     await waitFor(() => {
-      const successElement = container.querySelector('.hint.success');
-      expect(successElement).toBeInTheDocument();
-      expect(successElement).toHaveTextContent("Thanks! We'll get back to you.");
+      expect(screen.getByText("Thanks! We'll get back to you.")).toBeInTheDocument();
     });
   });
 });

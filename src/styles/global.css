@@ -108,6 +108,16 @@ a:hover {
   width: 10rem;
 }
 
+/* Ensure link-styled buttons keep readable text on hover/active */
+a.button__primary,
+a.button__primary:visited,
+a.button__primary:hover,
+a.button__primary:active {
+  color: var(--fg-button);
+  opacity: 1;
+  text-decoration: none;
+}
+
 .button__primary:hover:not(:disabled) {
   background: color-mix(in srgb, var(--main-orange) 95%, var(--global-black));
   transition: background 0.2s ease, transform 0.1s ease;

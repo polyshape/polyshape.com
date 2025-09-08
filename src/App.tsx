@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Suspense } from "react";
 import { AppRoutes } from "./lib/common/AppRoutes";
 import Layout from "./lib/common/ui/Layout";
 import { ThemeProvider } from "./lib/common/ui/theme/ThemeProvider";
@@ -13,9 +14,10 @@ export default function App() {
   return (
     <ThemeProvider>
       <TooltipProvider>
-        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <Routes>
-            <Route element={<Layout/>}> 
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <Suspense fallback={null}>
+        <Routes>
+          <Route element={<Layout/>}> 
               {routes.map(key => {
                   const route = AppRoutes[key];
                   return (
@@ -29,8 +31,9 @@ export default function App() {
                   );
                 })}
             </Route>
-          </Routes>
-        </BrowserRouter>
+        </Routes>
+        </Suspense>
+      </BrowserRouter>
         <ToastHost/>
       </TooltipProvider>
     </ThemeProvider>

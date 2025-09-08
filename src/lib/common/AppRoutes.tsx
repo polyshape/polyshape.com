@@ -4,7 +4,9 @@ import Vision from "../../pages/orientation/Vision";
 import Journey from "../../pages/orientation/Journey";
 import Software from "../../pages/r_n_d/Software";
 import Patents from "../../pages/r_n_d/Patents";
-import Publications from "../../pages/r_n_d/Publications";
+import { lazy } from "react";
+const Publications = lazy(() => import("../../pages/r_n_d/Publications"));
+const PublicationDetails = lazy(() => import("../../pages/r_n_d/PublicationDetails"));
 import Dissemination from "../../pages/r_n_d/Dissemination";
 import Projects from "../../pages/portfolio/Projects";
 import ProjectDetails from "../../pages/portfolio/ProjectDetails";
@@ -57,7 +59,7 @@ export const AppRoutes = {
     element: <Outlet/>,
     isParent: true,
     shouldBeDisplayed: true,
-    children: ["SOFTWARE", "PATENTS", "PUBLICATIONS", "DISSEMINATION"] as const
+    children: ["SOFTWARE", "PATENTS", "PUBLICATIONS", "PUBLICATION_DETAILS", "DISSEMINATION"] as const
   },
   SOFTWARE: {
     id: "software",
@@ -84,6 +86,15 @@ export const AppRoutes = {
     element: <Publications/>,
     isParent: false,
     shouldBeDisplayed: true,
+    children: [] as const
+  },
+  PUBLICATION_DETAILS: {
+    id: "publication_details",
+    path: "/rnd/publications/:pid",
+    title: "Publication",
+    element: <PublicationDetails/>,
+    isParent: false,
+    shouldBeDisplayed: false,
     children: [] as const
   },
   DISSEMINATION: {

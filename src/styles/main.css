@@ -219,6 +219,17 @@
   align-items: center;
   z-index: 9999;
 }
+.publication__meta {
+  display: flex;
+  gap: 1rem;
+}
+.publication__details {
+  margin-top: 1rem;
+  width: 85%;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
 
 @media (max-width: 900px) {
   .content {

@@ -20,7 +20,7 @@ export function loadProjects(): Project[] {
     { eager: true }
   );
   const fallback = import.meta.glob<{ default: ProjectDoc }>(
-    '/src/content/mocks/*.json',
+    '/src/content/mocks/projects/*.json',
     { eager: true }
   );
   const modules = Object.keys(primary).length ? primary : fallback;

@@ -1,0 +1,12 @@
+{
+  "title": "Composable Agents for Health Intelligence",
+  "content": [
+    "We introduce a modular multi-agent architecture grounded in probabilistic inference for healthcare workflows.",
+    "The system supports monitoring, decision-making, and intervention planning across varied settings."
+  ],
+  "date": "2022-03-01",
+  "publicationUrl": "https://openreview.net/forum?id=health-agents-2022",
+  "authors": ["F. Chen", "G. Alvarez", "H. O'Neil"],
+  "venue": "OpenReview"
+}
+

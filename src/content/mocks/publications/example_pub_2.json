@@ -1,0 +1,9 @@
+{
+  "title": "Uncertainty-Aware Fusion of Biomedical Time Series",
+  "content": "A method for fusing multi-modal patient data with calibrated uncertainty estimates to improve monitoring.",
+  "date": "2023-11",
+  "publicationUrl": "https://arxiv.org/abs/2311.01234",
+  "authors": ["D. Nguyen", "E. Rossi"],
+  "venue": "arXiv"
+}
+

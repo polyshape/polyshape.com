@@ -53,6 +53,7 @@
     "typescript-eslint": "^8.39.1",
     "vercel": "^46.1.1",
     "vite": "^7.1.2",
+    "wait-on": "^8.0.4",
     "web-streams-polyfill": "^4.2.0",
     "whatwg-fetch": "^3.6.20"
   },

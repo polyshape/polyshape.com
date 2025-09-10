@@ -16,6 +16,9 @@
   --border: rgba(255, 255, 255, 0.08);
   --overlay: rgba(0, 0, 0, 0.65);
   --hero-overlay: rgba(10, 18, 32, 0.4);
+  --highlight-third-color: #949BDD;
+  --highlight-first-color: #D69D0D;
+  --highlight-second-color: #FFC545;
   --main-purple: #6165AD;
   --secondary-purple: #949BDD;
   --main-orange: #D69D0D;
@@ -51,6 +54,9 @@
   --modal-bg: #f3f3f3;
   --theme-btn-bg: #ebebeb;
   --field-bg: #f0f2f5;
+  --highlight-third-color: #6a6f9c;
+  --highlight-first-color: #b3830c;
+  --highlight-second-color: #e3a217;
   --primary-link: var(--main-purple);
   --secondary-link: var(--secondary-purple);
   --content-main-bg: radial-gradient(circle at center, rgba(0, 0, 0, 0.11) 0%, rgba(20, 42, 79, 0.0) 55%),

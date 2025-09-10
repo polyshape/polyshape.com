@@ -77,7 +77,7 @@
   color: var(--fg);
 }
 .highlight {
-  background: linear-gradient(90deg, var(--main-orange) 0%, var(--main-orange) 40%, var(--secondary-orange) 60%, var(--secondary-purple) 100%);
+  background: linear-gradient(90deg, var(--highlight-first-color) 0%, var(--highlight-first-color) 40%, var(--highlight-second-color) 60%, var(--highlight-third-color) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

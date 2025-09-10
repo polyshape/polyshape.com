@@ -7,7 +7,9 @@ import ToastHost from "../../../src/lib/common/ui/ToastHost";
 export function renderWithRouterAndLoadingProviders(ui: React.ReactElement) {
   return render(
     <MemoryRouter>
-      <LoadingProvider>{ui}</LoadingProvider>
+      <ThemeProvider>
+        <LoadingProvider>{ui}</LoadingProvider>
+      </ThemeProvider>
     </MemoryRouter>
   );
 }

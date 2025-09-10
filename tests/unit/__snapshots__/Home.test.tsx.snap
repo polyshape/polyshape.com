@@ -9,12 +9,12 @@ exports[`Home page matches the snapshot 1`] = `
       class="hero__bg"
     >
       <source
-        srcset="/home_hero_transparent.webp"
+        srcset="/home_hero_transparent_dark_mode.webp"
         type="image/webp"
       />
       <img
         alt="Background"
-        src="/home_hero_transparent.png"
+        src="/home_hero_transparent_dark_mode.png"
       />
     </picture>
     <div

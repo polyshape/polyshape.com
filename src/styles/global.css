@@ -1,3 +1,8 @@
+@media (max-width: 830px) {
+  .tooltip {
+    display: none !important;
+  }
+}
 :root, .theme-dark {
   --global-white: #fff;
   --global-black: #000;

@@ -54,9 +54,9 @@
   --modal-bg: #f3f3f3;
   --theme-btn-bg: #ebebeb;
   --field-bg: #f0f2f5;
-  --highlight-third-color: #6a6f9c;
-  --highlight-first-color: #b3830c;
-  --highlight-second-color: #e3a217;
+  --highlight-third-color: #3B3F70;
+  --highlight-first-color: #6A4D06;
+  --highlight-second-color: #805A13;
   --primary-link: var(--main-purple);
   --secondary-link: var(--secondary-purple);
   --content-main-bg: radial-gradient(circle at center, rgba(0, 0, 0, 0.11) 0%, rgba(20, 42, 79, 0.0) 55%),

@@ -37,7 +37,7 @@
   --extra-muted: #4f5f77;
   --border: rgba(0, 0, 0, 0.12);
   --overlay: rgba(0, 0, 0, 0.25);
-  --hero-overlay: rgba(255, 255, 255, 0.15);
+  --hero-overlay: rgba(255, 255, 255, 0.25);
   --content-bg: #00000005;
   --nav-bg: rgba(211, 211, 211, 0.75);
   --footer-bg: var(--nav-bg);
@@ -49,7 +49,7 @@
   --primary-link: var(--main-purple);
   --secondary-link: var(--secondary-purple);
   --content-main-bg: radial-gradient(circle at center, rgba(0, 0, 0, 0.11) 0%, rgba(20, 42, 79, 0.0) 55%),
-                     radial-gradient(circle at center, #c7c7c7 0%, #00000005 100%);
+                     radial-gradient(circle at center, #f4f4f4 0%, #b6b6b6 100%);
 }
 
 * {

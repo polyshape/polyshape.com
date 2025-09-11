@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import ThemeToggle from "./theme/ThemeToggle";
 import { AppRoutes } from "../AppRoutes";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from './theme/useTheme';
 
 const navItems = Object.values(AppRoutes).filter(route => route.isParent);
@@ -11,6 +11,29 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const { theme } = useTheme();
+  const burgerBtnRef = useRef<HTMLButtonElement | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
+
+  // Close menu helper to centralize focus restoration
+  const closeMenu = (restoreFocus = true) => {
+    setMenuOpen(false);
+    setOpenSubmenu(null);
+    if (restoreFocus) {
+      // Move focus back to the control that opened the menu
+      burgerBtnRef.current?.focus();
+    }
+  };
+
+  // Toggle `inert` on the overlay when hidden so its descendants can't retain focus
+  useEffect(() => {
+    const el = overlayRef.current;
+    if (!el) return;
+    if (!menuOpen) {
+      el.setAttribute("inert", "");
+    } else {
+      el.removeAttribute("inert");
+    }
+  }, [menuOpen]);
 
   return (
     <header className="nav">
@@ -26,6 +49,7 @@ export default function Nav() {
           className="burger--menu"
           aria-label={menuOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={menuOpen}
+          ref={burgerBtnRef}
           onClick={() => {
             setMenuOpen(open => !open);
             setOpenSubmenu(null);
@@ -41,7 +65,17 @@ export default function Nav() {
         </button>
 
         {/* Overlay menu always rendered, but only visible below 830px via CSS */}
-        <div aria-hidden={!menuOpen} className={`nav__overlay${menuOpen ? " nav__overlay--open" : ""}`}>
+        <div
+          aria-hidden={!menuOpen}
+          className={`nav__overlay${menuOpen ? " nav__overlay--open" : ""}`}
+          ref={overlayRef}
+          onKeyDown={(e) => {
+            if (e.key === "Escape" && menuOpen) {
+              e.stopPropagation();
+              closeMenu();
+            }
+          }}
+        >
             <>
               <OverlayScrollbarsComponent
                 options={{
@@ -90,9 +124,8 @@ export default function Nav() {
                                 <NavLink
                                   key={childRoute.id}
                                   to={childRoute.path}
-                                  className="submenu__item submenu__item--overlay"
-                                  style={{ marginLeft: "2.2rem", marginTop: "0.5rem", marginBottom: "0.5rem", fontSize: "0.98rem" }}
-                                  onClick={() => setMenuOpen(false)}
+                                  className="submenu__item submenu__item--small submenu__item--overlay"
+                                  onClick={() => closeMenu()}
                                 >
                                   {childRoute.title}
                                 </NavLink>
@@ -109,7 +142,7 @@ export default function Nav() {
                         className={({ isActive }) =>
                           `menu__item menu__item--overlay${isActive ? ' menu__item--active' : ''}`
                         }
-                        onClick={() => setMenuOpen(false)}
+                        onClick={() => closeMenu()}
                       >
                         {route.title}
                       </NavLink>
@@ -117,7 +150,7 @@ export default function Nav() {
                   )}
                 </nav>
               </OverlayScrollbarsComponent>
-              <button className="nav__overlay--close" aria-label="Close menu" onClick={() => setMenuOpen(false)}>
+              <button className="nav__overlay--close" aria-label="Close menu" onClick={() => closeMenu()}>
                 &times;
               </button>
             </>

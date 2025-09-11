@@ -310,6 +310,11 @@
   border-radius: 8px;
   color: var(--fg);
 }
+.submenu__item--small {
+  padding: 0.5rem 0 0.5rem 2.2rem !important;
+  font-size: 0.98rem;
+  width: 100%;
+}
 .submenu__item:visited {
   color: var(--fg);
 }

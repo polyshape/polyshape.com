@@ -129,6 +129,26 @@
   --os-handle-bg-active: rgba(60, 60, 60, 0.8);
   --os-track-bg: transparent;
 }
+.error__page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 60vh;
+  width: 100%;
+}
+.error__home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.error__icon {
+  font-size: 2.75rem;
+  line-height: 1;
+  color: var(--main-orange);
+  margin-bottom: 0.25rem;
+}
 .prose {
   max-width: 900px;
   text-align: left;

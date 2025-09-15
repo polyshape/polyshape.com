@@ -1,7 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { AppRoutes } from '../../lib/common/AppRoutes';
-import { findProjectByPid, loadProjects, type Project } from '../../lib/projects';
+import { useProjects, type Project } from '../../lib/projects';
+import { LoadingSpinnerFallback } from '../../lib/common/ui/spinner/LoadingSpinnerFallback';
 
 function formatDate(p: Project) {
   const iso = p.date;
@@ -13,12 +14,16 @@ function formatDate(p: Project) {
   return `${month} ${year}`;
 }
 
+
 export default function ProjectDetails() {
   const { pid } = useParams();
-  const project = useMemo(() => (pid ? findProjectByPid(pid) : undefined), [pid]);
-  // Ensure projects are primed for fallback even if direct-load
-  useMemo(() => loadProjects(), []);
+  const { data, loading, error, reload } = useProjects();
+  useEffect(() => { reload(); }, [reload]);
 
+  const project = useMemo(() => (data && pid ? data.find(p => p.pid === pid) : undefined), [data, pid]);
+
+  if (loading || !data) return <LoadingSpinnerFallback />;
+  if (error) return <div className="prose"><p>Failed to load project.</p></div>;
   if (!project) {
     return (
       <div className="prose">

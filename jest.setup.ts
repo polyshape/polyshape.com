@@ -9,3 +9,7 @@ afterEach(() => server.resetHandlers());
 
 // Clean up once the tests are done.
 afterAll(() => server.close());
+
+jest.mock('@vercel/speed-insights/react', () => ({
+  SpeedInsights: () => null
+}));

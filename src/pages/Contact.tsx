@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { AppRoutes } from '../lib/common/AppRoutes';
 import { isDev, getEnvVar } from "../lib/env";
-import { useLoading } from '../lib/common/ui/spinner/useLoading';
+import { useLoading } from '@polyutils/components';
 
 const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

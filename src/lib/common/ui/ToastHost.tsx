@@ -1,5 +1,5 @@
+import { useTheme } from "@polyutils/components";
 import { ToastContainer } from "react-toastify";
-import { useTheme } from "./theme/useTheme";
 
 export default function ToastHost() {
   const { theme } = useTheme();

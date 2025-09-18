@@ -3,8 +3,7 @@ import { createRoot } from "react-dom/client";
 import 'overlayscrollbars/styles/overlayscrollbars.css';
 import "./styles/index.css";
 import App from "./App";
-import { LoadingProvider } from "./lib/common/ui/spinner/LoadingProvider";
-import { LoadingOverlay } from "./lib/common/ui/LoadingOverlay";
+import { LoadingOverlay, LoadingProvider } from "@polyutils/components";
 
 async function enableMocking() {
   // Only run when in dev AND flag enabled

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useProjects } from '../../lib/projects';
 import { AppRoutes } from '../../lib/common/AppRoutes';
 import ItemList, { type Item } from '../../lib/common/ui/ItemList';
-import { LoadingSpinnerFallback } from '../../lib/common/ui/spinner/LoadingSpinnerFallback';
+import { LoadingSpinnerFallback } from '@polyutils/components';
 
 export default function Projects() {
   const { data, loading, error, reload } = useProjects();

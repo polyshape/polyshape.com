@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { useTheme } from "./theme/useTheme";
 import { useLocation } from "react-router-dom";
 import { AppRoutes } from "../AppRoutes";
+import { useTheme } from "@polyutils/components";
 
 export default function Content({ children }: { children: ReactNode }) {
   const { theme } = useTheme();

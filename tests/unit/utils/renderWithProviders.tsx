@@ -1,8 +1,7 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { LoadingProvider } from "../../../src/lib/common/ui/spinner/LoadingProvider";
-import { ThemeProvider } from "../../../src/lib/common/ui/theme/ThemeProvider";
 import ToastHost from "../../../src/lib/common/ui/ToastHost";
+import { LoadingProvider, ThemeProvider } from "@polyutils/components";
 
 export function renderWithRouterAndLoadingProviders(ui: React.ReactElement) {
   return render(

@@ -2,7 +2,7 @@ import { useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { AppRoutes } from '../../lib/common/AppRoutes';
 import { usePublications, type Publication } from '../../lib/publications';
-import { LoadingSpinnerFallback } from '../../lib/common/ui/spinner/LoadingSpinnerFallback';
+import { LoadingSpinnerFallback } from '@polyutils/components';
 
 function formatDate(p: Publication) {
   const iso = p.date;

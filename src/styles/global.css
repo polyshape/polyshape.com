@@ -4,6 +4,10 @@
   }
 }
 :root, .theme-dark {
+  --pc-bg: #070D1A;
+  --pc-fg: #fff;
+  --pc-nav-bg: #050912;
+  --pc-accent: #D69D0D;
   --global-white: #fff;
   --global-black: #000;
   --global-success: #4ade80;
@@ -39,7 +43,11 @@
 }
 
 .theme-light {
+  --pc-bg: #dfdfdf;
+  --pc-fg: #0b0c0f;
+  --pc-nav-bg: #D6D6D6;
   --bg: #dfdfdf;
+  --pc-accent: #6165AD;
   --fg: #0b0c0f;
   --muted: #3a4658;
   --extra-muted: #4f5f77;

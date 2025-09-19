@@ -38,7 +38,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // POST = create new publication
   if (req.method === 'POST') {
     try {
-      const { title, content, date, partner } = req.body ?? {};
+      const {
+        title,
+        content,
+        date,
+        publicationUrl,
+        authors,
+        venue,
+      } = req.body ?? {};
 
       if (!title || typeof title !== 'string') {
         res.status(400).json({ ok: false, error: 'Invalid or missing title' });
@@ -53,22 +60,45 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return;
       }
 
-      if (partner !== undefined && partner !== null) {
-        if (
-          typeof partner !== 'object' ||
-          typeof partner.name !== 'string' ||
-          !partner.name.trim() ||
-          typeof partner.url !== 'string'
-        ) {
-          res.status(400).json({ ok: false, error: 'Invalid partner' });
+      let normalizedPublicationUrl: string | undefined;
+      if (publicationUrl !== undefined && publicationUrl !== null && `${publicationUrl}`.trim()) {
+        if (typeof publicationUrl !== 'string') {
+          res.status(400).json({ ok: false, error: 'Invalid publicationUrl' });
           return;
         }
         try {
-          new URL(partner.url);
+          const parsed = new URL(publicationUrl);
+          normalizedPublicationUrl = parsed.toString();
         } catch {
-          res.status(400).json({ ok: false, error: 'Invalid partner.url' });
+          res.status(400).json({ ok: false, error: 'Invalid publicationUrl' });
           return;
         }
+      }
+
+      let normalizedAuthors: string[] | undefined;
+      if (authors !== undefined && authors !== null) {
+        if (!Array.isArray(authors)) {
+          res.status(400).json({ ok: false, error: 'Invalid authors' });
+          return;
+        }
+        const trimmedAuthors = authors.map(author => {
+          if (typeof author !== 'string') return '';
+          return author.trim();
+        });
+        if (trimmedAuthors.some(author => !author)) {
+          res.status(400).json({ ok: false, error: 'Invalid authors' });
+          return;
+        }
+        normalizedAuthors = trimmedAuthors;
+      }
+
+      let normalizedVenue: string | undefined;
+      if (venue !== undefined && venue !== null && `${venue}`.trim()) {
+        if (typeof venue !== 'string') {
+          res.status(400).json({ ok: false, error: 'Invalid venue' });
+          return;
+        }
+        normalizedVenue = venue.trim();
       }
 
       const slug = slugify(title).slice(0, 10);
@@ -76,8 +106,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const filename = `${date}_${slug}_${id}.json`;
 
       const payload: Record<string, unknown> = { title, content, date };
-      if (partner !== undefined && partner !== null) {
-        payload.partner = partner;
+      if (normalizedPublicationUrl) {
+        payload.publicationUrl = normalizedPublicationUrl;
+      }
+      if (normalizedAuthors) {
+        payload.authors = normalizedAuthors;
+      }
+      if (normalizedVenue) {
+        payload.venue = normalizedVenue;
       }
 
       const jsonData = JSON.stringify(payload, null, 2);

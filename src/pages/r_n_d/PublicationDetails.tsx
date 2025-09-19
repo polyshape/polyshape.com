@@ -1,7 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { AppRoutes } from '../../lib/common/AppRoutes';
-import { findPublicationByPid, loadPublications, type Publication } from '../../lib/publications';
+import { usePublications, type Publication } from '../../lib/publications';
+import { LoadingSpinnerFallback } from '../../lib/common/ui/spinner/LoadingSpinnerFallback';
 
 function formatDate(p: Publication) {
   const iso = p.date;
@@ -15,10 +16,13 @@ function formatDate(p: Publication) {
 
 export default function PublicationDetails() {
   const { pid } = useParams();
-  const pub = useMemo(() => (pid ? findPublicationByPid(pid) : undefined), [pid]);
-  // Prime loader for fallback when direct-loading a details page
-  useMemo(() => loadPublications(), []);
+  const { data, loading, error, reload } = usePublications();
+  useEffect(() => { reload(); }, [reload]);
 
+  const pub = useMemo(() => (data && pid ? data.find(p => p.pid === pid) : undefined), [data, pid]);
+
+  if (loading || !data) return <LoadingSpinnerFallback />;
+  if (error) return <div className="prose"><p>Failed to load publication.</p></div>;
   if (!pub) {
     return (
       <div className="prose">

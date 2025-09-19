@@ -62,11 +62,6 @@ export default async function handler(req: HttpReq, res: HttpRes) {
   }
 
   // --- LIVE SEND VIA POSTMARK ---
-  console.log("dry_run", env?.DRY_RUN)
-  console.log("send_emails", env?.SEND_EMAILS)
-  console.log("token", env?.POSTMARK_TOKEN)
-  console.log("from", env?.CONTACT_FROM)
-  console.log("to", env?.CONTACT_TO)
   if (!env?.POSTMARK_TOKEN || !env?.CONTACT_FROM || !env?.CONTACT_TO) {
     return res
       .status(500)

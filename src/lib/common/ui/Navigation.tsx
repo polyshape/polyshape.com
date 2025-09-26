@@ -34,6 +34,7 @@ export default function Navigation() {
           className="nav"
           items={generateNavItems()}
           as={NavLink}
+          linkProp="to"
           showBorder={false}
           styles={{
             itemsWrapper: {paddingBottom: 4},

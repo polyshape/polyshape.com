@@ -120,18 +120,6 @@ a:hover {
   text-decoration: none;
 }
 
-.button__primary {
-  background: color-mix(in srgb, var(--primary-link) 85%, var(--global-black));
-  color: var(--fg-button);
-  border: 0;
-  border-radius: 999px;
-  padding: 0.6rem 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  height: 3rem;
-  width: 10rem;
-}
-
 /* Ensure link-styled buttons keep readable text on hover/active */
 a.button__primary,
 a.button__primary:visited,
@@ -141,14 +129,3 @@ a.button__primary:active {
   opacity: 1;
   text-decoration: none;
 }
-
-.button__primary:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--primary-link) 95%, var(--global-black));
-  transition: background 0.2s ease, transform 0.1s ease;
-}
-
-.button__primary:active:not(:disabled) {
-  background: var(--primary-link);
-}
-
-.button__primary[disabled] { opacity: 0.6; cursor: not-allowed; }

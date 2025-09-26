@@ -43,15 +43,29 @@ exports[`Home page matches the snapshot 1`] = `
       >
         <button
           aria-label="Learn more about our vision"
-          class="button__primary"
+          class="___l8lk5q0_8vgghh0 ftuwxu6 f122n59 f4d9j23 f1cf1sex fdm3o16 f1leeax8 f15dniw2 f1xqy1su f1k6fduh fyxfkj9 fz8fxl6 fs0u38j f17b1o1r fou43an f1lcx95k f8ff6pf fzbosr5 f1b8mhjz f1exwp4b f9f7vaa f1o6mjyb f1dlzkh4"
+          style="width: 10rem;"
+          type="button"
         >
-          Learn more
+          <span
+            class="___rm0pg00_kkq1xz0 ftuwxu6 f122n59 f1cf1sex"
+            style="font-weight: 600; font-size: 0.9rem; padding-bottom: 0.2rem;"
+          >
+            Learn more
+          </span>
         </button>
         <button
           aria-label="Contact us"
-          class="button__primary"
+          class="___l8lk5q0_8vgghh0 ftuwxu6 f122n59 f4d9j23 f1cf1sex fdm3o16 f1leeax8 f15dniw2 f1xqy1su f1k6fduh fyxfkj9 fz8fxl6 fs0u38j f17b1o1r fou43an f1lcx95k f8ff6pf fzbosr5 f1b8mhjz f1exwp4b f9f7vaa f1o6mjyb f1dlzkh4"
+          style="width: 10rem;"
+          type="button"
         >
-          Get in touch
+          <span
+            class="___rm0pg00_kkq1xz0 ftuwxu6 f122n59 f1cf1sex"
+            style="font-weight: 600; font-size: 0.9rem; padding-bottom: 0.2rem;"
+          >
+            Get in touch
+          </span>
         </button>
       </div>
     </div>

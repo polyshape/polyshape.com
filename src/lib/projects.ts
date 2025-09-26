@@ -41,8 +41,11 @@ async function loadProjectsLocal(): Promise<Project[]> {
     return { id, pid: '000000', ...data } as Project;
   });
 
-  sortAndAssignPids(items);
-  return items;
+  // Double the items - each item appears twice with different IDs
+  const doubledItems = [...items, ...items.map(item => ({ ...item, id: `${item.id}_copy` }))];
+
+  sortAndAssignPids(doubledItems);
+  return doubledItems;
 }
 
 function sortAndAssignPids(items: Project[]): void {

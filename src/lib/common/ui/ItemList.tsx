@@ -1,3 +1,4 @@
+import { Pagination } from '@polyutils/components';
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -28,7 +29,6 @@ export default function ItemList({
   pageSize = 5,
   countLabel = 'items',
   listAriaLabel,
-  paginationAriaLabel,
   getItemHref,
 }: ItemListProps) {
   const [params, setParams] = useSearchParams();
@@ -36,7 +36,6 @@ export default function ItemList({
   const currentPage = clampPage(Number(params.get('page')) || 1, totalPages);
   const start = (currentPage - 1) * pageSize;
   const visible = useMemo(() => items.slice(start, start + pageSize), [items, start, pageSize]);
-  const pageItems = useMemo(() => buildPageItems(totalPages, currentPage, 1), [totalPages, currentPage]);
   const hasItems = items.length > 0;
 
   function setPage(n: number) {
@@ -103,25 +102,12 @@ export default function ItemList({
         ))}
       </ol>
 
-      {totalPages > 1 && (
-        <nav className="pager" aria-label={paginationAriaLabel || `${title} pagination`}>
-          <button className="pager__btn" onClick={() => setPage(currentPage - 1)} disabled={currentPage <= 1} aria-label="Previous page">
-            <i className="fa-solid fa-arrow-left" aria-hidden="true"></i>
-          </button>
-          {pageItems.map((item, idx) => (
-            typeof item === 'number' ? (
-              <button key={item} className={`pager__btn ${item === currentPage ? 'pager__btn--active' : ''}`} onClick={() => setPage(item)} aria-current={item === currentPage ? 'page' : undefined}>
-                {item}
-              </button>
-            ) : (
-              <span key={`e-${idx}`} className="pager__ellipsis" aria-hidden="true">…</span>
-            )
-          ))}
-          <button className="pager__btn" onClick={() => setPage(currentPage + 1)} disabled={currentPage >= totalPages} aria-label="Next page">
-            <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-          </button>
-        </nav>
-      )}
+      <Pagination
+        styles={{ root: { paddingBottom: '1rem' } }}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setPage={setPage}
+      />
     </div>
   );
 }
@@ -152,23 +138,6 @@ function formatDate(p: Item): string {
 
 function clampPage(n: number, max: number) {
   return Math.max(1, Math.min(max, n));
-}
-
-function buildPageItems(total: number, current: number, delta: number): Array<number | '...'> {
-  const pages: number[] = [];
-  const left = Math.max(1, current - delta);
-  const right = Math.min(total, current + delta);
-  for (let i = 1; i <= total; i++) {
-    if (i === 1 || i === total || (i >= left && i <= right)) pages.push(i);
-  }
-  const items: Array<number | '...'> = [];
-  let last = 0;
-  for (const p of pages) {
-    if (last && p - last > 1) items.push('...');
-    items.push(p);
-    last = p;
-  }
-  return items;
 }
 
 function openInNewTab(path: string) {

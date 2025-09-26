@@ -31,32 +31,32 @@ function generateNavItems() {
 export default function Navigation() {
   return (
       <Nav
-          className="nav"
-          items={generateNavItems()}
-          as={NavLink}
-          linkProp="to"
-          showBorder={false}
-          styles={{
-            itemsWrapper: {paddingBottom: 4},
-            root: {borderBottom: "1px solid var(--border)", padding: "5px 0"},
-            menu: {gap: "2.5rem"},
-            subMenu: {backgroundColor: "var(--pc-nav-bg)", minWidth: "200px"},
-            bar: {paddingTop: "8px", paddingRight: "0px", paddingBottom: "10px", justifyContent: "center"},
-            link: {color: "var(--pc-fg)", fontSize: "1.2rem", fontWeight: 600},
-            subLink: {fontWeight: 700, padding: ".7rem .9rem"},
-            burgerButton: {top: "6px"}
-          }}
-          customLeft={
-            <div className="nav__items-left">
-              <Link className="brand" to={AppRoutes.HOME.path}>
-                <picture>
-                  <source srcSet="/logo.webp" type="image/webp" />
-                  <img src="/logo.png" alt={AppRoutes.HOME.title} className="brand__logo" />
-                </picture>
-              </Link>
-              <ThemeToggle className="theme-toggle" />
-            </div>
-          }
-        />
+        className="nav"
+        items={generateNavItems()}
+        as={NavLink}
+        linkProp="to"
+        showBorder={false}
+        styles={{
+          itemsWrapper: {paddingBottom: 4},
+          root: {borderBottom: "1px solid var(--border)", padding: "5px 0"},
+          menu: {gap: "2.5rem"},
+          subMenu: {backgroundColor: "var(--pc-nav-bg)", minWidth: "200px"},
+          bar: {paddingTop: "8px", paddingRight: "0px", paddingBottom: "10px", justifyContent: "center"},
+          link: {color: "var(--pc-fg)", fontSize: "1.2rem", fontWeight: 600},
+          subLink: {fontWeight: 700, padding: ".7rem .9rem"},
+          burgerButton: {top: "6px"}
+        }}
+        customLeft={
+          <div className="nav__items-left">
+            <Link className="brand" to={AppRoutes.HOME.path}>
+              <picture>
+                <source srcSet="/logo.webp" type="image/webp" />
+                <img src="/logo.png" alt={AppRoutes.HOME.title} className="brand__logo" />
+              </picture>
+            </Link>
+            <ThemeToggle pressEffect={false} className="theme-toggle" />
+          </div>
+        }
+      />
     );
 }

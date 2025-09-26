@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../lib/common/AppRoutes';
-import { useTheme } from '@polyutils/components';
+import { Button, useTheme } from '@polyutils/components';
 
 export default function Home() {
   const { theme } = useTheme();
@@ -20,10 +20,24 @@ export default function Home() {
       <div className="hero__content">
         <h1 className="hero__title">Compositional multi-agent learning systems that advance <span className="highlight">health intelligence</span></h1>
         <p className="hero__subtitle">PolyShape builds modular systems on mathematical foundations, integrating uncertainty and diverse biomedical data to support monitoring, decision-making, and intervention in healthcare.</p>
-      <div className="hero__buttons">
-        <button className="button__primary" onClick={goToVision} aria-label="Learn more about our vision">Learn more</button>
-        <button className="button__primary" onClick={goToContact} aria-label="Contact us">Get in touch</button>
-      </div>
+        <div className="hero__buttons">
+          <Button
+            styles={{ root: { width: "10rem" }, content: { fontWeight: 600, fontSize: "0.9rem", paddingBottom: "0.2rem" } }}
+            appearance="primary"
+            onClick={goToVision}
+            aria-label="Learn more about our vision"
+          >
+            Learn more
+          </Button>
+          <Button
+            styles={{ root: { width: "10rem" }, content: { fontWeight: 600, fontSize: "0.9rem", paddingBottom: "0.2rem" } }}
+            appearance="primary"
+            onClick={goToContact}
+            aria-label="Contact us"
+          >
+            Get in touch
+          </Button>
+        </div>
       </div>
     </div>
   );

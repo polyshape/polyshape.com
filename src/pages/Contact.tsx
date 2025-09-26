@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { AppRoutes } from '../lib/common/AppRoutes';
 import { isDev, getEnvVar } from "../lib/env";
-import { useLoading } from '@polyutils/components';
+import { Button, useLoading } from '@polyutils/components';
 
 const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -213,9 +213,14 @@ export default function Contact() {
           </div>
         </div>
         <div className="contact-form__actions">
-          <button className="button__primary" type="submit" disabled={loadingState === 'loading'}>
+          <Button
+            styles={{ root: { width: "10rem" }, content: { fontWeight: 600, fontSize: "0.9rem", paddingBottom: "0.2rem" } }}
+            appearance="primary"
+            type="submit"
+            disabled={loadingState === 'loading'}
+          >
             Send
-          </button>
+          </Button>
         </div>
       </form>
     </div>

@@ -9,13 +9,14 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "serve:prod": "npm run build && vite preview --port 4173",
     "start": "concurrently -k \"vercel dev\" \"npm run dev\"",
     "test:unit": "jest",
     "test:e2e": "playwright test"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.1",
-    "@polyutils/components": "^2.5.1",
+    "@polyutils/components": "^2.5.4",
     "@vercel/speed-insights": "^1.2.0",
     "overlayscrollbars": "^2.12.0",
     "overlayscrollbars-react": "^0.5.6",

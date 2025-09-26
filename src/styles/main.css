@@ -142,6 +142,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  color: var(--fg) !important;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding-bottom: 0.4rem;
 }
 .error__icon {
   font-size: 2.75rem;
@@ -223,7 +227,13 @@
   margin-left: 0.15em;
 }
 .contact-form__control.contact-form__control--error {
-  border: 1px solid var(--global-error) !important;
+  border: 1px solid var(--global-error);
+}
+.contact-form__control.contact-form__control--error:hover {
+  border: 1px solid var(--global-error);
+}
+.contact-form__control.contact-form__control--error:focus-visible {
+  border: 0px;
 }
 .loading__overlay {
   position: fixed;

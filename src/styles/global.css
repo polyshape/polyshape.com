@@ -1,9 +1,8 @@
-@media (max-width: 830px) {
-  .tooltip {
-    display: none !important;
-  }
-}
 :root, .theme-dark {
+  --pc-bg: #070D1A;
+  --pc-fg: #fff;
+  --pc-nav-bg: #050912;
+  --pc-accent: #D69D0D;
   --global-white: #fff;
   --global-black: #000;
   --global-success: #4ade80;
@@ -34,12 +33,16 @@
   --primary-link: var(--main-orange);
   --secondary-link: var(--secondary-orange);
   --content-main-bg: radial-gradient(circle at center, rgba(44, 104, 255, 0.11) 0%, rgba(20, 42, 79, 0.0) 55%),
-                     radial-gradient(circle at center, #05142e 0%, #02050e 100%);
+                      radial-gradient(circle at center, #05142e 0%, #02050e 100%);
   overflow: hidden;
 }
 
 .theme-light {
+  --pc-bg: #dfdfdf;
+  --pc-fg: #0b0c0f;
+  --pc-nav-bg: #D6D6D6;
   --bg: #dfdfdf;
+  --pc-accent: #6165AD;
   --fg: #0b0c0f;
   --muted: #3a4658;
   --extra-muted: #4f5f77;
@@ -60,7 +63,7 @@
   --primary-link: var(--main-purple);
   --secondary-link: var(--secondary-purple);
   --content-main-bg: radial-gradient(circle at center, rgba(0, 0, 0, 0.11) 0%, rgba(20, 42, 79, 0.0) 55%),
-                     radial-gradient(circle at center, #f4f4f4 0%, #b6b6b6 100%);
+                      radial-gradient(circle at center, #f4f4f4 0%, #b6b6b6 100%);
 }
 
 * {
@@ -91,12 +94,12 @@ html {
   }
 }
 
-
 body {
   margin: 0;
   font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial;
   background: var(--bg);
   color: var(--fg);
+  overflow: hidden;
 }
 
 a {
@@ -149,25 +152,3 @@ a.button__primary:active {
 }
 
 .button__primary[disabled] { opacity: 0.6; cursor: not-allowed; }
-.tooltip {
-  z-index: 3000;
-  background: var(--bg);
-  color: var(--fg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.35rem 0.55rem;
-  font-size: 0.92rem;
-  line-height: 1.15;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-  left: 5px !important;
-}
-
-.tooltip__arrow {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: var(--bg);
-  border-left: 1px solid var(--border);
-  border-top: 1px solid var(--border);
-  transform: rotate(45deg);
-}

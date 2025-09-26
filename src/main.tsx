@@ -3,12 +3,12 @@ import { createRoot } from "react-dom/client";
 import 'overlayscrollbars/styles/overlayscrollbars.css';
 import "./styles/index.css";
 import App from "./App";
-import { LoadingProvider } from "./lib/common/ui/spinner/LoadingProvider";
-import { LoadingOverlay } from "./lib/common/ui/LoadingOverlay";
+import { LoadingOverlay, LoadingProvider } from "@polyutils/components";
 
 async function enableMocking() {
-  // Only run when in dev AND flag enabled
-  if (!(import.meta.env.DEV && import.meta.env.VITE_USE_MSW === "true")) {
+  // Only run when in dev AND flag enabled AND accessed from localhost
+  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  if (!(import.meta.env.DEV && import.meta.env.VITE_USE_MSW === "true" && isLocalhost)) {
     return;
   }
   const { worker } = await import("./mocks/browser");

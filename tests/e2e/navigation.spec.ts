@@ -6,7 +6,7 @@ test.use({ viewport: { width: 412, height: 915 } }); // Samsung Galaxy S20 Ultra
 test('responsive navigation bar', async ({ page }) => {
   await page.goto('/');
   // Open burger menu
-  await page.locator('button.burger--menu').click();
+  await page.getByRole('button', { name: /open navigation/i }).click();
   // Click on Mission
   await page.getByRole('link', { name: new RegExp(AppRoutes.ORIENTATION.id, 'i') }).click();
   // Click on Mission Statement

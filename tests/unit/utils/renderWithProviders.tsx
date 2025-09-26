@@ -1,12 +1,53 @@
 import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-import { LoadingProvider } from "../../../src/lib/common/ui/spinner/LoadingProvider";
-import { ThemeProvider } from "../../../src/lib/common/ui/theme/ThemeProvider";
+import { MemoryRouter, Routes, Route, Navigate } from "react-router-dom";
 import ToastHost from "../../../src/lib/common/ui/ToastHost";
+import { LoadingProvider, ThemeProvider } from "@polyutils/components";
+import Layout from "../../../src/lib/common/ui/Layout";
+import { AppRoutes } from "../../../src/lib/common/AppRoutes";
+import { Suspense } from "react";
+
+export function renderLayoutWithProviders(initialPath = "/") {
+  type RoutesMap = typeof AppRoutes;
+  type Key = keyof RoutesMap;
+  const routes = (Object.keys(AppRoutes) as Key[]).filter(key => AppRoutes[key].isParent);
+  return render(
+    <MemoryRouter initialEntries={[initialPath]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <ThemeProvider>
+        <LoadingProvider>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route element={<Layout />}>
+                {routes.map(key => {
+                    const route = AppRoutes[key];
+                    const visibleChildren = (route.children || [])
+                      .map(childKey => AppRoutes[childKey])
+                      .filter(childRoute => childRoute.shouldBeDisplayed !== false);
+                    const defaultChild = visibleChildren[0];
+                    return (
+                      <Route key={route.id} path={route.path} element={route.element}>
+                        {visibleChildren.length > 0 && (
+                          <Route index element={<Navigate to={defaultChild.path} replace />} />
+                        )}
+                        {route.children &&
+                          route.children.map(childKey => {
+                            const childRoute = AppRoutes[childKey];
+                            return <Route key={childRoute.id} path={childRoute.path} element={childRoute.element} />;
+                          })}
+                      </Route>
+                    );
+                  })}
+              </Route>
+            </Routes>
+          </Suspense>
+        </LoadingProvider>
+      </ThemeProvider>
+    </MemoryRouter>
+  )
+}
 
 export function renderWithRouterAndLoadingProviders(ui: React.ReactElement) {
   return render(
-    <MemoryRouter>
+    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ThemeProvider>
         <LoadingProvider>{ui}</LoadingProvider>
       </ThemeProvider>
@@ -16,7 +57,7 @@ export function renderWithRouterAndLoadingProviders(ui: React.ReactElement) {
 
 export function renderWithRouterAndThemeProviders(ui: React.ReactElement) {
   return render(
-    <MemoryRouter>
+    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ThemeProvider>{ui}</ThemeProvider>
     </MemoryRouter>
   );

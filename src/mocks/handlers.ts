@@ -10,7 +10,7 @@ type ContactPayload = {
 export const handlers = [
   http.post("/api/contact", async ({ request }) => {
     // configurable delay (default 1s)
-    const delayTime = Number(import.meta.env.VITE_MSW_DELAY ?? 1500);
+    const delayTime = Number(import.meta.env.VITE_MSW_DELAY ?? 0);
     await delay(delayTime);
 
     const body = (await request.json()) as ContactPayload;

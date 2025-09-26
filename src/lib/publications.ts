@@ -19,7 +19,11 @@ export type Publication = PublicationDoc & {
 };
 
 // --- Local (filesystem) loader used in dev/mocks ---
-function loadPublicationsLocal(): Publication[] {
+async function loadPublicationsLocal(): Promise<Publication[]> {
+  // Add configurable delay for dev testing (same env var as MSW)
+  const delayTime = Number(import.meta.env.VITE_MSW_DELAY ?? 0);
+  await new Promise(resolve => setTimeout(resolve, delayTime));
+
   const primary = import.meta.glob<{ default: PublicationDoc }>(
     '/src/content/publications/*.json',
     { eager: true }
@@ -114,7 +118,7 @@ export async function fetchPublications(): Promise<Publication[]> {
   if (shouldUseApi()) {
     return fetchRemotePublications();
   }
-  return Promise.resolve(loadPublicationsLocal());
+  return loadPublicationsLocal();
 }
 
 // React hook to fetch publications without module-level caching

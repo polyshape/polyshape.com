@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../lib/common/AppRoutes';
-import { useTheme } from '../lib/common/ui/theme/useTheme';
+import { useTheme } from '@polyutils/components';
 
 export default function Home() {
   const { theme } = useTheme();

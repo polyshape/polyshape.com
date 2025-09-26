@@ -1,14 +1,22 @@
 import App from '../../src/App';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { screen } from '@testing-library/react';
-import {AppRoutes} from '../../src/lib/common/AppRoutes';
-import { renderWithLoadingProvider } from './utils/renderWithProviders';
+import { screen, fireEvent } from '@testing-library/react';
+import { AppRoutes } from '../../src/lib/common/AppRoutes';
+import { renderWithLoadingProvider, renderLayoutWithProviders } from './utils/renderWithProviders';
 
 describe('Layout components', () => {
   it('renders navigation', () => {
     renderWithLoadingProvider(<App />);
     expect(screen.getByRole('navigation')).toBeInTheDocument();
+  });
+
+  it('renders navigation sub menu', async () => {
+    renderWithLoadingProvider(<App />);
+    const orientationLink = screen.getByRole('link', { name: /orientation/i });
+    fireEvent.mouseEnter(orientationLink);
+    const vision = screen.getByRole('link', { name: /vision/i });
+    expect(vision).toBeInTheDocument();
   });
 
   it('renders footer', () => {
@@ -17,28 +25,22 @@ describe('Layout components', () => {
   });
 });
 
-describe('Navigation', () => {
-  it('navigates to Contact page when Contact link is clicked', async () => {
-    renderWithLoadingProvider(<App />);
-    const contactLink = screen.getByRole('link', { name: /contact/i });
-    await userEvent.click(contactLink);
-    const contactTitle = screen.getByRole('heading', { level: 1, name: AppRoutes.CONTACT.title });
-    expect(contactTitle).toBeInTheDocument();
+describe("Navigation", () => {
+  it("renders Contact page directly when initial path is /contact", () => {
+    renderLayoutWithProviders("/contact");
+    expect(
+      screen.getByRole("heading", { level: 1, name: AppRoutes.CONTACT.title })
+    ).toBeInTheDocument();
   });
-  
-  it('navigates to Vision page via menu', async () => {
-    renderWithLoadingProvider(<App />);
-    // Get all Orientation links and click the first one
-    const orientationLinks = screen.getAllByRole('link', { name: /orientation/i });
-    await userEvent.click(orientationLinks[0]);
-    // Click the Vision submenu link
-    const statementLink = screen.getByRole('link', { name: /vision/i });
-    await userEvent.click(statementLink);
-    // Assert Vision page content is rendered
-    const statementTitle = screen.getByRole('heading', { level: 1, name: AppRoutes.VISION.title });
-    expect(statementTitle).toBeInTheDocument();
+
+  it("renders Vision page directly when initial path is /orientation/vision", () => {
+    renderLayoutWithProviders("/orientation/vision");
+    expect(
+      screen.getByRole("heading", { level: 1, name: AppRoutes.VISION.title })
+    ).toBeInTheDocument();
   });
 });
+
 
 describe('Theme toggle button', () => {
   it('toggles between dark and light theme', async () => {

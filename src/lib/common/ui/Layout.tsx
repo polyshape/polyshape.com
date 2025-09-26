@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Content from "./Content";
-import Nav from "./Nav";
 import Footer from "./Footer";
+import Navigation from "./Navigation";
 
 export default function Layout() {
+  
   return (
     <div className={"page"}>
-      <Nav />
+      <Navigation />
       <main className="main">
         <Content>
           <Outlet />

@@ -17,7 +17,11 @@ export type Project = ProjectDoc & {
 };
 
 // --- Local (filesystem) loader used in dev/mocks ---
-function loadProjectsLocal(): Project[] {
+async function loadProjectsLocal(): Promise<Project[]> {
+  // Add configurable delay for dev testing (same env var as MSW)
+  const delayTime = Number(import.meta.env.VITE_MSW_DELAY ?? 0);
+  await new Promise(resolve => setTimeout(resolve, delayTime));
+
   // Prefer real content; gracefully fall back to mocks when empty
   const primary = import.meta.glob<{ default: ProjectDoc }>(
     '/src/content/projects/*.json',
@@ -117,7 +121,7 @@ export async function fetchProjects(): Promise<Project[]> {
   if (shouldUseApi()) {
     return fetchRemoteProjects();
   }
-  return Promise.resolve(loadProjectsLocal());
+  return loadProjectsLocal();
 }
 
 // React hook to fetch projects without module-level caching

@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import Dissemination from '../../src/pages/r_n_d/Dissemination';
 import { AppRoutes } from '../../src/lib/common/AppRoutes';

@@ -1,4 +1,21 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Software page > matches the snapshot 1`] = `
+<div>
+  <div
+    class="prose"
+  >
+    <h1
+      class="hero__title"
+    >
+      Software
+    </h1>
+    <p>
+      Coming Soon.
+    </p>
+  </div>
+</div>
+`;
 
 exports[`Software page matches the snapshot 1`] = `
 <div>

@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import Home from '../../src/pages/Home';
 import { renderWithRouterAndLoadingProviders } from './utils/renderWithProviders';
 

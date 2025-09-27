@@ -1,6 +1,5 @@
 import App from '../../src/App';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
 import { screen, fireEvent } from '@testing-library/react';
 import { AppRoutes } from '../../src/lib/common/AppRoutes';
 import { renderWithLoadingProvider, renderLayoutWithProviders } from './utils/renderWithProviders';

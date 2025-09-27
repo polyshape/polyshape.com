@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import Partners from '../../src/pages/portfolio/Partners';
 import { AppRoutes } from '../../src/lib/common/AppRoutes';

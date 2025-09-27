@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { vi, afterEach } from 'vitest';
 import Contact from '../../src/pages/Contact';
 import { AppRoutes } from '../../src/lib/common/AppRoutes';
 import { server } from '../../src/mocks/server-test';
@@ -8,7 +8,7 @@ import { renderWithToastProvider } from './utils/renderWithProviders';
 
 describe('Contact page', () => {
   afterEach(() => {
-    jest.resetAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders the main title and correct CSS classes', () => {

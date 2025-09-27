@@ -1,4 +1,21 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Journey page > matches the snapshot 1`] = `
+<div>
+  <div
+    class="prose"
+  >
+    <h1
+      class="hero__title"
+    >
+      Journey
+    </h1>
+    <p>
+      PolyShape's journey began in 2023 with research in the UK and in 2025 continued with an additional base in Greece. From the start, the focus has been to build health intelligence on mathematical foundations, to implement these foundations in software, and to translate them into both R&D and consulting for biomedical and healthcare applications.
+    </p>
+  </div>
+</div>
+`;
 
 exports[`Journey page matches the snapshot 1`] = `
 <div>

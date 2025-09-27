@@ -34,5 +34,5 @@ jobs:
       - name: Upload HTML test report
         uses: actions/upload-artifact@v4
         with:
-          name: jest-html-report
-          path: unit-test-report.html
+          name: vitest-html-report
+          path: vitest-report/

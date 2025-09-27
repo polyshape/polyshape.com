@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import Software from '../../src/pages/r_n_d/Software';
 import { AppRoutes } from '../../src/lib/common/AppRoutes';

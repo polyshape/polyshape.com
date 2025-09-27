@@ -1,9 +1,9 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
-    "types": ["jest", "@testing-library/jest-dom"],
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "noEmit": true
   },
-  "include": ["tests/**/*", "src/**/*"],
+  "include": ["tests/**/*", "src/**/*", "vitest.config.ts"],
   "exclude": []
 }

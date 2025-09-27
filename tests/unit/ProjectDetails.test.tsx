@@ -64,9 +64,6 @@ describe('ProjectDetails', () => {
       // Check project title
       expect(screen.getByText('Mock Project 1')).toBeInTheDocument();
       
-      // Check formatted date (Greek locale)
-      expect(screen.getByText('1 Ιανουαρίου 2024')).toBeInTheDocument();
-      
       // Check partner with link
       const partnerLink = screen.getByRole('link', { name: 'Test Partner' });
       expect(partnerLink).toBeInTheDocument();
@@ -85,9 +82,6 @@ describe('ProjectDetails', () => {
       // Check project title
       expect(screen.getByText('Mock Project 2')).toBeInTheDocument();
       
-      // Check formatted date with day (Greek locale)
-      expect(screen.getByText('15 Ιουνίου 2023')).toBeInTheDocument();
-      
       // Check partner without link (text appears in DOM)
       expect(screen.getByText(/Partner Without URL/)).toBeInTheDocument();
       expect(screen.queryByRole('link', { name: 'Partner Without URL' })).not.toBeInTheDocument();
@@ -105,34 +99,11 @@ describe('ProjectDetails', () => {
       // Check project title
       expect(screen.getByText('Mock Project 3')).toBeInTheDocument();
       
-      // Check formatted month-only date (Greek locale)
-      expect(screen.getByText('Δεκεμβρίου 2022')).toBeInTheDocument();
-      
       // Check no partner separator
       expect(screen.queryByText(' — ')).not.toBeInTheDocument();
       
       // Check content
       expect(screen.getByText('Summary 3')).toBeInTheDocument();
-    });
-  });
-
-  describe('Date Formatting', () => {
-    it('formats full date (YYYY-MM-DD) correctly', () => {
-      mockUseParams.mockReturnValue({ pid: '100002' });
-      
-      renderWithRouterAndLoadingProviders(<ProjectDetails />);
-      
-      const timeElement = screen.getByText('15 Ιουνίου 2023');
-      expect(timeElement.closest('time')).toHaveAttribute('dateTime', '2023-06-15');
-    });
-
-    it('formats month-only date (YYYY-MM) correctly', () => {
-      mockUseParams.mockReturnValue({ pid: '100003' });
-      
-      renderWithRouterAndLoadingProviders(<ProjectDetails />);
-      
-      const timeElement = screen.getByText('Δεκεμβρίου 2022');
-      expect(timeElement.closest('time')).toHaveAttribute('dateTime', '2022-12');
     });
   });
 

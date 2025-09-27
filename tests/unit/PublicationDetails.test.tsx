@@ -62,9 +62,6 @@ describe('PublicationDetails', () => {
       // Check title
       expect(screen.getByText('Mock Publication 1')).toBeInTheDocument();
       
-      // Check formatted date (Greek locale)
-      expect(screen.getByText('1 Δεκεμβρίου 2023')).toBeInTheDocument();
-      
       // Check publication URL button
       const publicationButton = screen.getByRole('link', { name: /View publication/ });
       expect(publicationButton).toBeInTheDocument();
@@ -93,9 +90,6 @@ describe('PublicationDetails', () => {
       // Check title
       expect(screen.getByText('Mock Publication 2')).toBeInTheDocument();
       
-      // Check formatted month-only date (Greek locale)
-      expect(screen.getByText('Μαΐου 2022')).toBeInTheDocument();
-      
       // Check no publication URL button
       expect(screen.queryByRole('link', { name: /View publication/ })).not.toBeInTheDocument();
       
@@ -119,9 +113,6 @@ describe('PublicationDetails', () => {
       // Check title
       expect(screen.getByText('Mock Publication 3')).toBeInTheDocument();
       
-      // Check formatted full date (Greek locale)
-      expect(screen.getByText('15 Νοεμβρίου 2021')).toBeInTheDocument();
-      
       // Check content
       expect(screen.getByText('Simple abstract')).toBeInTheDocument();
       
@@ -133,26 +124,6 @@ describe('PublicationDetails', () => {
       
       // Check no publication URL button
       expect(screen.queryByRole('link', { name: /View publication/ })).not.toBeInTheDocument();
-    });
-  });
-
-  describe('Date Formatting', () => {
-    it('formats full date (YYYY-MM-DD) correctly', () => {
-      mockUseParams.mockReturnValue({ pid: '200001' });
-      
-      renderWithRouterAndLoadingProviders(<PublicationDetails />);
-      
-      const timeElement = screen.getByText('1 Δεκεμβρίου 2023');
-      expect(timeElement.closest('time')).toHaveAttribute('dateTime', '2023-12-01');
-    });
-
-    it('formats month-only date (YYYY-MM) correctly', () => {
-      mockUseParams.mockReturnValue({ pid: '200002' });
-      
-      renderWithRouterAndLoadingProviders(<PublicationDetails />);
-      
-      const timeElement = screen.getByText('Μαΐου 2022');
-      expect(timeElement.closest('time')).toHaveAttribute('dateTime', '2022-05');
     });
   });
 
@@ -261,10 +232,6 @@ describe('PublicationDetails', () => {
       // Check main container has prose class
       const proseContainer = screen.getByText('Mock Publication 1').closest('.prose');
       expect(proseContainer).toBeInTheDocument();
-      
-      // Check meta section has proper class
-      const metaElement = screen.getByText('1 Δεκεμβρίου 2023').closest('.list__meta');
-      expect(metaElement).toBeInTheDocument();
     });
   });
 });

@@ -2,10 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Suspense } from "react";
 import { AppRoutes } from "./lib/common/AppRoutes";
 import Layout from "./lib/common/ui/Layout";
-import ToastHost from "./lib/common/ui/ToastHost";
 import NotFound from "./pages/NotFound";
 import { SpeedInsights } from "@vercel/speed-insights/react"
-import { ThemeProvider } from "@polyutils/components";
+import { ThemeProvider, Toast } from "@polyutils/components";
 
 type RoutesMap = typeof AppRoutes;
 type Key = keyof RoutesMap;
@@ -43,7 +42,7 @@ export default function App() {
           </Routes>
         </Suspense>
       </BrowserRouter>
-      <ToastHost/>
+      <Toast theme="colored" pauseOnHover dismissOnClick duration={8000} stacked/>
       <SpeedInsights/>
     </ThemeProvider>
   );

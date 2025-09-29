@@ -1,7 +1,6 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter, Routes, Route, Navigate } from "react-router-dom";
-import ToastHost from "../../../src/lib/common/ui/ToastHost";
-import { LoadingProvider, ThemeProvider } from "@polyutils/components";
+import { LoadingProvider, ThemeProvider, Toast } from "@polyutils/components";
 import Layout from "../../../src/lib/common/ui/Layout";
 import { AppRoutes } from "../../../src/lib/common/AppRoutes";
 import { Suspense } from "react";
@@ -72,7 +71,7 @@ export function renderWithToastProvider(ui: React.ReactElement) {
     <ThemeProvider>
       <LoadingProvider>
         {ui}
-        <ToastHost />
+        <Toast />
       </LoadingProvider>
     </ThemeProvider>
   );

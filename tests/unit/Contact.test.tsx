@@ -5,10 +5,12 @@ import { AppRoutes } from '../../src/lib/common/AppRoutes';
 import { server } from '../../src/mocks/server-test';
 import { http, HttpResponse } from 'msw';
 import { renderWithToastProvider } from './utils/renderWithProviders';
+import { toast } from '@polyutils/components';
 
 describe('Contact page', () => {
   afterEach(() => {
     vi.clearAllMocks();
+    toast.clear();
   });
 
   it('renders the main title and correct CSS classes', () => {

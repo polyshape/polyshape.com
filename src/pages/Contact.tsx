@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
 import { AppRoutes } from '../lib/common/AppRoutes';
 import { isDev, getEnvVar } from "../lib/env";
-import { Button, useLoading } from '@polyutils/components';
+import { Button, useLoading, toast } from '@polyutils/components';
 
 const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

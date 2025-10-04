@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.1",
-    "@polyutils/components": "^2.6.1",
+    "@polyutils/components": "^2.6.3",
     "@vercel/speed-insights": "^1.2.0",
     "overlayscrollbars": "^2.12.0",
     "overlayscrollbars-react": "^0.5.6",

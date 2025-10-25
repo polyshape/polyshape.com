@@ -1,6 +1,6 @@
-import { Pagination } from '@polyutils/components';
-import { useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { CircleRightIcon, Pagination } from "@polyutils/components";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export type Item = {
   id: string;
@@ -27,20 +27,23 @@ export default function ItemList({
   title,
   items,
   pageSize = 5,
-  countLabel = 'items',
+  countLabel = "items",
   listAriaLabel,
   getItemHref,
 }: ItemListProps) {
   const [params, setParams] = useSearchParams();
   const totalPages = Math.max(1, Math.ceil(items.length / pageSize));
-  const currentPage = clampPage(Number(params.get('page')) || 1, totalPages);
+  const currentPage = clampPage(Number(params.get("page")) || 1, totalPages);
   const start = (currentPage - 1) * pageSize;
-  const visible = useMemo(() => items.slice(start, start + pageSize), [items, start, pageSize]);
+  const visible = useMemo(
+    () => items.slice(start, start + pageSize),
+    [items, start, pageSize]
+  );
   const hasItems = items.length > 0;
 
   function setPage(n: number) {
     const next = new URLSearchParams(params);
-    next.set('page', String(clampPage(n, totalPages)));
+    next.set("page", String(clampPage(n, totalPages)));
     setParams(next, { replace: false });
   }
 
@@ -57,7 +60,9 @@ export default function ItemList({
     <div className="prose prose--big">
       <h1 className="hero__title">{title}</h1>
       <div className="list__intro">
-        <small className="list__count">{items.length} {countLabel}</small>
+        <small className="list__count">
+          {items.length} {countLabel}
+        </small>
       </div>
 
       <ol className="list" aria-label={listAriaLabel || `${title} list`}>
@@ -65,7 +70,7 @@ export default function ItemList({
           <li
             key={p.id}
             className="list__row"
-            role={getItemHref ? 'link' : undefined}
+            role={getItemHref ? "link" : undefined}
             tabIndex={getItemHref ? 0 : -1}
             onClick={() => {
               const href = getItemHref?.(p);
@@ -73,37 +78,42 @@ export default function ItemList({
             }}
             onKeyDown={(e) => {
               if (!getItemHref) return;
-              if (e.key === 'Enter' || e.key === ' ') {
+              if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
                 const href = getItemHref?.(p);
                 if (href) openInNewTab(href);
               }
             }}
           >
-            <time className="list__date" dateTime={getDateISO(p)}>{formatDate(p)}</time>
+            <time className="list__date" dateTime={getDateISO(p)}>
+              {formatDate(p)}
+            </time>
             <div className="list__content">
               <h3 className="list__title">{p.title}</h3>
               <p className="list__preview">{getPreview(p)}</p>
-              {Array.isArray(p.authors) && p.authors.length > 0
-                ? (
-                  <div className="list__partner">{p.authors.filter(Boolean).join(", ")}</div>
-                )
-                : (p.partner?.name && (
+              {Array.isArray(p.authors) && p.authors.length > 0 ? (
+                <div className="list__partner">
+                  {p.authors.filter(Boolean).join(", ")}
+                </div>
+              ) : (
+                p.partner?.name && (
                   <div className="list__partner">{p.partner.name}</div>
-                ))}
-              {p.venue && (
-                <div className="list__venue">{p.venue}</div>
+                )
               )}
+              {p.venue && <div className="list__venue">{p.venue}</div>}
             </div>
             <div className="list__cta" aria-hidden="true">
-              <i className="list__arrow fa-solid fa-circle-right" aria-hidden="true"></i>
+              <CircleRightIcon
+                className="list__arrow"
+                style={{ color: "var(--pc-accent)", fontSize: "30px" }}
+              />
             </div>
           </li>
         ))}
       </ol>
 
       <Pagination
-        styles={{ root: { paddingBottom: '1rem' } }}
+        styles={{ root: { paddingBottom: "1rem" } }}
         totalPages={totalPages}
         currentPage={currentPage}
         setPage={setPage}
@@ -114,20 +124,20 @@ export default function ItemList({
 
 function getPreview(p: Item) {
   const c = p.content;
-  const text = Array.isArray(c) ? c[0] : String(c || '');
+  const text = Array.isArray(c) ? c[0] : String(c || "");
   return text;
 }
 
 function getDateISO(p: Item): string {
-  return p.date || '';
+  return p.date || "";
 }
 
 function formatDate(p: Item): string {
   const iso = getDateISO(p);
-  if (!iso) return '';
+  if (!iso) return "";
   const d = new Date(iso);
   const hasDay = /\d{4}-\d{2}-\d{2}/.test(iso);
-  const month = d.toLocaleString(undefined, { month: 'long' });
+  const month = d.toLocaleString(undefined, { month: "long" });
   const year = d.getFullYear();
   if (hasDay) {
     const day = d.getDate();
@@ -141,6 +151,6 @@ function clampPage(n: number, max: number) {
 }
 
 function openInNewTab(path: string) {
-  const w = window.open(path, '_blank');
+  const w = window.open(path, "_blank");
   if (w) w.opener = null;
 }

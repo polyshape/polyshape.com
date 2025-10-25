@@ -1,14 +1,17 @@
-import { useMemo, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { AppRoutes } from '../../lib/common/AppRoutes';
-import { usePublications, type Publication } from '../../lib/publications';
-import { LoadingSpinnerFallback } from '@polyutils/components';
+import {
+  ExternalLinkIcon,
+  LoadingSpinnerFallback,
+} from "@polyutils/components";
+import { useEffect, useMemo } from "react";
+import { Link, useParams } from "react-router-dom";
+import { AppRoutes } from "../../lib/common/AppRoutes";
+import { usePublications, type Publication } from "../../lib/publications";
 
 function formatDate(p: Publication) {
   const iso = p.date;
   const d = new Date(/^\d{4}-\d{2}$/.test(iso) ? `${iso}-01` : iso);
   const hasDay = /\d{4}-\d{2}-\d{2}/.test(iso);
-  const month = d.toLocaleString(undefined, { month: 'long' });
+  const month = d.toLocaleString(undefined, { month: "long" });
   const year = d.getFullYear();
   if (hasDay) return `${d.getDate()} ${month} ${year}`;
   return `${month} ${year}`;
@@ -17,35 +20,60 @@ function formatDate(p: Publication) {
 export default function PublicationDetails() {
   const { pid } = useParams();
   const { data, loading, error, reload } = usePublications();
-  useEffect(() => { reload(); }, [reload]);
+  useEffect(() => {
+    reload();
+  }, [reload]);
 
-  const pub = useMemo(() => (data && pid ? data.find(p => p.pid === pid) : undefined), [data, pid]);
+  const pub = useMemo(
+    () => (data && pid ? data.find((p) => p.pid === pid) : undefined),
+    [data, pid]
+  );
 
   if (loading || !data) return <LoadingSpinnerFallback />;
-  if (error) return <div className="prose"><p>Failed to load publication.</p></div>;
+  if (error)
+    return (
+      <div className="prose">
+        <p>Failed to load publication.</p>
+      </div>
+    );
   if (!pub) {
     return (
       <div className="prose">
         <h1 className="hero__title">Publication</h1>
         <p>Publication not found.</p>
-        <p><Link to={AppRoutes.PUBLICATIONS.path}>Back to publications</Link></p>
+        <p>
+          <Link to={AppRoutes.PUBLICATIONS.path}>Back to publications</Link>
+        </p>
       </div>
     );
   }
 
-  const blocks = Array.isArray(pub.content) ? pub.content : [String(pub.content)];
+  const blocks = Array.isArray(pub.content)
+    ? pub.content
+    : [String(pub.content)];
 
   return (
     <div className="prose">
       <h1 className="hero__title">{pub.title}</h1>
       <div className="publication__meta">
-        <p className="list__meta"><time dateTime={pub.date}>{formatDate(pub)}</time></p>
+        <p className="list__meta">
+          <time dateTime={pub.date}>{formatDate(pub)}</time>
+        </p>
 
         {pub.publicationUrl && (
           <p>
-            <a className="button__primary" href={pub.publicationUrl} target="_blank" rel="noreferrer">
+            <a
+              className="button__primary"
+              href={pub.publicationUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: "flex", alignItems: "center" }}
+            >
               View publication
-              <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style={{ marginLeft: '0.45rem' }} />
+              <ExternalLinkIcon
+                weight={3}
+                style={{ fontSize: 22, marginLeft: "0.45rem" }}
+              />
             </a>
           </p>
         )}
@@ -53,12 +81,14 @@ export default function PublicationDetails() {
 
       <div className="publication__details">
         <h2>Abstract</h2>
-        {blocks.map((t, i) => (<p key={i}>{t}</p>))}
+        {blocks.map((t, i) => (
+          <p key={i}>{t}</p>
+        ))}
 
         {Array.isArray(pub.authors) && pub.authors.length > 0 && (
           <>
             <h2>Authors</h2>
-            <p>{pub.authors.filter(Boolean).join(', ')}</p>
+            <p>{pub.authors.filter(Boolean).join(", ")}</p>
           </>
         )}
 

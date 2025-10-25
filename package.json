@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "serve:prod": "npm run build && vite preview --port 4173",
     "start": "concurrently -k \"vercel dev\" \"npm run dev\"",

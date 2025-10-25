@@ -1,5 +1,5 @@
-import { isDev, getEnvVar } from './env';
-import { useCallback, useEffect, useState } from 'react';
+import { isDev, getEnvVar } from "./env";
+import { useCallback, useEffect, useState } from "react";
 
 export type PublicationDoc = {
   title: string;
@@ -25,11 +25,11 @@ async function loadPublicationsLocal(): Promise<Publication[]> {
   await new Promise(resolve => setTimeout(resolve, delayTime));
 
   const primary = import.meta.glob<{ default: PublicationDoc }>(
-    '/src/content/publications/*.json',
+    "/src/content/publications/*.json",
     { eager: true }
   );
   const fallback = import.meta.glob<{ default: PublicationDoc }>(
-    '/src/content/mocks/publications/*.json',
+    "/src/content/mocks/publications/*.json",
     { eager: true }
   );
 
@@ -38,8 +38,8 @@ async function loadPublicationsLocal(): Promise<Publication[]> {
 
   const items: Publication[] = Object.entries(modules).map(([path, mod]) => {
     const data = mod.default;
-    const id = path.split('/').pop()!.replace(/\.json$/, '');
-    return { id, pid: '000000', ...data } as Publication;
+    const id = path.split("/").pop()!.replace(/\.json$/, "");
+    return { id, pid: "000000", ...data } as Publication;
   });
 
   sortAndAssignPids(items);
@@ -55,7 +55,7 @@ function sortAndAssignPids(items: Publication[]): void {
   items.sort((a, b) => toTime(b.date) - toTime(a.date));
   items.forEach((item, index) => {
     const n = 200001 + index; // start from 200001 to avoid overlap with projects
-    item.pid = String(n).padStart(6, '0');
+    item.pid = String(n).padStart(6, "0");
   });
 }
 
@@ -63,7 +63,7 @@ function sortAndAssignPids(items: Publication[]): void {
 type BlobEntry = { url?: string; downloadUrl?: string; pathname?: string };
 
 async function fetchRemotePublications(): Promise<Publication[]> {
-  const listRes = await fetch(withCacheBuster('/api/publications'), { headers: { 'Accept': 'application/json' } });
+  const listRes = await fetch(withCacheBuster("/api/publications"), { headers: { "Accept": "application/json" } });
   if (!listRes.ok) {
     throw new Error(`Failed to list publications (${listRes.status})`);
   }
@@ -73,13 +73,13 @@ async function fetchRemotePublications(): Promise<Publication[]> {
   const docs = await Promise.all(entries.map(async (b) => {
     const dl = b.downloadUrl || (b.url ? `${b.url}?download=1` : undefined);
     if (!dl) return undefined;
-    const res = await fetch(withCacheBuster(dl), { headers: { 'Accept': 'application/json' } });
+    const res = await fetch(withCacheBuster(dl), { headers: { "Accept": "application/json" } });
     if (!res.ok) {
       return undefined;
     }
     const doc = (await res.json()) as PublicationDoc;
-    const base = (b.pathname || '').split('/').pop() || '';
-    const id = base.replace(/\.json$/i, '') || cryptoRandomId();
+    const base = (b.pathname || "").split("/").pop() || "";
+    const id = base.replace(/\.json$/i, "") || cryptoRandomId();
     return { id, pid: id, ...doc } as Publication;
   }));
 
@@ -99,7 +99,7 @@ function cryptoRandomId(): string {
   try {
     // Browsers
     const bytes = crypto.getRandomValues(new Uint8Array(6));
-    return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+    return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("");
   } catch {
     // Very rare fallback
     return Math.random().toString(36).slice(2, 10);
@@ -110,8 +110,8 @@ function shouldUseApi(): boolean {
   // In production: always use API
   if (!isDev()) return true;
   // In dev: opt-in via flag
-  const flag = getEnvVar('VITE_PUBLICATIONS_USE_API');
-  return String(flag).toLowerCase() === 'true';
+  const flag = getEnvVar("VITE_PUBLICATIONS_USE_API");
+  return String(flag).toLowerCase() === "true";
 }
 
 export async function fetchPublications(): Promise<Publication[]> {
@@ -148,10 +148,10 @@ export function usePublications() {
 function withCacheBuster(urlStr: string): string {
   try {
     const u = new URL(urlStr);
-    u.searchParams.set('_', Date.now().toString());
+    u.searchParams.set("_", Date.now().toString());
     return u.toString();
   } catch {
-    const sep = urlStr.includes('?') ? '&' : '?';
+    const sep = urlStr.includes("?") ? "&" : "?";
     return `${urlStr}${sep}_=${Date.now()}`;
   }
 }

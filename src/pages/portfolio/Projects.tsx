@@ -1,10 +1,9 @@
-
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useProjects } from '../../lib/projects';
-import { AppRoutes } from '../../lib/common/AppRoutes';
-import ItemList, { type Item } from '../../lib/common/ui/ItemList';
-import { LoadingSpinnerFallback } from '@polyutils/components';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useProjects } from "../../lib/projects";
+import { AppRoutes } from "../../lib/common/AppRoutes";
+import ItemList, { type Item } from "../../lib/common/ui/ItemList";
+import { LoadingSpinnerFallback } from "@polyutils/components";
 
 export default function Projects() {
   const { data, loading, error, reload } = useProjects();

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { AppRoutes } from '../lib/common/AppRoutes';
+import { useState, useEffect } from "react";
+import { AppRoutes } from "../lib/common/AppRoutes";
 import { isDev, getEnvVar } from "../lib/env";
-import { Button, useLoading, toast } from '@polyutils/components';
+import { Button, useLoading, toast } from "@polyutils/components";
 
 const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -62,13 +62,13 @@ export default function Contact() {
 
   function validate(payload: { name: string; email: string; message: string }) {
     if (!payload.name.trim() || !payload.email.trim() || !payload.message.trim()) {
-      return 'Required fields missing.';
+      return "Required fields missing.";
     }
     if (!RE_EMAIL.test(payload.email)) {
-      return 'Please enter a valid email.';
+      return "Please enter a valid email.";
     }
     if (payload.name.length > 200 || payload.message.length > 8000) {
-      return 'Field too long.';
+      return "Field too long.";
     }
     return null;
   }
@@ -90,7 +90,6 @@ export default function Contact() {
     return updated;
   });
 }
-
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -159,18 +158,18 @@ export default function Contact() {
   return (
     <div className="prose prose--big">
       <h1 className="hero__title">{AppRoutes.CONTACT.title}</h1>
-      <form onSubmit={onSubmit} className="contact-form" noValidate>
+      <form onSubmit={(e) => { void onSubmit(e); }} className="contact-form" noValidate>
         <div className="contact-form__field">
           <div className="floating-label-group">
             <input
-              className={`contact-form__control ${invalid.name ? 'contact-form__control--error' : ''}`}
+              className={`contact-form__control ${invalid.name ? "contact-form__control--error" : ""}`}
               id="name"
               name="name"
               type="text"
               autoComplete="name"
               aria-required="true"
               onChange={handleChange}
-              onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
+              onBlur={e => e.target.value ? e.target.classList.add("has-value") : e.target.classList.remove("has-value")}
             />
             <label htmlFor="name">Name <span className="required">(required)</span></label>
           </div>
@@ -178,19 +177,19 @@ export default function Contact() {
         <div className="contact-form__field">
           <div className="floating-label-group">
             <input
-              className={`contact-form__control ${invalid.email ? 'contact-form__control--error' : ''}`}
+              className={`contact-form__control ${invalid.email ? "contact-form__control--error" : ""}`}
               id="email"
               name="email"
               type="email"
               autoComplete="email"
               aria-required="true"
               onChange={handleChange}
-              onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
+              onBlur={e => e.target.value ? e.target.classList.add("has-value") : e.target.classList.remove("has-value")}
             />
             <label htmlFor="email">Email <span className="required">(required)</span></label>
           </div>
         </div>
-        <div className="contact-form__field" style={{ display: 'none' }}>
+        <div className="contact-form__field" style={{ display: "none" }}>
           <div className="floating-label-group">
             <input className="contact-form__control" id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
             <label htmlFor="company">Company</label>
@@ -199,14 +198,14 @@ export default function Contact() {
         <div className="contact-form__field">
           <div className="floating-label-group">
             <textarea
-              className={`contact-form__control ${invalid.message ? 'contact-form__control--error' : ''}`}
+              className={`contact-form__control ${invalid.message ? "contact-form__control--error" : ""}`}
               id="message"
               name="message"
               rows={6}
               aria-required="true"
               title=""
               onChange={handleChange}
-              onBlur={e => e.target.value ? e.target.classList.add('has-value') : e.target.classList.remove('has-value')}
+              onBlur={e => e.target.value ? e.target.classList.add("has-value") : e.target.classList.remove("has-value")}
             />
             <label htmlFor="message">Message <span className="required">(required)</span></label>
           </div>
@@ -216,7 +215,7 @@ export default function Contact() {
             styles={{ root: { width: "10rem" }, content: { fontWeight: 600, fontSize: "0.9rem", paddingBottom: "0.2rem" } }}
             appearance="primary"
             type="submit"
-            disabled={loadingState === 'loading'}
+            disabled={loadingState === "loading"}
           >
             Send
           </Button>

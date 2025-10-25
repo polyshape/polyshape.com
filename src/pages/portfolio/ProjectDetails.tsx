@@ -1,19 +1,18 @@
-import { useMemo, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { AppRoutes } from '../../lib/common/AppRoutes';
-import { useProjects, type Project } from '../../lib/projects';
-import { LoadingSpinnerFallback } from '@polyutils/components';
+import { useMemo, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { AppRoutes } from "../../lib/common/AppRoutes";
+import { useProjects, type Project } from "../../lib/projects";
+import { LoadingSpinnerFallback } from "@polyutils/components";
 
 function formatDate(p: Project) {
   const iso = p.date;
   const d = new Date(/^\d{4}-\d{2}$/.test(iso) ? `${iso}-01` : iso);
   const hasDay = /\d{4}-\d{2}-\d{2}/.test(iso);
-  const month = d.toLocaleString(undefined, { month: 'long' });
+  const month = d.toLocaleString(undefined, { month: "long" });
   const year = d.getFullYear();
   if (hasDay) return `${d.getDate()} ${month} ${year}`;
   return `${month} ${year}`;
 }
-
 
 export default function ProjectDetails() {
   const { pid } = useParams();
@@ -43,9 +42,8 @@ export default function ProjectDetails() {
   return (
     <div className="prose">
       <h1 className="hero__title">{project.title}</h1>
-      <p className="list__meta"><time dateTime={project.date}>{formatDate(project)}</time>{partner ? ' — ' : ''}{partner}</p>
+      <p className="list__meta"><time dateTime={project.date}>{formatDate(project)}</time>{partner ? " — " : ""}{partner}</p>
       {blocks.map((t, i) => (<p key={i}>{t}</p>))}
     </div>
   );
 }
-

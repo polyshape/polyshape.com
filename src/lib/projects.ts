@@ -1,5 +1,5 @@
-import { isDev, getEnvVar } from './env';
-import { useCallback, useEffect, useState } from 'react';
+import { isDev, getEnvVar } from "./env";
+import { useCallback, useEffect, useState } from "react";
 
 export type ProjectDoc = {
   title: string;
@@ -24,11 +24,11 @@ async function loadProjectsLocal(): Promise<Project[]> {
 
   // Prefer real content; gracefully fall back to mocks when empty
   const primary = import.meta.glob<{ default: ProjectDoc }>(
-    '/src/content/projects/*.json',
+    "/src/content/projects/*.json",
     { eager: true }
   );
   const fallback = import.meta.glob<{ default: ProjectDoc }>(
-    '/src/content/mocks/projects/*.json',
+    "/src/content/mocks/projects/*.json",
     { eager: true }
   );
   const hasPrimary = Object.keys(primary).length > 0;
@@ -36,9 +36,9 @@ async function loadProjectsLocal(): Promise<Project[]> {
 
   const items: Project[] = Object.entries(modules).map(([path, mod]) => {
     const data = mod.default;
-    const id = path.split('/').pop()!.replace(/\.json$/, '');
+    const id = path.split("/").pop()!.replace(/\.json$/, "");
     // Temporary pid; will be overwritten after sorting
-    return { id, pid: '000000', ...data } as Project;
+    return { id, pid: "000000", ...data } as Project;
   });
 
   // Double the items - each item appears twice with different IDs
@@ -59,7 +59,7 @@ function sortAndAssignPids(items: Project[]): void {
   // Assign stable six-digit ids based on sorted order
   items.forEach((item, index) => {
     const n = 100001 + index; // start from 100001
-    item.pid = String(n).padStart(6, '0');
+    item.pid = String(n).padStart(6, "0");
   });
 }
 
@@ -68,7 +68,7 @@ type BlobEntry = { url?: string; downloadUrl?: string; pathname?: string };
 
 async function fetchRemoteProjects(): Promise<Project[]> {
   // Use new consolidated list endpoint
-  const listRes = await fetch(withCacheBuster('/api/projects'), { headers: { 'Accept': 'application/json' } });
+  const listRes = await fetch(withCacheBuster("/api/projects"), { headers: { "Accept": "application/json" } });
   if (!listRes.ok) {
     throw new Error(`Failed to list projects (${listRes.status})`);
   }
@@ -78,13 +78,13 @@ async function fetchRemoteProjects(): Promise<Project[]> {
   const docs = await Promise.all(entries.map(async (b) => {
     const dl = b.downloadUrl || (b.url ? `${b.url}?download=1` : undefined);
     if (!dl) return undefined;
-    const res = await fetch(withCacheBuster(dl), { headers: { 'Accept': 'application/json' } });
+    const res = await fetch(withCacheBuster(dl), { headers: { "Accept": "application/json" } });
     if (!res.ok) {
       return undefined;
     }
     const doc = (await res.json()) as ProjectDoc;
-    const base = (b.pathname || '').split('/').pop() || '';
-    const id = base.replace(/\.json$/i, '') || cryptoRandomId();
+    const base = (b.pathname || "").split("/").pop() || "";
+    const id = base.replace(/\.json$/i, "") || cryptoRandomId();
     // For remote items, use the filename (without .json) as both id and pid
     return { id, pid: id, ...doc } as Project;
   }));
@@ -105,7 +105,7 @@ function cryptoRandomId(): string {
   try {
     // Browsers
     const bytes = crypto.getRandomValues(new Uint8Array(6));
-    return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+    return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("");
   } catch {
     // Very rare fallback
     return Math.random().toString(36).slice(2, 10);
@@ -116,8 +116,8 @@ function shouldUseApi(): boolean {
   // In production: always use API
   if (!isDev()) return true;
   // In dev: opt-in via flag
-  const flag = getEnvVar('VITE_PROJECTS_USE_API');
-  return String(flag).toLowerCase() === 'true';
+  const flag = getEnvVar("VITE_PROJECTS_USE_API");
+  return String(flag).toLowerCase() === "true";
 }
 
 export async function fetchProjects(): Promise<Project[]> {
@@ -154,10 +154,10 @@ export function useProjects() {
 function withCacheBuster(urlStr: string): string {
   try {
     const u = new URL(urlStr);
-    u.searchParams.set('_', Date.now().toString());
+    u.searchParams.set("_", Date.now().toString());
     return u.toString();
   } catch {
-    const sep = urlStr.includes('?') ? '&' : '?';
+    const sep = urlStr.includes("?") ? "&" : "?";
     return `${urlStr}${sep}_=${Date.now()}`;
   }
 }

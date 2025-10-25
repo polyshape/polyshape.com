@@ -14,6 +14,19 @@ export default tseslint.config([
     ".netlify",
   ]),
   {
+    ignores: [
+      "public/**",
+      "*.js",
+      "*.cjs",
+      "*.mjs",
+      "*.jsx",
+      "**/*.js",
+      "**/*.cjs",
+      "**/*.mjs",
+      "**/*.jsx",
+    ],
+  },
+  {
     files: ["**/*.{ts,tsx}"],
     extends: [
       js.configs.recommended,
@@ -28,8 +41,40 @@ export default tseslint.config([
       globals: globals.browser,
     },
     rules: {
+      // Align key rules with poly_components
+      quotes: ["error", "double", { avoidEscape: true }],
+      "no-console": "warn",
+      "no-multiple-empty-lines": ["error", { max: 1, maxBOF: 0, maxEOF: 0 }],
+
+      // TypeScript rules
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_", ignoreRestSiblings: true }
+      ],
+      "@typescript-eslint/no-explicit-any": "warn",
+    },
+  },
+  // Typed linting pass similar to poly_components
+  {
+    files: [
+      "src/**/*.{ts,tsx}",
+      "tests/**/*.{ts,tsx}",
+      "setupTests.ts",
+    ],
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+    plugins: {
+      "@typescript-eslint": tseslint.plugin,
+    },
+    rules: {
+      "@typescript-eslint/no-misused-promises": "error",
+      "@typescript-eslint/no-floating-promises": "error",
     },
   },
   {

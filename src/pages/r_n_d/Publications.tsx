@@ -1,10 +1,9 @@
-
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { AppRoutes } from "../../lib/common/AppRoutes";
 import { usePublications } from "../../lib/publications";
 import ItemList, { type Item } from "../../lib/common/ui/ItemList";
-import { LoadingSpinnerFallback } from '@polyutils/components';
+import { LoadingSpinnerFallback } from "@polyutils/components";
 
 export default function Publications() {
   const { data, loading, error, reload } = usePublications();
@@ -25,4 +24,3 @@ export default function Publications() {
     />
   );
 }
-

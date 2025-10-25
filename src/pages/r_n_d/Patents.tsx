@@ -10,4 +10,3 @@ export default function Patents() {
     </div>
   );
 }
-

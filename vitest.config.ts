@@ -1,21 +1,21 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
 
 export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: "jsdom",
     setupFiles: [
-      '@testing-library/jest-dom/vitest',
-      './vitest.polyfill.ts',
-      './vitest.setup.ts'
+      "@testing-library/jest-dom/vitest",
+      "./vitest.polyfill.ts",
+      "./vitest.setup.ts"
     ],
-    include: ['**/?(*.)+(test).[jt]s?(x)'],
-    reporters: ['default', 'html'],
+    include: ["**/?(*.)+(test).[jt]s?(x)"],
+    reporters: ["default", "html"],
     outputFile: {
-      html: './vitest-report/index.html'
+      html: "./vitest-report/index.html"
     }
   }
 })

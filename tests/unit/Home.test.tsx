@@ -4,8 +4,8 @@ import { renderWithRouterAndLoadingProviders } from "./utils/renderWithProviders
 describe("Home page", () => {
   it("renders the main title and subtitle", () => {
     const { getByText } = renderWithRouterAndLoadingProviders(<Home />);
-    expect(getByText(/Compositional multi-agent learning systems that advance/i)).toBeInTheDocument();
-    expect(getByText(/PolyShape builds modular systems on mathematical foundations/i)).toBeInTheDocument();
+    expect(getByText(/Compositional multi-agent orchestration systems for structured reasoning and/i)).toBeInTheDocument();
+    expect(getByText(/PolyShape builds modular agentic systems that integrate multimodal data/i)).toBeInTheDocument();
   });
 
   it("applies correct CSS classes", () => {

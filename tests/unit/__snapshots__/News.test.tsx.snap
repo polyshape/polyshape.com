@@ -16,20 +16,3 @@ exports[`News page > matches the snapshot 1`] = `
   </div>
 </div>
 `;
-
-exports[`News page matches the snapshot 1`] = `
-<div>
-  <div
-    class="prose"
-  >
-    <h1
-      class="hero__title"
-    >
-      News
-    </h1>
-    <p>
-      Coming Soon.
-    </p>
-  </div>
-</div>
-`;

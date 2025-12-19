@@ -26,90 +26,17 @@ exports[`Home page > matches the snapshot 1`] = `
       <h1
         class="hero__title"
       >
-        Compositional multi-agent learning systems that advance 
+        Compositional multi-agent orchestration systems for structured reasoning and 
         <span
           class="highlight"
         >
-          health intelligence
+          collective intelligence
         </span>
       </h1>
       <p
         class="hero__subtitle"
       >
-        PolyShape builds modular systems on mathematical foundations, integrating uncertainty and diverse biomedical data to support monitoring, decision-making, and intervention in healthcare.
-      </p>
-      <div
-        class="hero__buttons"
-      >
-        <button
-          aria-label="Learn more about our vision"
-          class="___l8lk5q0_8vgghh0 ftuwxu6 f122n59 f4d9j23 f1cf1sex fdm3o16 f1leeax8 f15dniw2 f1xqy1su f1k6fduh fyxfkj9 fz8fxl6 fs0u38j f17b1o1r fou43an f1lcx95k f8ff6pf fzbosr5 f1b8mhjz f1exwp4b f9f7vaa f1o6mjyb f1dlzkh4"
-          style="width: 10rem;"
-          type="button"
-        >
-          <span
-            class="___rm0pg00_kkq1xz0 ftuwxu6 f122n59 f1cf1sex"
-            style="font-weight: 600; font-size: 0.9rem; padding-bottom: 0.2rem;"
-          >
-            Learn more
-          </span>
-        </button>
-        <button
-          aria-label="Contact us"
-          class="___l8lk5q0_8vgghh0 ftuwxu6 f122n59 f4d9j23 f1cf1sex fdm3o16 f1leeax8 f15dniw2 f1xqy1su f1k6fduh fyxfkj9 fz8fxl6 fs0u38j f17b1o1r fou43an f1lcx95k f8ff6pf fzbosr5 f1b8mhjz f1exwp4b f9f7vaa f1o6mjyb f1dlzkh4"
-          style="width: 10rem;"
-          type="button"
-        >
-          <span
-            class="___rm0pg00_kkq1xz0 ftuwxu6 f122n59 f1cf1sex"
-            style="font-weight: 600; font-size: 0.9rem; padding-bottom: 0.2rem;"
-          >
-            Get in touch
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Home page matches the snapshot 1`] = `
-<div>
-  <div
-    class="hero"
-  >
-    <picture
-      class="hero__bg"
-    >
-      <source
-        srcset="/home_hero_transparent_dark_mode.webp"
-        type="image/webp"
-      />
-      <img
-        alt="Background"
-        src="/home_hero_transparent_dark_mode.png"
-      />
-    </picture>
-    <div
-      class="hero__overlay"
-    />
-    <div
-      class="hero__content"
-    >
-      <h1
-        class="hero__title"
-      >
-        Compositional multi-agent learning systems that advance 
-        <span
-          class="highlight"
-        >
-          health intelligence
-        </span>
-      </h1>
-      <p
-        class="hero__subtitle"
-      >
-        PolyShape builds modular systems on mathematical foundations, integrating uncertainty and diverse biomedical data to support monitoring, decision-making, and intervention in healthcare.
+        PolyShape builds modular agentic systems that integrate multimodal data, reason under uncertainty, and support organizational cognition
       </p>
       <div
         class="hero__buttons"

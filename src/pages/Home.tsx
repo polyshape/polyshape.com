@@ -18,8 +18,8 @@ export default function Home() {
       </picture>
       <div className="hero__overlay" />
       <div className="hero__content">
-        <h1 className="hero__title">Compositional multi-agent learning systems that advance <span className="highlight">health intelligence</span></h1>
-        <p className="hero__subtitle">PolyShape builds modular systems on mathematical foundations, integrating uncertainty and diverse biomedical data to support monitoring, decision-making, and intervention in healthcare.</p>
+        <h1 className="hero__title">Compositional multi-agent orchestration systems for structured reasoning and <span className="highlight">collective intelligence</span></h1>
+        <p className="hero__subtitle">PolyShape builds modular agentic systems that integrate multimodal data, reason under uncertainty, and support organizational cognition</p>
         <div className="hero__buttons">
           <Button
             styles={{ root: { width: "10rem" }, content: { fontWeight: 600, fontSize: "0.9rem", paddingBottom: "0.2rem" } }}

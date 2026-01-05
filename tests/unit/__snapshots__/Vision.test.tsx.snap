@@ -19,52 +19,6 @@ exports[`Vision page > matches the snapshot 1`] = `
     <div
       style="position: relative;"
     >
-      <div
-        style="position: absolute; top: 0.7rem; right: 7.7rem; z-index: 10;"
-      >
-        <button
-          class="___m4s1je0_ysx9ce0 ftuwxu6 f122n59 f4d9j23 f1cf1sex f1whh48p f15dniw2 f1xqy1su f1k6fduh fyxfkj9 f1mk8lai fs0u38j fkm7sny f1x9poai f5q2cvs f2imlf6 f1ym3bx4 f1exwp4b f9f7vaa f1dlj53y f1yvntrz"
-          style="min-width: 33px; height: 33px;"
-          title="Open in New Tab"
-          type="button"
-        >
-          <span
-            class="___rm0pg00_kkq1xz0 ftuwxu6 f122n59 f1cf1sex"
-            style="color: var(--global-white);"
-          >
-            <span
-              class="___e7g3x00_e9wb0x0 ftuwxu6 f122n59"
-            >
-              <svg
-                aria-hidden="true"
-                fill="none"
-                focusable="false"
-                font-size="17"
-                height="1em"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="1em"
-              >
-                <path
-                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                />
-                <polyline
-                  points="15,3 21,3 21,9"
-                />
-                <line
-                  x1="10"
-                  x2="21"
-                  y1="14"
-                  y2="3"
-                />
-              </svg>
-            </span>
-          </span>
-        </button>
-      </div>
       <object
         aria-label="Vision Document"
         data="/polyshape_vision.pdf"

@@ -125,7 +125,6 @@ a.button__primary,
 a.button__primary:visited,
 a.button__primary:hover,
 a.button__primary:active {
-  color: var(--fg-button);
   opacity: 1;
   text-decoration: none;
 }

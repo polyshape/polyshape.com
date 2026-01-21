@@ -1,6 +1,7 @@
 import { CircleRightIcon, Pagination } from "@polyutils/components";
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import { parseMarkdown } from "../parseMarkdown";
 
 export type Item = {
   id: string;
@@ -89,8 +90,8 @@ export default function ItemList({
               {formatDate(p)}
             </time>
             <div className="list__content">
-              <h3 className="list__title">{p.title}</h3>
-              <p className="list__preview">{getPreview(p)}</p>
+              <h3 className="list__title">{parseMarkdown(p.title)}</h3>
+              <p className="list__preview">{parseMarkdown(getPreview(p))}</p>
               {Array.isArray(p.authors) && p.authors.length > 0 ? (
                 <div className="list__partner">
                   {p.authors.filter(Boolean).join(", ")}

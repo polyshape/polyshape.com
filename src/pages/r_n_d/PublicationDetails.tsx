@@ -6,6 +6,7 @@ import { useEffect, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AppRoutes } from "../../lib/common/AppRoutes";
 import { usePublications, type Publication } from "../../lib/publications";
+import { parseMarkdown } from "../../lib/common/parseMarkdown";
 
 function formatDate(p: Publication) {
   const iso = p.date;
@@ -54,7 +55,7 @@ export default function PublicationDetails() {
 
   return (
     <div className="prose">
-      <h1 className="hero__title">{pub.title}</h1>
+      <h1 className="hero__title">{parseMarkdown(pub.title)}</h1>
       <div className="publication__meta">
         <p className="list__meta">
           <time dateTime={pub.date}>{formatDate(pub)}</time>
@@ -82,7 +83,7 @@ export default function PublicationDetails() {
       <div className="publication__details">
         <h2>Abstract</h2>
         {blocks.map((t, i) => (
-          <p key={i}>{t}</p>
+          <p key={i}>{parseMarkdown(t)}</p>
         ))}
 
         {Array.isArray(pub.authors) && pub.authors.length > 0 && (

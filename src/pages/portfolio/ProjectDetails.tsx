@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/common/AppRoutes";
 import { useProjects, type Project } from "../../lib/projects";
 import { LoadingSpinnerFallback } from "@polyutils/components";
+import { parseMarkdown } from "../../lib/common/parseMarkdown";
 
 function formatDate(p: Project) {
   const iso = p.date;
@@ -41,9 +42,9 @@ export default function ProjectDetails() {
 
   return (
     <div className="prose">
-      <h1 className="hero__title">{project.title}</h1>
+      <h1 className="hero__title">{parseMarkdown(project.title)}</h1>
       <p className="list__meta"><time dateTime={project.date}>{formatDate(project)}</time>{partner ? " — " : ""}{partner}</p>
-      {blocks.map((t, i) => (<p key={i}>{t}</p>))}
+      {blocks.map((t, i) => (<p key={i}>{parseMarkdown(t)}</p>))}
     </div>
   );
 }

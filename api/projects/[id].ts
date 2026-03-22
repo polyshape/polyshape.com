@@ -1,15 +1,15 @@
+import { list } from "@vercel/blob";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { applyCORS } from "../../src/lib/storage/cors.js";
 import { remove } from "../../src/lib/storage/delete.js";
 import { putFile } from "../../src/lib/storage/update.js";
-import { applyCORS } from "../../src/lib/storage/cors.js";
-import { list } from "@vercel/blob";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (applyCORS(req, res)) return;
 
   const { id } = req.query;
   if (!id || typeof id !== "string") {
-    res.status(400).json({ ok: false, error: "Missing project id" });
+    res.status(400).json({ ok: false, error: "Missing course id" });
     return;
   }
 
@@ -17,7 +17,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     try {
       const token = process.env.BLOB_READ_WRITE_TOKEN;
       if (!token) {
-        res.status(500).json({ ok: false, error: "Missing BLOB_READ_WRITE_TOKEN" });
+        res
+          .status(500)
+          .json({ ok: false, error: "Missing BLOB_READ_WRITE_TOKEN" });
         return;
       }
 
@@ -25,16 +27,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const pathname = `projects/${safeName}`;
 
       const { blobs } = await list({ prefix: pathname, token });
-      const blob = blobs.find(b => b.pathname === pathname);
+      const blob = blobs.find((b) => b.pathname === pathname);
 
       if (!blob) {
-        res.status(404).json({ ok: false, error: "Project not found" });
+        res.status(404).json({ ok: false, error: "Course not found" });
         return;
       }
 
       const r = await fetch(blob.url);
       if (!r.ok) {
-        res.status(500).json({ ok: false, error: `Failed to fetch blob: ${r.status}` });
+        res
+          .status(500)
+          .json({ ok: false, error: `Failed to fetch blob: ${r.status}` });
         return;
       }
 
@@ -42,7 +46,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       res.status(200).json({ ok: true, id: safeName, content });
     } catch (e: unknown) {
       const message = e instanceof Error ? e.message : String(e);
-      res.status(500).json({ ok: false, error: message || "Failed to fetch project" });
+      res
+        .status(500)
+        .json({ ok: false, error: message || "Failed to fetch course" });
     }
     return;
   }
@@ -53,7 +59,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       res.status(200).json({ ok: true, deleted: result });
     } catch (e: unknown) {
       const message = e instanceof Error ? e.message : String(e);
-      res.status(500).json({ ok: false, error: message || "Failed to delete project" });
+      res
+        .status(500)
+        .json({ ok: false, error: message || "Failed to delete course" });
     }
     return;
   }
@@ -63,7 +71,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const { contents, contentType } = req.body ?? {};
 
       if (!contents || typeof contents !== "string") {
-        res.status(400).json({ ok: false, error: "Invalid or missing contents" });
+        res
+          .status(400)
+          .json({ ok: false, error: "Invalid or missing contents" });
         return;
       }
 
@@ -71,7 +81,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       res.status(200).json({ ok: true, blob });
     } catch (e: unknown) {
       const message = e instanceof Error ? e.message : String(e);
-      res.status(500).json({ ok: false, error: message || "Failed to update project" });
+      res
+        .status(500)
+        .json({ ok: false, error: message || "Failed to update course" });
     }
     return;
   }

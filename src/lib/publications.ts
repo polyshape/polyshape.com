@@ -1,5 +1,5 @@
-import { isDev, getEnvVar } from "./env";
 import { useCallback, useEffect, useState } from "react";
+import { getEnvVar, isDev } from "./env";
 
 export type PublicationDoc = {
   title: string;
@@ -22,23 +22,26 @@ export type Publication = PublicationDoc & {
 async function loadPublicationsLocal(): Promise<Publication[]> {
   // Add configurable delay for dev testing (same env var as MSW)
   const delayTime = Number(import.meta.env.VITE_MSW_DELAY ?? 0);
-  await new Promise(resolve => setTimeout(resolve, delayTime));
+  await new Promise((resolve) => setTimeout(resolve, delayTime));
 
   const primary = import.meta.glob<{ default: PublicationDoc }>(
     "/src/content/publications/*.json",
-    { eager: true }
+    { eager: true },
   );
   const fallback = import.meta.glob<{ default: PublicationDoc }>(
     "/src/content/mocks/publications/*.json",
-    { eager: true }
+    { eager: true },
   );
 
   const hasPrimary = Object.keys(primary).length > 0;
-  const modules = hasPrimary ? primary : (isDev() ? fallback : {});
+  const modules = hasPrimary ? primary : isDev() ? fallback : {};
 
   const items: Publication[] = Object.entries(modules).map(([path, mod]) => {
     const data = mod.default;
-    const id = path.split("/").pop()!.replace(/\.json$/, "");
+    const id = path
+      .split("/")
+      .pop()!
+      .replace(/\.json$/, "");
     return { id, pid: "000000", ...data } as Publication;
   });
 
@@ -54,7 +57,7 @@ function sortAndAssignPids(items: Publication[]): void {
   };
   items.sort((a, b) => toTime(b.date) - toTime(a.date));
   items.forEach((item, index) => {
-    const n = 200001 + index; // start from 200001 to avoid overlap with projects
+    const n = 200001 + index; // start from 200001 to avoid overlap with courses
     item.pid = String(n).padStart(6, "0");
   });
 }
@@ -63,25 +66,31 @@ function sortAndAssignPids(items: Publication[]): void {
 type BlobEntry = { url?: string; downloadUrl?: string; pathname?: string };
 
 async function fetchRemotePublications(): Promise<Publication[]> {
-  const listRes = await fetch(withCacheBuster("/api/publications"), { headers: { "Accept": "application/json" } });
+  const listRes = await fetch(withCacheBuster("/api/publications"), {
+    headers: { Accept: "application/json" },
+  });
   if (!listRes.ok) {
     throw new Error(`Failed to list publications (${listRes.status})`);
   }
   const blobs: BlobEntry[] = await listRes.json();
   const entries = Array.isArray(blobs) ? blobs : [];
 
-  const docs = await Promise.all(entries.map(async (b) => {
-    const dl = b.downloadUrl || (b.url ? `${b.url}?download=1` : undefined);
-    if (!dl) return undefined;
-    const res = await fetch(withCacheBuster(dl), { headers: { "Accept": "application/json" } });
-    if (!res.ok) {
-      return undefined;
-    }
-    const doc = (await res.json()) as PublicationDoc;
-    const base = (b.pathname || "").split("/").pop() || "";
-    const id = base.replace(/\.json$/i, "") || cryptoRandomId();
-    return { id, pid: id, ...doc } as Publication;
-  }));
+  const docs = await Promise.all(
+    entries.map(async (b) => {
+      const dl = b.downloadUrl || (b.url ? `${b.url}?download=1` : undefined);
+      if (!dl) return undefined;
+      const res = await fetch(withCacheBuster(dl), {
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) {
+        return undefined;
+      }
+      const doc = (await res.json()) as PublicationDoc;
+      const base = (b.pathname || "").split("/").pop() || "";
+      const id = base.replace(/\.json$/i, "") || cryptoRandomId();
+      return { id, pid: id, ...doc } as Publication;
+    }),
+  );
 
   // Sort by date desc; keep pid as filename for remote
   const items = docs.filter(Boolean) as Publication[];
@@ -99,7 +108,9 @@ function cryptoRandomId(): string {
   try {
     // Browsers
     const bytes = crypto.getRandomValues(new Uint8Array(6));
-    return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("");
+    return Array.from(bytes)
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
   } catch {
     // Very rare fallback
     return Math.random().toString(36).slice(2, 10);
@@ -135,10 +146,18 @@ export function usePublications() {
     setLoading(true);
     setError(null);
     fetchPublications()
-      .then((items) => { if (!cancelled) setData(items); })
-      .catch((e) => { if (!cancelled) setError(e); })
-      .finally(() => { if (!cancelled) setLoading(false); });
-    return () => { cancelled = true; };
+      .then((items) => {
+        if (!cancelled) setData(items);
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [seq]);
 
   return { data, error, loading, reload } as const;

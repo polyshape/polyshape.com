@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Partners page > matches the snapshot 1`] = `
+exports[`Workshops page > matches the snapshot 1`] = `
 <div>
   <div
     class="prose"
@@ -8,7 +8,7 @@ exports[`Partners page > matches the snapshot 1`] = `
     <h1
       class="hero__title"
     >
-      Partners
+      Workshops
     </h1>
     <p>
       Coming Soon.

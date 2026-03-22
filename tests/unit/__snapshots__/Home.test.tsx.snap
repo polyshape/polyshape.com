@@ -26,7 +26,8 @@ exports[`Home page > matches the snapshot 1`] = `
       <h1
         class="hero__title"
       >
-        Compositional multi-agent orchestration systems for structured reasoning and 
+        Multi-agent AI systems for structured reasoning and
+         
         <span
           class="highlight"
         >

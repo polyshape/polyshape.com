@@ -11,35 +11,8 @@ exports[`Vision page > matches the snapshot 1`] = `
       Vision
     </h1>
     <p>
-      PolyShape envisions agentic systems that are modular and composable into larger systems. They reason under uncertainty, integrate multimodal data and their interrelations, and operate autonomously while enabling human intervention. Through structured multi-agent interaction, these systems give rise to collective intelligence.
+      PolyShape envisions agentic AI systems that reason under uncertainty, integrate multimodal data and their interrelations, and operate autonomously while enabling human intervention. Through structured multi-agent interaction, these systems support collective intelligence.
     </p>
-    <p>
-      This vision motivates a product and research agenda that treats collective intelligence as an emergent capability arising from agentic AI orchestration. The accompanying deck below summarizes this agenda and outlines the roadmap through which PolyShape aims to build, validate, and deploy such agentic AI systems.
-    </p>
-    <div
-      style="position: relative;"
-    >
-      <object
-        aria-label="Vision Document"
-        data="/polyshape_vision.pdf"
-        height="550rem"
-        type="application/pdf"
-        width="100%"
-      >
-        <p>
-          Your browser doesn't support PDF viewing.
-           
-          <a
-            download="polyshape_vision.pdf"
-            href="/polyshape_vision.pdf"
-          >
-            Download the PDF
-          </a>
-           
-          instead.
-        </p>
-      </object>
-    </div>
   </div>
 </div>
 `;

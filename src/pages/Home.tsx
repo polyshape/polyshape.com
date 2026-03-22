@@ -1,14 +1,20 @@
+import { Button, useTheme } from "@polyutils/components";
 import { useNavigate } from "react-router-dom";
 import { AppRoutes } from "../lib/common/AppRoutes";
-import { Button, useTheme } from "@polyutils/components";
 
 export default function Home() {
   const { theme } = useTheme();
   const navigate = useNavigate();
   const goToVision = () => navigate(AppRoutes.VISION.path);
   const goToContact = () => navigate(AppRoutes.CONTACT.path);
-  const srcImgWebp = theme === "dark" ? "/home_hero_transparent_dark_mode.webp" : "/home_hero_transparent_light_mode.webp";
-  const srcImgPng = theme === "dark" ? "/home_hero_transparent_dark_mode.png" : "/home_hero_transparent_light_mode.png";
+  const srcImgWebp =
+    theme === "dark"
+      ? "/home_hero_transparent_dark_mode.webp"
+      : "/home_hero_transparent_light_mode.webp";
+  const srcImgPng =
+    theme === "dark"
+      ? "/home_hero_transparent_dark_mode.png"
+      : "/home_hero_transparent_light_mode.png";
 
   return (
     <div className="hero">
@@ -18,11 +24,24 @@ export default function Home() {
       </picture>
       <div className="hero__overlay" />
       <div className="hero__content">
-        <h1 className="hero__title">Compositional multi-agent orchestration systems for structured reasoning and <span className="highlight">collective intelligence</span></h1>
-        <p className="hero__subtitle">PolyShape builds modular agentic systems that integrate multimodal data, reason under uncertainty, and support organizational cognition</p>
+        <h1 className="hero__title">
+          Multi-agent AI systems for structured reasoning and{" "}
+          <span className="highlight">collective intelligence</span>
+        </h1>
+        <p className="hero__subtitle">
+          PolyShape builds modular agentic systems that integrate multimodal
+          data, reason under uncertainty, and support organizational cognition
+        </p>
         <div className="hero__buttons">
           <Button
-            styles={{ root: { width: "10rem" }, content: { fontWeight: 600, fontSize: "0.9rem", paddingBottom: "0.2rem" } }}
+            styles={{
+              root: { width: "10rem" },
+              content: {
+                fontWeight: 600,
+                fontSize: "0.9rem",
+                paddingBottom: "0.2rem",
+              },
+            }}
             appearance="primary"
             onClick={goToVision}
             aria-label="Learn more about our vision"
@@ -30,7 +49,14 @@ export default function Home() {
             Learn more
           </Button>
           <Button
-            styles={{ root: { width: "10rem" }, content: { fontWeight: 600, fontSize: "0.9rem", paddingBottom: "0.2rem" } }}
+            styles={{
+              root: { width: "10rem" },
+              content: {
+                fontWeight: 600,
+                fontSize: "0.9rem",
+                paddingBottom: "0.2rem",
+              },
+            }}
             appearance="primary"
             onClick={goToContact}
             aria-label="Contact us"

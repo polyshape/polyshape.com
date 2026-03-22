@@ -5,11 +5,16 @@ export default function Footer() {
         <div className="brand brand--small">
           <picture>
             <source srcSet="/logo_short.webp" type="image/webp" />
-            <img src="/logo_short.png" alt="PolyShape" className="footer__logo" />
+            <img
+              src="/logo_short.png"
+              alt="PolyShape"
+              className="footer__logo"
+            />
           </picture>
         </div>
         <div className="copy">
-          Copyright © 2023-2025<br />
+          Copyright © 2023-2026
+          <br />
           PolyShape LTD. All rights reserved
         </div>
       </div>
